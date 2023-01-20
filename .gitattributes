@@ -1,0 +1,17 @@
+text=auto
+
+# source
+*.h     diff=c -text
+*.hpp   diff=cpp -text
+*.cpp   diff=cpp -text
+*.inl   diff=inl -text
+
+# images
+*.png binary
+*.jpg binary
+*.gif binary
+
+# Project folder
+**/res/** filter=lfs binary
+docs/** filter=lfs binary
+
