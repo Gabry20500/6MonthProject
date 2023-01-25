@@ -1,64 +1,68 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : Singleton<InputController>
 {
-    private float leftHorizontalInput;
-    private float leftVerticalInput;
-    private Vector3 leftStickDir;
+    #region AnalogueVariables
+        private float leftHorizontalInput;
+        private float leftVerticalInput;
 
-    
-    private float rightHorizontalInput;
-    private float rightVerticalInput;
-    private Vector3 rightStickDir;
+        private Vector2 leftAnalogDir;
+
+        private float rightHorizontalInput;
+        private float rightVerticalInput;
+
+        private Vector2 rightAnalogDir;
+
+        private float mouseX;
+        private float mouseY;
+    #endregion
 
     #region Getter
 
-    public Vector3 LeftStickDir
+    public Vector2 LeftStickDir
     {
-        get { return leftStickDir; }
+        get { return leftAnalogDir; }
     }
     
-    public Vector3 RightStickDir
+    public Vector2 RightStickDir
     {
-        get { return rightStickDir; }
+        get { return rightAnalogDir; }
     }
 
     #endregion
     private void Update()
     {
-        LeftAnalog();
-        RightAnalog();
+        LeftAnalogUpdate();
+        RightAnalogUpdate();
     }
 
-    private void LeftAnalog()
+    private void LeftAnalogUpdate()
     {
         leftHorizontalInput = Input.GetAxis("Horizontal");
         leftVerticalInput = Input.GetAxis("Vertical");
 
-        leftStickDir = new Vector3(leftHorizontalInput, 0, leftVerticalInput);
-        leftStickDir.Normalize();
+        leftAnalogDir = new Vector2(leftHorizontalInput, leftVerticalInput);
+        //leftAnalogDir.Normalize();
     }
     
-    private void RightAnalog()
+    private void RightAnalogUpdate()
     {
         rightHorizontalInput = Input.GetAxis("RightAnalogX");
         rightVerticalInput = Input.GetAxis("RightAnalogY");
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
 
         if (rightVerticalInput != 0 || rightHorizontalInput != 0)
         {
-            rightStickDir = new Vector3(rightHorizontalInput, 0, rightVerticalInput);
-        }else if (mouseX != 0 || mouseY != 0)
-        {
-            rightStickDir = new Vector3(mouseX, 0, mouseY);
+            rightAnalogDir = new Vector2(rightHorizontalInput, rightVerticalInput);
+            //rightAnalogDir.Normalize();
         }
-        rightStickDir.Normalize();
-    }
+        else if (mouseX != 0 || mouseY != 0)
+        {
+            rightAnalogDir = new Vector2(mouseX, mouseY);
+            //rightAnalogDir.Normalize();
+        }
 
-    
+    }    
 }
