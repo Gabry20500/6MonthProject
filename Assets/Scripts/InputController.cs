@@ -34,6 +34,16 @@ public class InputController : Singleton<InputController>
         get { return rightAnalogDir; }
     }
 
+    public float RightHorizontalInput
+    {
+        get { return rightHorizontalInput; }
+    }
+    
+    public float RightVerticalInput
+    {
+        get { return rightVerticalInput; }
+    }
+
     #endregion
     private void Update()
     {

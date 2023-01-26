@@ -19,14 +19,11 @@ public class SwordScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputController.instance.RightStickDir != Vector2.zero)
+        if (InputController.instance.RightHorizontalInput != 0)
         {
-            float rotation = Vector3.Angle(InputController.instance.RightStickDir,transform.forward);
-            if (currentDir != InputController.instance.RightStickDir)
-            {
-                currentDir = InputController.instance.RightStickDir;
-                transform.RotateAround(target.position, Vector3.up, rotation);
-            }
-        }
+            transform.RotateAround(target.position, Vector3.up, speed * InputController.instance.RightHorizontalInput * Time.deltaTime);
+        }else 
+        if(InputController.instance.RightVerticalInput != 0) 
+            transform.RotateAround(target.position, Vector3.up, speed * InputController.instance.RightVerticalInput * Time.deltaTime);
     }
 }
