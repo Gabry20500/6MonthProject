@@ -3,6 +3,7 @@ using UnityEngine;
 public class InputController : Singleton<InputController>
 {
     #region AnalogueVariables
+    //Parameters for analogs
         private float leftHorizontalInput;
         private float leftVerticalInput;
 
@@ -13,10 +14,14 @@ public class InputController : Singleton<InputController>
 
         private Vector2 rightAnalogDir;
 
+    //Parameter for mouse
         private float mouseX;
         private float mouseY;
     #endregion
 
+    /// <summary>
+    /// Getter for all the usefull input value
+    /// </summary>
     #region Getter
 
     public Vector2 LeftStickDir
@@ -53,15 +58,14 @@ public class InputController : Singleton<InputController>
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
+        //Prioritizing the joypad controller then check the board for right analog input
         if (rightVerticalInput != 0 || rightHorizontalInput != 0)
         {
             rightAnalogDir = new Vector2(rightHorizontalInput, rightVerticalInput);
-            //rightAnalogDir.Normalize();
         }
         else if (mouseX != 0 || mouseY != 0)
         {
             rightAnalogDir = new Vector2(mouseX, mouseY);
-            //rightAnalogDir.Normalize();
         }
 
     }    
