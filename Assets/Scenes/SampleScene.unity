@@ -460,7 +460,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  direction: {x: 0, y: 0}
   canMove: 1
+  dashingSpeed: 6
+  dashingTime: 0.2
+  dashingCooldown: 1
 --- !u!4 &948243431
 Transform:
   m_ObjectHideFlags: 0

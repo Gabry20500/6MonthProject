@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class InputController : Singleton<InputController>
 {
-    public delegate void OnLeftMouseDown();
-    public event OnLeftMouseDown LeftMouseDown;
+    public delegate void OnButtonDown();
+    public event OnButtonDown LeftMouseDown;
+    public event OnButtonDown SpaceDown;
+    
 
     #region AnalogueVariables
     //Parameters for analogs
@@ -54,9 +56,13 @@ public class InputController : Singleton<InputController>
     {
         LeftAnalogUpdate();
         RightAnalogUpdate();
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
             LeftMouseDown();
+        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+        {
+            SpaceDown();
         }
     }
 

@@ -33,7 +33,7 @@ public class SwordScript : MonoBehaviour
             {
                 transform.forward = new Vector3(InputController.instance.RightStickDir.x, 0.0f, InputController.instance.RightStickDir.y);
             }
-            else if (InputController.instance.usingMouse == true)
+            else if (InputController.instance.usingMouse)
             {
                 mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 ray = Camera.main.ScreenPointToRay(mousePos);
