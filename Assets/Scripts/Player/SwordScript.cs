@@ -4,26 +4,61 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour
 {
+    private Vector2 mousePos;
+    private Ray ray;
+    private RaycastHit hit;
+    private Vector3 newDir;
 
-    [SerializeField] private Transform target;
+    public bool canMove = true;
+    private EntityMovement entityMov;
+    [SerializeField] private MovementAnimation animator;
 
-    [SerializeField] private float speed;
-
-    private Vector2 currentDir;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        entityMov = gameObject.GetComponentInParent<EntityMovement>();
     }
-
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        InputController.instance.LeftMouseDown += Swing;
+    }
+    private void OnDisable()
+    {
+        InputController.instance.LeftMouseDown -= Swing;
+    }
     void Update()
     {
-        if (InputController.instance.RightHorizontalInput != 0)
+        if (canMove)
         {
-            transform.RotateAround(target.position, Vector3.up, speed * InputController.instance.RightHorizontalInput * Time.deltaTime);
-        }else 
-        if(InputController.instance.RightVerticalInput != 0) 
-            transform.RotateAround(target.position, Vector3.up, speed * InputController.instance.RightVerticalInput * Time.deltaTime);
+            if (InputController.instance.usingMouse == false)
+            {
+                transform.forward = new Vector3(InputController.instance.RightStickDir.x, 0.0f, InputController.instance.RightStickDir.y);
+            }
+            else if (InputController.instance.usingMouse == true)
+            {
+                mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                ray = Camera.main.ScreenPointToRay(mousePos);
+                Physics.Raycast(ray, out hit);
+                newDir = (hit.point - transform.position).normalized;
+                newDir = new Vector3(newDir.x, 0.0f, newDir.z);
+                transform.forward = newDir;
+            }
+        }
+    }
+
+    public void Swing()
+    {
+        canMove = false;
+        entityMov.canMove = false;
+        animator.AttackAnimation(new Vector2(newDir.x, newDir.z));
+        StartCoroutine(SwingAnimation());
+
+    }
+
+    private IEnumerator SwingAnimation()
+    {
+        yield return new WaitForSeconds(1.0f);
+        yield return null;
+        canMove = true;
+        entityMov.canMove = true;
     }
 }

@@ -16,10 +16,10 @@ public enum Direction
 /// <summary>
 /// Class that animate the player
 /// </summary>
-public class Animation : MonoBehaviour
+public class MovementAnimation : MonoBehaviour
 {
     private Animator myAnimator;
-    private PlayerMovement playerMov;
+    private EntityMovement playerMov;
 
     //Using string prefix to help calling the right animations by name
     string animPrefix = "Idle_";
@@ -28,7 +28,7 @@ public class Animation : MonoBehaviour
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        playerMov = GetComponentInParent<PlayerMovement>();
+        playerMov = GetComponentInParent<EntityMovement>();
     }
 
     /// <summary>
@@ -70,5 +70,10 @@ public class Animation : MonoBehaviour
         float stepCount = angle / step; // Calculate in which step we are
         return (Direction)Mathf.FloorToInt(stepCount); 
 
+    }
+
+    public void AttackAnimation(Vector2 direction)
+    {
+        myAnimator.Play("Atk_" + DirectionIndex(direction).ToString());
     }
 }
