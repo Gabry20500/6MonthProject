@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class InputController : Singleton<InputController>
 {
+<<<<<<< Updated upstream
+=======
+    public delegate void OnButtonDown();
+    public event OnButtonDown LeftMouseDown;
+    public event OnButtonDown SpaceDown;
+
+>>>>>>> Stashed changes
     #region AnalogueVariables
     //Parameters for analogs
         private float leftHorizontalInput;
@@ -49,6 +56,18 @@ public class InputController : Singleton<InputController>
     {
         LeftAnalogUpdate();
         RightAnalogUpdate();
+<<<<<<< Updated upstream
+=======
+        if(Input.GetMouseButtonDown(0))
+        {
+            LeftMouseDown();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpaceDown();
+        }
+>>>>>>> Stashed changes
     }
 
     private void LeftAnalogUpdate()
