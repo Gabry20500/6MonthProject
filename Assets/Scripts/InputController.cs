@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class InputController : Singleton<InputController>
 {
+    public delegate void OnLeftMouseDown();
+    public event OnLeftMouseDown LeftMouseDown;
+
     #region AnalogueVariables
     //Parameters for analogs
-        private float leftHorizontalInput;
+    private float leftHorizontalInput;
         private float leftVerticalInput;
 
         private Vector2 leftAnalogDir;
@@ -17,6 +20,8 @@ public class InputController : Singleton<InputController>
     //Parameter for mouse
         private float mouseX;
         private float mouseY;
+
+    public bool usingMouse = false;
     #endregion
 
     /// <summary>
@@ -49,6 +54,10 @@ public class InputController : Singleton<InputController>
     {
         LeftAnalogUpdate();
         RightAnalogUpdate();
+        if(Input.GetMouseButtonDown(0))
+        {
+            LeftMouseDown();
+        }
     }
 
     private void LeftAnalogUpdate()
@@ -57,7 +66,6 @@ public class InputController : Singleton<InputController>
         leftVerticalInput = Input.GetAxis("Vertical");
 
         leftAnalogDir = new Vector2(leftHorizontalInput, leftVerticalInput);
-        //leftAnalogDir.Normalize();
     }
     
     private void RightAnalogUpdate()
@@ -72,11 +80,12 @@ public class InputController : Singleton<InputController>
         if (rightVerticalInput != 0 || rightHorizontalInput != 0)
         {
             rightAnalogDir = new Vector2(rightHorizontalInput, rightVerticalInput);
+            usingMouse = false;
         }
         else if (mouseX != 0 || mouseY != 0)
         {
             rightAnalogDir = new Vector2(mouseX, mouseY);
+            usingMouse = true;
         }
-
     }    
 }

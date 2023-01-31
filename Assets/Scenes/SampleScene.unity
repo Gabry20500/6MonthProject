@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPersistent: 1
+  usingMouse: 0
 --- !u!1 &591969781
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41bb3690e5f3db459a287c2bebae3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 1696723688}
+  canMove: 1
+  animator: {fileID: 790440883}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  canMove: 1
 --- !u!4 &948243431
 Transform:
   m_ObjectHideFlags: 0
