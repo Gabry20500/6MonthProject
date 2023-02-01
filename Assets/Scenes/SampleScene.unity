@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPersistent: 1
+  leftAnalogDir: {x: 0, y: 0}
+  rightAnalogDir: {x: 0, y: 0}
   usingMouse: 0
 --- !u!1 &591969781
 GameObject:
@@ -214,8 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41bb3690e5f3db459a287c2bebae3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
-  animator: {fileID: 790440883}
+  swingWidth: 90
+  swingSpeed: 0.5
+  swingCoolDown: 0.1
+  swingForce: 0
+  canRotate: 1
+  entityAnimation: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de6544f38e58b94085b98d35dd4ec01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAnimation: 
 --- !u!1 &948243426
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948243426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.98, z: 0}
+  m_LocalPosition: {x: 0, y: 0.98, z: -7.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

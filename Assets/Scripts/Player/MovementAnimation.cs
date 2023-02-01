@@ -14,17 +14,28 @@ public enum Direction
 }
 
 /// <summary>
-/// Class that animate the player
+/// Class that animate the any entity in a isometric 3D world with a sprite character with 8 possible direction of moving
 /// </summary>
 public class MovementAnimation : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the needed Animator to animate
+    /// </summary>
     private Animator myAnimator;
+    /// <summary>
+    /// Reference to the Movement class that elaborates and pass the movement value
+    /// </summary>
     private EntityMovement playerMov;
 
-    //Using string prefix to help calling the right animations by name
+    /// <summary>
+    ///Using string prefix to help calling the right animations by name
+    /// </summary>
     string animPrefix = "Idle_";
-    Direction lastDirection;
 
+    private Direction lastDirection;
+
+
+    [SerializeField] private string currentAnimation;
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
@@ -47,12 +58,13 @@ public class MovementAnimation : MonoBehaviour
             lastDirection = DirectionIndex(direction);
         }
         myAnimator.Play(animPrefix + lastDirection.ToString());
+        currentAnimation = animPrefix + lastDirection.ToString();
     }
 
     /// <summary>
     /// Caluclate the direction as Enum Direction in which the entity is moving
     /// </summary>
-    /// <param name="direction"></param>
+    /// <param name="direction">The direction as 2D Vector of the entity movement</param>
     /// <returns></returns>
     private Direction DirectionIndex(Vector2 direction)
     {
@@ -69,11 +81,15 @@ public class MovementAnimation : MonoBehaviour
         }
         float stepCount = angle / step; // Calculate in which step we are
         return (Direction)Mathf.FloorToInt(stepCount); 
-
     }
 
+    /// <summary>
+    /// Activate the Attack animation based on the given direction
+    /// </summary>
+    /// <param name="direction"></param>
     public void AttackAnimation(Vector2 direction)
     {
-        myAnimator.Play("Atk_" + DirectionIndex(direction).ToString());
+        currentAnimation = "Atk_" + DirectionIndex(direction).ToString();
+        myAnimator.Play("Atk_" + DirectionIndex(direction).ToString());   
     }
 }

@@ -2,27 +2,39 @@ using UnityEngine;
 
 public class InputController : Singleton<InputController>
 {
+    /// <summary>
+    /// Generic event for Key or Button down.
+    /// </summary>
     public delegate void OnButtonDown();
+    /// <summary>
+    /// Event for Left mouse click on Computer.
+    /// </summary>
     public event OnButtonDown LeftMouseDown;
+    /// <summary>
+    /// Event for Space key down on computer.
+    /// </summary>
     public event OnButtonDown SpaceDown;
     
 
     #region AnalogueVariables
     //Parameters for analogs
-    private float leftHorizontalInput;
+    [Header("Stick direction values")]
+        private float leftHorizontalInput;
         private float leftVerticalInput;
 
-        private Vector2 leftAnalogDir;
+        [SerializeField] private Vector2 leftAnalogDir;
 
         private float rightHorizontalInput;
         private float rightVerticalInput;
 
-        private Vector2 rightAnalogDir;
+        [SerializeField] private Vector2 rightAnalogDir;
 
     //Parameter for mouse
         private float mouseX;
         private float mouseY;
 
+    //Usefull information to detect how elaborate input because on pad the direction is a pure Vector on which direction the elements
+    //are ready to work, for the mouse input we must before detect the area indicated by the cursor.
     public bool usingMouse = false;
     #endregion
 
@@ -30,7 +42,6 @@ public class InputController : Singleton<InputController>
     /// Getter for all the usefull input value
     /// </summary>
     #region Getter
-
     public Vector2 LeftStickDir
     {
         get { return leftAnalogDir; }
@@ -58,14 +69,24 @@ public class InputController : Singleton<InputController>
         RightAnalogUpdate();
         if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
-            LeftMouseDown();
+            if(LeftMouseDown != null) 
+            { 
+                LeftMouseDown(); 
+            }          
         }
+
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
-            SpaceDown();
+            if (SpaceDown != null)
+            {
+                SpaceDown();
+            }
         }
     }
 
+    /// <summary>
+    /// Obtaining axis value from Pad analogues or KeyBoard button defined in ProjectSettings
+    /// </summary>
     private void LeftAnalogUpdate()
     {
         leftHorizontalInput = Input.GetAxis("Horizontal");
@@ -88,6 +109,7 @@ public class InputController : Singleton<InputController>
             rightAnalogDir = new Vector2(rightHorizontalInput, rightVerticalInput);
             usingMouse = false;
         }
+        //Otherwise detect mouse screen position and transleta it in a vector
         else if (mouseX != 0 || mouseY != 0)
         {
             rightAnalogDir = new Vector2(mouseX, mouseY);
