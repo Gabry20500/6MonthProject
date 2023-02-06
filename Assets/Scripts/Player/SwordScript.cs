@@ -7,8 +7,8 @@ using UnityEngine;
 public class SwordScript : MonoBehaviour
 {
     [Header("Swing values")] 
-    [SerializeField] float swingWidth = 90.0f; //Range of motion of the swinging sword
-    [SerializeField] float swingSpeed = 0.5f; //The duration of the swing movement
+    [SerializeField] float swingWidth = 180.0f; //Range of motion of the swinging sword
+    [SerializeField] float swingSpeed = 2f; //The duration of the swing movement
     [SerializeField] float swingCoolDown = 0.1f; //CoolDown to prevent spam
     [SerializeField] float swingForce; //Not yet implemented value
 
