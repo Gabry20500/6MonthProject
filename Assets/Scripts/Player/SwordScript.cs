@@ -115,17 +115,15 @@ public class SwordScript : MonoBehaviour
 
             yield return null;
             t += Time.deltaTime;//Increment timer
+            //Add some way to move forward the player while swinging
         }
 
         transform.forward = targetDir;//Safe repositioning
 
-        yield return new WaitForSeconds(0.5f);//Cooldown <---- to watch-----------------------------????????????
+        yield return new WaitForSeconds(swingCoolDown);
         entityAnimation.SetDirection(new Vector2(swingDir.x, swingDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         myEntity.canMove = true;//Enable entity movment
-
-
-        yield return new WaitForSeconds(swingCoolDown);//Cooldown
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
     }
 }
