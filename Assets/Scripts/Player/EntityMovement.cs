@@ -16,16 +16,17 @@ public class EntityMovement : MonoBehaviour
     private Rigidbody myRb;
     private MovementAnimation myAnimation;
 
-
-    //Variable used for Dash
-    private bool canDash = true;
-    private bool isDashing = false;
-
     [Header("Dash variables")]
+    //Variable used for Dash
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private bool isDashing = false;
     [SerializeField] private float dashingSpeed = 6f;
     [SerializeField] private float dashingTime = 0.5f;
     [SerializeField] private float dashingCooldown = 1f;
     private Vector2 dashDir;
+
+    [Header("Attack variables")]
+    [SerializeField] private bool isAttacking = false;
 
     #region Getter
     public Vector2 Direction
@@ -65,8 +66,8 @@ public class EntityMovement : MonoBehaviour
         {
             direction = InputController.instance.LeftStickDir;
             //If direction is none make RigidBody velocity to be 0
-            if (direction == Vector2.zero) 
-            {                
+            if (direction == Vector2.zero)
+            {
                 myRb.velocity += -(myRb.velocity);
                 myAnimation.SetDirection(direction);
             }
@@ -88,11 +89,12 @@ public class EntityMovement : MonoBehaviour
                                    dashDir.normalized.y * (speed * dashingSpeed) * Time.fixedDeltaTime);
 
             myRb.velocity = velocity;
-        }
+        }       
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
-        else { myRb.velocity += -(myRb.velocity); }
+        else if(isAttacking == false)
+        { myRb.velocity += -(myRb.velocity); }
 
     }
 
@@ -118,6 +120,33 @@ public class EntityMovement : MonoBehaviour
     }
 
 
+    public IEnumerator AttackDash(Vector2 direction, float dashAtkSpeed, float duration)
+    {
+        canMove = false;
+        isDashing = false;
+        canDash = false;
+        isAttacking = true;
+        Debug.Log(direction);
+        Debug.Log(speed);
+        Debug.Log(duration);
+        float t = 0.0f; //Timer
+        while (t < duration) //Cicle
+        {
+            //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
+            velocity = new Vector3(direction.normalized.x * (speed * dashAtkSpeed) * Time.fixedDeltaTime, 0,
+                                   direction.normalized.y * (speed * dashAtkSpeed) * Time.fixedDeltaTime);
+
+            myRb.velocity = velocity;
+            yield return null;
+            t += Time.fixedDeltaTime;//Increment timer         
+        }
+        Debug.Log("Cicle end");
+        isAttacking = false;
+        canMove = true;
+        canDash = true;
+    }
+
+    
     /// <summary>
     /// Public function to call the Dash, do nothing if already dashing
     /// </summary>

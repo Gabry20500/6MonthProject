@@ -6,26 +6,34 @@ using UnityEngine;
 /// </summary>
 public class SwordScript : MonoBehaviour
 {
+    [SerializeField] public bool canRotate = true;
+
     [Header("Swing values")] 
     [SerializeField] float swingWidth = 180.0f; //Range of motion of the swinging sword
     [SerializeField] float swingSpeed = 2f; //The duration of the swing movement
     [SerializeField] float swingCoolDown = 0.1f; //CoolDown to prevent spam
     [SerializeField] float swingForce; //Not yet implemented value
 
+    [Header("DashAttack values")]
+    [SerializeField] private float dashSpeed = 4.0f;
+    [SerializeField] private float dashDuration = 0.10f;
+
+    #region MouseTracing
     private Vector2 mousePos;
     private Ray ray; //Ray to detect the world poin hitted by the mouse position
     private RaycastHit hit;
     private Vector3 currentDir; //Real world 3D direction elaborated from the mouse-world hit position
+    #endregion
 
-    public bool canRotate = true;
     private EntityMovement myEntity; //Link to the entity movement class to sto his movement and to perform other actions
     [SerializeField] private MovementAnimation entityAnimation; //Animation class of the entity to link in editor to call the swing animation on the sprite
 
-
+    #region SwingAnimation parameters
     //Swing animation parameters
     private Vector3 initialDir;
     private Vector3 targetDir;
     Quaternion targetRot;
+    #endregion
 
 
 
@@ -89,7 +97,7 @@ public class SwordScript : MonoBehaviour
     {
         myEntity.canMove = false; //The linked entity can't move
         canRotate = false; //The sword can no more rotate
-        entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
+        //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
         entityAnimation.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
         InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
         //Starting the coroutine swing animation
@@ -107,6 +115,9 @@ public class SwordScript : MonoBehaviour
         float t = 0.0f; //Timer
         float percentace = 0.0f;//Percentage for lerp
 
+        //Call the attack dash function in the entity attached to this script
+        myEntity.StartCoroutine(myEntity.AttackDash(new Vector2(swingDir.x, swingDir.z), dashSpeed, dashDuration));
+
         while (t < swingSpeed) //Cicle
         {
             percentace = t / swingSpeed;//New percentage
@@ -114,14 +125,13 @@ public class SwordScript : MonoBehaviour
             transform.localRotation = nextRotation; //Change rotation
 
             yield return null;
-            t += Time.deltaTime;//Increment timer
-            //Add some way to move forward the player while swinging
+            t += Time.deltaTime;//Increment timer         
         }
 
-        transform.forward = targetDir;//Safe repositioning
+        transform.forward = targetDir;//Safe repositioning??
 
         yield return new WaitForSeconds(swingCoolDown);
-        entityAnimation.SetDirection(new Vector2(swingDir.x, swingDir.z));//Set player animation to the resting actual direction
+        entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         myEntity.canMove = true;//Enable entity movment
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
