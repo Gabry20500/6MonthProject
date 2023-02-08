@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f65c9e78e4f54c3409447a7f84a9fed5
+guid: 2e599b0974c3eb74f8b5abb0fc8b8428
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -141,80 +141,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_nord_ovest_0
+      name: Est_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 25
-        width: 21
-        height: 28
+        x: 1
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -10.5, y: 14}
-        - {x: -10.5, y: 9}
-        - {x: -10.5, y: -14}
-        - {x: -7.5, y: -14}
-        - {x: 10.5, y: -14}
-        - {x: 10.5, y: 4}
-        - {x: 10.5, y: 14}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7109706027bf24e4eb0201a7def32959
-      internalID: -1948013422
+      spriteID: 761bb4b3e714ae941bf4fe27a3aab5d0
+      internalID: -477363894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_nord_ovest_1
+      name: Est_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 26
-        width: 13
-        height: 29
+        x: 480
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -6.5, y: 14.5}
-        - {x: -6.5, y: -14.5}
-        - {x: 6.5, y: -14.5}
-        - {x: 6.5, y: 14.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b05e6419cad12e745b58bbb953b798ef
-      internalID: -2034091521
+      spriteID: 21543875db9bfbd4d92b992a1830e048
+      internalID: 2085946495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_nord_ovest_2
+      name: Est_2
       rect:
         serializedVersion: 2
-        x: 87
-        y: 26
-        width: 14
-        height: 27
+        x: 959
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -7, y: 13.5}
-        - {x: -7, y: -13.5}
-        - {x: -5, y: -13.5}
-        - {x: 7, y: -13.5}
-        - {x: 7, y: 13.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3318a432e3048c44d833d4fa96be0dd4
-      internalID: 1942173265
+      spriteID: 606d7ceb793ca7b4db461832fee48d29
+      internalID: -110110665
       vertices: []
       indices: 
       edges: []
@@ -222,7 +206,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 78685f5acdd8cb94e8e3bd5dbc59d98e
+    spriteID: fdd97fe2721239741a47394208afc061
     internalID: 0
     vertices: []
     indices: 
@@ -230,9 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk_nord_ovest_1: -2034091521
-      walk_nord_ovest_0: -1948013422
-      walk_nord_ovest_2: 1942173265
+      Est_1: 2085946495
+      Est_0: -477363894
+      Est_2: -110110665
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

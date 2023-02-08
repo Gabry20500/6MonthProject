@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 045379f21d297b541b6d8c00e4856254
+guid: c1a2dc3d3fe5e60478284313f7e822cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -141,81 +141,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_nord_0
+      name: Nord_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 25
-        width: 15
-        height: 28
+        x: 1
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -6.5, y: 14}
-        - {x: -7.5, y: 14}
-        - {x: -7.5, y: -14}
-        - {x: 1.5, y: -14}
-        - {x: 7.5, y: -14}
-        - {x: 7.5, y: 14}
-        - {x: 5.5, y: 14}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc16a934bb91b81438de5c4e28bd4218
-      internalID: -1746612451
+      spriteID: 616da818289c1824681e952132d40305
+      internalID: -2108100031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_nord_1
+      name: Nord_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 27
-        width: 14
-        height: 28
+        x: 480
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -7, y: 14}
-        - {x: -7, y: -14}
-        - {x: 7, y: -14}
-        - {x: 7, y: 14}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e05aeae7df23cf47b4cb52cac09170e
-      internalID: 1794088838
+      spriteID: 76a3a6620b92c6d43a1a3a80e7a04e43
+      internalID: -1475790654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_nord_2
+      name: Nord_2
       rect:
         serializedVersion: 2
-        x: 85
-        y: 25
-        width: 15
-        height: 28
+        x: 959
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -7.5, y: 14}
-        - {x: -7.5, y: -14}
-        - {x: -2.5, y: -14}
-        - {x: 7.5, y: -14}
-        - {x: 7.5, y: 10}
-        - {x: 7.5, y: 14}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b453c1fb01b73fa48a4626238e581243
-      internalID: -942924841
+      spriteID: 9417551d707da1346b9802370f744a4b
+      internalID: -341025796
       vertices: []
       indices: 
       edges: []
@@ -223,7 +206,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 684d5116a40666b4c974652fd5c8c12d
+    spriteID: 3c176e6eae8d8ab4e9daf21ea46a0d12
     internalID: 0
     vertices: []
     indices: 
@@ -231,9 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk_nord_2: -942924841
-      walk_nord_1: 1794088838
-      walk_nord_0: -1746612451
+      Nord_1: -1475790654
+      Nord_0: -2108100031
+      Nord_2: -341025796
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

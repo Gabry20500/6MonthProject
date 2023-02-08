@@ -7,14 +7,14 @@ using UnityEngine;
 public class EntityMovement : MonoBehaviour
 {
     [Header("Movement variables")]
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] private Vector2 direction;
     private Vector3 velocity;
 
-    public bool canMove = true;
+    private bool canMove = true;
 
-    private Rigidbody myRb;
-    private MovementAnimation myAnimation;
+    private Rigidbody _rigidBody;
+    private MovementAnimation _animator;
 
     [Header("Dash variables")]
     //Variable used for Dash
@@ -29,30 +29,63 @@ public class EntityMovement : MonoBehaviour
     [SerializeField] private bool isAttacking = false;
 
     #region Getter
+    public Rigidbody Rigidbody
+    {
+        get { return _rigidBody; }
+    }
     public Vector2 Direction
     {
         get { return direction; }
+    }
+    public Vector3 Velocity
+    {
+        get { return velocity; }
+    }
+    public ref bool CanMove
+    {
+        get { return ref canMove; }
+    }
+    public ref bool IsDashing
+    {
+        get
+        {
+            return ref isDashing;
+        }
+    }
+    public ref bool CanDash
+    {
+        get
+        {
+            return ref canDash;
+        }
+    }
+    public ref bool IsAttacking
+    {
+        get
+        {
+            return ref isAttacking;
+        }
     }
 
     #endregion
 
     private void Awake()
     {
-        myRb = GetComponent<Rigidbody>();
-        myAnimation = GetComponentInChildren<MovementAnimation>();
+        _rigidBody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<MovementAnimation>();
 
     }
 
     private void OnEnable()
     {
-        InputController.instance.SpaceDown += StartDash;
+        InputController.instance.SpaceDown += Dash;
     }
 
     private void OnDisable()
     {
         if (InputController.instance != null)
         {
-            InputController.instance.SpaceDown -= StartDash;
+            InputController.instance.SpaceDown -= Dash;
         }
     }
 
@@ -68,17 +101,17 @@ public class EntityMovement : MonoBehaviour
             //If direction is none make RigidBody velocity to be 0
             if (direction == Vector2.zero)
             {
-                myRb.velocity += -(myRb.velocity);
-                myAnimation.SetDirection(direction);
+                _rigidBody.velocity += -(_rigidBody.velocity);
+                _animator.SetDirection(direction);
             }
             else
             {
                 //Generate 3D Vector from a 2D Vector
                 velocity = new Vector3(InputController.instance.LeftStickDir.normalized.x * speed * Time.fixedDeltaTime, 0,
                                        InputController.instance.LeftStickDir.normalized.y * speed * Time.fixedDeltaTime);
-                myRb.velocity = velocity;
+                _rigidBody.velocity = velocity;
                 //Call Animation class to play animation
-                myAnimation.SetDirection(direction);
+                _animator.SetDirection(direction);
             }
         }
         //If isDashing has become true since the last frame
@@ -88,13 +121,13 @@ public class EntityMovement : MonoBehaviour
             velocity = new Vector3(dashDir.normalized.x * (speed * dashingSpeed) * Time.fixedDeltaTime, 0,
                                    dashDir.normalized.y * (speed * dashingSpeed) * Time.fixedDeltaTime);
 
-            myRb.velocity = velocity;
+            _rigidBody.velocity = velocity;
         }       
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
         else if(isAttacking == false)
-        { myRb.velocity += -(myRb.velocity); }
+        { _rigidBody.velocity += -(_rigidBody.velocity); }
 
     }
 
@@ -104,11 +137,11 @@ public class EntityMovement : MonoBehaviour
     /// the second is for the coolDown of the action
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Dash()
+    private IEnumerator DashCoroutine()
     {
-        myAnimation.SetDirection(dashDir);
+        _animator.SetDirection(dashDir);
         canMove = false;
-        canDash = false;
+        canDash = false; 
         isDashing = true;
 
         yield return new WaitForSeconds(dashingTime);
@@ -120,42 +153,18 @@ public class EntityMovement : MonoBehaviour
     }
 
 
-    public IEnumerator AttackDash(Vector2 direction, float dashAtkSpeed, float duration)
-    {
-        canMove = false;
-        isDashing = false;
-        canDash = false;
-        isAttacking = true;
-        Debug.Log(direction);
-        Debug.Log(speed);
-        Debug.Log(duration);
-        float t = 0.0f; //Timer
-        while (t < duration) //Cicle
-        {
-            //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
-            velocity = new Vector3(direction.normalized.x * (speed * dashAtkSpeed) * Time.fixedDeltaTime, 0,
-                                   direction.normalized.y * (speed * dashAtkSpeed) * Time.fixedDeltaTime);
-
-            myRb.velocity = velocity;
-            yield return null;
-            t += Time.fixedDeltaTime;//Increment timer         
-        }
-        Debug.Log("Cicle end");
-        isAttacking = false;
-        canMove = true;
-        canDash = true;
-    }
+   
 
     
     /// <summary>
     /// Public function to call the Dash, do nothing if already dashing
     /// </summary>
-    public void StartDash()
+    public void Dash()
     {
         if (canDash)
         {
             dashDir = InputController.instance.LeftStickDir;
-            StartCoroutine(Dash());
+            StartCoroutine(DashCoroutine());
         }
     }
 }

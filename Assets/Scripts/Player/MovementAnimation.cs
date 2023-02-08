@@ -21,25 +21,22 @@ public class MovementAnimation : MonoBehaviour
     /// <summary>
     /// Reference to the needed Animator to animate
     /// </summary>
-    private Animator myAnimator;
+    private Animator _animator;
     /// <summary>
     /// Reference to the Movement class that elaborates and pass the movement value
     /// </summary>
-    private EntityMovement playerMov;
+    private EntityMovement _movement;
 
     /// <summary>
     ///Using string prefix to help calling the right animations by name
     /// </summary>
-    string animPrefix = "Idle_";
+    string prefix = "Idle_";
+    private Direction lastDir;
 
-    private Direction lastDirection;
-
-
-    [SerializeField] private string currentAnimation;
     private void Awake()
     {
-        myAnimator = GetComponent<Animator>();
-        playerMov = GetComponentInParent<EntityMovement>();
+        _animator = GetComponent<Animator>();
+        _movement = GetComponentInParent<EntityMovement>();
     }
 
     /// <summary>
@@ -50,15 +47,14 @@ public class MovementAnimation : MonoBehaviour
     {
         if(direction.magnitude < 0.01f)
         {
-            animPrefix = "Idle_";
+            prefix = "Idle_";
         }
         else
         {
-            animPrefix = "Run_";
-            lastDirection = DirectionIndex(direction);
+            prefix = "Run_";
+            lastDir = DirectionIndex(direction);
         }
-        myAnimator.Play(animPrefix + lastDirection.ToString());
-        currentAnimation = animPrefix + lastDirection.ToString();
+        _animator.Play(prefix + lastDir.ToString());
     }
 
     /// <summary>
@@ -89,7 +85,6 @@ public class MovementAnimation : MonoBehaviour
     /// <param name="direction"></param>
     public void AttackAnimation(Vector2 direction)
     {
-        currentAnimation = "Atk_" + DirectionIndex(direction).ToString();
-        myAnimator.Play("Atk_" + DirectionIndex(direction).ToString());   
+        _animator.Play("Atk_" + DirectionIndex(direction).ToString());   
     }
 }

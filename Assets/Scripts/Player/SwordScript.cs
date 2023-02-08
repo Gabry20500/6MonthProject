@@ -25,21 +25,19 @@ public class SwordScript : MonoBehaviour
     private Vector3 currentDir; //Real world 3D direction elaborated from the mouse-world hit position
     #endregion
 
-    private EntityMovement myEntity; //Link to the entity movement class to sto his movement and to perform other actions
-    [SerializeField] private MovementAnimation entityAnimation; //Animation class of the entity to link in editor to call the swing animation on the sprite
+    private EntityMovement _entity; //Link to the entity movement class to sto his movement and to perform other actions
+    [SerializeField] private MovementAnimation _animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
 
     #region SwingAnimation parameters
-    //Swing animation parameters
     private Vector3 initialDir;
     private Vector3 targetDir;
     Quaternion targetRot;
     #endregion
 
 
-
     private void Awake()
     {
-        myEntity = gameObject.GetComponentInParent<EntityMovement>();
+        _entity = gameObject.GetComponentInParent<EntityMovement>();
     }
 
     /// <summary>
@@ -95,10 +93,10 @@ public class SwordScript : MonoBehaviour
     /// </summary>
     public void Swing()
     {
-        myEntity.canMove = false; //The linked entity can't move
+        _entity.CanMove = false; //The linked entity can't move
         canRotate = false; //The sword can no more rotate
         //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
-        entityAnimation.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
+        _animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
         InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
         //Starting the coroutine swing animation
         StartCoroutine(SwingAnimation(currentDir));
@@ -116,7 +114,7 @@ public class SwordScript : MonoBehaviour
         float percentace = 0.0f;//Percentage for lerp
 
         //Call the attack dash function in the entity attached to this script
-        myEntity.StartCoroutine(myEntity.AttackDash(new Vector2(swingDir.x, swingDir.z), dashSpeed, dashDuration));
+        _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), dashSpeed, dashDuration));
 
         while (t < swingSpeed) //Cicle
         {
@@ -131,9 +129,36 @@ public class SwordScript : MonoBehaviour
         transform.forward = targetDir;//Safe repositioning??
 
         yield return new WaitForSeconds(swingCoolDown);
-        entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
+        _animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
-        myEntity.canMove = true;//Enable entity movment
+        _entity.CanMove = true;//Enable entity movment
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
     }
+
+    public IEnumerator AtkDash(Vector2 direction, float dashAtkSpeed, float duration)
+    {
+        _entity.CanMove = false;
+        _entity.IsDashing = false;
+        _entity.CanDash = false;
+        _entity.IsAttacking = true;
+
+        float t = 0.0f; //Timer
+        while (t < duration) //Cicle
+        {
+            //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
+            Vector3 velocity = new Vector3(direction.normalized.x * (_entity.speed * dashAtkSpeed) * Time.fixedDeltaTime, 0,
+                                   direction.normalized.y * (_entity.speed * dashAtkSpeed) * Time.fixedDeltaTime);
+
+            _entity.Rigidbody.velocity = velocity;
+            yield return null;
+            t += Time.fixedDeltaTime;//Increment timer         
+        }
+
+        _entity.IsAttacking = false;
+        _entity.CanMove = true;
+        _entity.CanDash = true;
+    }
+
+
+
 }

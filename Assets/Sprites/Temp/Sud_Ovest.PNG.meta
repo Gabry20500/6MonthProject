@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9733254b6ed2f95439cbbd80d51d8e82
+guid: 6661173e7d1e8c94cb72a5cee3254961
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -141,81 +141,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_ovest_0
+      name: Sud_Ovest_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 27
-        width: 19
-        height: 26
+        x: 1
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -9.5, y: 13}
-        - {x: -9.5, y: -13}
-        - {x: 9.5, y: -13}
-        - {x: 9.5, y: 13}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bdc70ca468c08548bd4a1b162251618
-      internalID: 847520115
+      spriteID: 7ed982dc383ad994e9c9b608aa091718
+      internalID: 873444516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_ovest_1
+      name: Sud_Ovest_1
       rect:
         serializedVersion: 2
-        x: 54
-        y: 26
-        width: 12
-        height: 29
+        x: 480
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -6, y: 14.5}
-        - {x: -6, y: -8.5}
-        - {x: -6, y: -14.5}
-        - {x: 6, y: -14.5}
-        - {x: 6, y: -5.5}
-        - {x: 6, y: 14.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aefc8d0170bbf414cbe8b25b3a950db3
-      internalID: -1115508774
+      spriteID: c59e8cd5fea346f45bfcd0519a6f5f4a
+      internalID: 1944531075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_ovest_2
+      name: Sud_Ovest_2
       rect:
         serializedVersion: 2
-        x: 82
-        y: 27
-        width: 19
-        height: 26
+        x: 959
+        y: 0
+        width: 479
+        height: 702
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -9.5, y: 13}
-        - {x: -9.5, y: 10}
-        - {x: -9.5, y: -13}
-        - {x: 9.5, y: -13}
-        - {x: 9.5, y: 6}
-        - {x: 9.5, y: 13}
-        - {x: 6.5, y: 13}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4fd69158c07f5f4c9f10d28b93d1b96
-      internalID: -1883418083
+      spriteID: d503dc26ccba3b54aa18954db89cc23a
+      internalID: -211552876
       vertices: []
       indices: 
       edges: []
@@ -223,7 +206,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4e9ff0093e221b5469cc223981fdd22f
+    spriteID: d26e1f2b4f85c194787e49a7b4858e2f
     internalID: 0
     vertices: []
     indices: 
@@ -231,9 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk_ovest_1: -1115508774
-      walk_ovest_0: 847520115
-      walk_ovest_2: -1883418083
+      Sud_Ovest_1: 1944531075
+      Sud_Ovest_0: 873444516
+      Sud_Ovest_2: -211552876
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
