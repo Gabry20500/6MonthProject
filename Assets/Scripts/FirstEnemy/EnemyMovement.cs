@@ -11,8 +11,6 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent agent;
 
     public float lookRadius = 20f;
-
-    private bool isUp = false;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +27,6 @@ public class EnemyMovement : MonoBehaviour
        if (distance <= lookRadius && distance > 4f)
         {
             agent.SetDestination(player.position);
-            Debug.Log(Vector3.Distance(transform.position, player.position));
         }
         else if(distance < 4)
         {
