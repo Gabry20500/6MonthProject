@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -27,7 +28,8 @@ public class SwordScript : MonoBehaviour
 
     private EntityMovement _entity; //Link to the entity movement class to sto his movement and to perform other actions
     [SerializeField] private MovementAnimation _animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
-
+    
+    
     #region SwingAnimation parameters
     private Vector3 initialDir;
     private Vector3 targetDir;
@@ -159,6 +161,8 @@ public class SwordScript : MonoBehaviour
         _entity.CanDash = true;
     }
 
-
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
