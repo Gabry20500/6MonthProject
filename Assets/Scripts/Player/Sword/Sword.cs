@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// SwordScript class that manage an item to act like a sword around his Y axis
 /// </summary>
-public class SwordScript : MonoBehaviour
+public class Sword : MonoBehaviour
 {
     [SerializeField] public bool canRotate = true;
 
@@ -13,7 +13,9 @@ public class SwordScript : MonoBehaviour
     [SerializeField] float swingWidth = 180.0f; //Range of motion of the swinging sword
     [SerializeField] float swingSpeed = 2f; //The duration of the swing movement
     [SerializeField] float swingCoolDown = 0.1f; //CoolDown to prevent spam
-    [SerializeField] float swingForce; //Not yet implemented value
+
+
+    [SerializeField] protected float swordPhisicalDamage = 5.0f; //Not yet implemented value
 
     [Header("DashAttack values")]
     [SerializeField] private float dashSpeed = 4.0f;
@@ -28,17 +30,28 @@ public class SwordScript : MonoBehaviour
 
     private EntityMovement _entity; //Link to the entity movement class to sto his movement and to perform other actions
     [SerializeField] private MovementAnimation _animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
-    
+    [SerializeField] Transform pivot;
     
     #region SwingAnimation parameters
     private Vector3 initialDir;
     private Vector3 targetDir;
     Quaternion targetRot;
     #endregion
+    [SerializeField] AudioClip baseSwingEffect;
+    [SerializeField] AudioSource audioSource;
 
+    public float Damage
+    {
+        get
+        {
+            return swordPhisicalDamage;
+        }
+    }
 
     private void Awake()
     {
+        audioSource = GetComponentInParent<AudioSource>();
+        audioSource.clip = baseSwingEffect;
         _entity = gameObject.GetComponentInParent<EntityMovement>();
     }
 
@@ -63,11 +76,11 @@ public class SwordScript : MonoBehaviour
     void Update()
     {
         //Utilities to draw on editor the reach of the sword
-        //Debug.DrawLine(transform.position, transform.forward * 10, Color.green);
-        //Vector3 rot = Quaternion.AngleAxis(-(swingWidth/2), Vector3.up) * transform.forward;
-        //Debug.DrawLine(transform.position, rot * 10, Color.red);
-        //rot = Quaternion.AngleAxis((swingWidth / 2), Vector3.up) * transform.forward;
-        //Debug.DrawLine(transform.position, rot * 10, Color.red);
+        //Debug.DrawLine(pivot.position, transform.forward * 10, Color.green);
+        //Vector3 rot = Quaternion.AngleAxis(-(swingWidth/2), Vector3.up) * pivot.forward;
+        //Debug.DrawLine(pivot.position, rot * 10, Color.red);
+        //rot = Quaternion.AngleAxis((swingWidth * 1.2f), Vector3.up) * pivot.forward;
+        //Debug.DrawLine(pivot.position, rot * 10, Color.red);
 
         if (canRotate)
         {
@@ -75,7 +88,7 @@ public class SwordScript : MonoBehaviour
             if (InputController.instance.usingMouse == false)
             {
                 currentDir = new Vector3(InputController.instance.RightStickDir.x, 0.0f, InputController.instance.RightStickDir.y);
-                transform.forward = new Vector3(InputController.instance.RightStickDir.x, 0.0f, InputController.instance.RightStickDir.y);
+                pivot.forward = new Vector3(InputController.instance.RightStickDir.x, 0.0f, InputController.instance.RightStickDir.y);
             }
             //More elaborations needed to obtain direction from mouse pointing the world
             else if (InputController.instance.usingMouse)
@@ -83,9 +96,9 @@ public class SwordScript : MonoBehaviour
                 mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //Vector2 of the mouse position in the screen
                 ray = Camera.main.ScreenPointToRay(mousePos);//Generate a ray from the mouse pos in the direction of the world from the camera
                 Physics.Raycast(ray, out hit);//Detect collision
-                currentDir = (hit.point - transform.position).normalized; //Calculate direction from the entity and the hitted world point
+                currentDir = (hit.point - pivot.position).normalized; //Calculate direction from the entity and the hitted world point
                 currentDir = new Vector3(currentDir.x, 0.0f, currentDir.z); //Generate a new 3D vector
-                transform.forward = currentDir;//Set sword direction
+                pivot.forward = currentDir;//Set sword direction
             }
         }
     }
@@ -95,6 +108,7 @@ public class SwordScript : MonoBehaviour
     /// </summary>
     public void Swing()
     {
+        Debug.Log("Swinging");
         _entity.CanMove = false; //The linked entity can't move
         canRotate = false; //The sword can no more rotate
         //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
@@ -104,13 +118,16 @@ public class SwordScript : MonoBehaviour
         StartCoroutine(SwingAnimation(currentDir));
     }
 
+    int i = 1;
     private IEnumerator SwingAnimation(Vector3 swingDir)
     {
-        initialDir = Quaternion.AngleAxis(-(swingWidth / 2), Vector3.up) * transform.forward; //Calculcate the initial direction of the swing animation
-        transform.forward = initialDir;//Set forward to the initial position of the animation
-        targetDir = Quaternion.AngleAxis(+(swingWidth), Vector3.up) * transform.forward;//Calculcate the desired final direction 
-        Quaternion targetRot = Quaternion.LookRotation(targetDir);
 
+         initialDir = Quaternion.AngleAxis(-(swingWidth / 2) * i, Vector3.up) * pivot.forward; //Calculcate the initial direction of the swing animation
+         pivot.forward = initialDir;//Set forward to the initial position of the animation
+         targetDir = Quaternion.AngleAxis(+(swingWidth * 1.2f) * i, Vector3.up) * pivot.forward;//Calculcate the desired final direction 
+         Quaternion targetRot = Quaternion.LookRotation(targetDir);
+
+        i *= -1;
 
         float t = 0.0f; //Timer
         float percentace = 0.0f;//Percentage for lerp
@@ -118,17 +135,18 @@ public class SwordScript : MonoBehaviour
         //Call the attack dash function in the entity attached to this script
         _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), dashSpeed, dashDuration));
 
+        audioSource.Play();
         while (t < swingSpeed) //Cicle
         {
             percentace = t / swingSpeed;//New percentage
-            Quaternion nextRotation = Quaternion.Lerp(transform.localRotation, targetRot, percentace);//Calculate next rotation stem
-            transform.localRotation = nextRotation; //Change rotation
+            Quaternion nextRotation = Quaternion.Lerp(pivot.localRotation, targetRot, percentace);//Calculate next rotation stem
+            pivot.localRotation = nextRotation; //Change rotation
 
             yield return null;
             t += Time.deltaTime;//Increment timer         
         }
 
-        transform.forward = targetDir;//Safe repositioning??
+        pivot.forward = targetDir;//Safe repositioning??
 
         yield return new WaitForSeconds(swingCoolDown);
         _animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
@@ -161,8 +179,14 @@ public class SwordScript : MonoBehaviour
         _entity.CanDash = true;
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Enemy") && _entity.IsAttacking == true)
+        {
+            Debug.Log("Enemy");
+            collision.gameObject.GetComponentInChildren<Entity>().TakeDamage(Damage);
+        }
     }
 }
