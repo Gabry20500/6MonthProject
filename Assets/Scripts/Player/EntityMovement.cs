@@ -76,7 +76,7 @@ public class EntityMovement : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    private void Start()
     {
         InputController.instance.SpaceDown += Dash;
     }
@@ -128,7 +128,6 @@ public class EntityMovement : MonoBehaviour
         //velocity value
         else if(isAttacking == false)
         { _rigidBody.velocity += -(_rigidBody.velocity); }
-
     }
 
 
@@ -152,10 +151,20 @@ public class EntityMovement : MonoBehaviour
         canDash = true;
     }
 
+    private IEnumerator DashCoroutine(Vector2 knockBackDir, float knockTime)
+    {       
+        canMove = false;
+        canDash = false;
+        isDashing = true;
 
-   
+        yield return new WaitForSeconds(knockTime);
+        isDashing = false;
+        canMove = true;
 
-    
+        yield return new WaitForSeconds(0);
+        canDash = true;
+    }
+
     /// <summary>
     /// Public function to call the Dash, do nothing if already dashing
     /// </summary>
@@ -166,5 +175,15 @@ public class EntityMovement : MonoBehaviour
             dashDir = InputController.instance.LeftStickDir;
             StartCoroutine(DashCoroutine());
         }
+    }
+
+
+    public void OnHit(Collision collision)
+    {
+        Debug.Log("Entering INTERFACE Player");
+        //Logic to detect the collision normal
+        //dashDir = InputController.instance.LeftStickDir;
+
+        //StartCoroutine();
     }
 }

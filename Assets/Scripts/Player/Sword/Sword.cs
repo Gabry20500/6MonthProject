@@ -186,7 +186,8 @@ public class Sword : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && _entity.IsAttacking == true)
         {
             Debug.Log("Enemy");
-            collision.gameObject.GetComponentInChildren<Entity>().TakeDamage(Damage);
+            //Here must pass the position of the entity that swing, so posso fare la direzione
+            collision.gameObject.GetComponentInParent<Entity>().TakeDamage(Damage, collision);
         }
     }
 }

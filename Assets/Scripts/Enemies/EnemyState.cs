@@ -10,6 +10,8 @@ public class EnemyState
         this.context = context;
         this.enemy = enemy;
     }
+
+    public virtual void OnStateEnter() { }
     virtual public void Update()
     {
         
@@ -68,19 +70,61 @@ public class SeekState : EnemyState
 public class AttackState : EnemyState
 {
     private bool attacking = false;
-    public AttackState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
+    private EnemySword sword;
+    public AttackState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
         enemy.distance = Vector3.Distance(enemy.targetPlayer.position, enemy.transform.position);
 
         if (enemy.distance < enemy.attackReach && attacking == false)
         {
-            
+            enemy._animator.SetBool("Attack", true);
+            sword.IsAttacking = true;
+            attacking = true;
         }
         else if (enemy.distance > enemy.attackReach)
         {
+            enemy._animator.SetBool("Attack", false);
+            sword.IsAttacking = false;
             attacking = false;
             context.currentState = context.seekState;
         }
+    }
+}
+
+public class HittedState : EnemyState
+{
+    Vector3 hitDir;
+    float hitSpeed;
+    float duration;
+
+    float buffer = 0.0f;
+    public HittedState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {}
+
+    public void Init(Vector3 hitDir, float hitSpeed, float duration)
+    {
+        buffer = 0.0f;
+        this.duration = duration;
+        this.hitSpeed = hitSpeed;
+        this.hitDir = hitDir;
+
+    }
+
+    public override void OnStateEnter()
+    {
+        enemy._agent.SetDestination(enemy.transform.position);
+    }
+
+    public override void Update()
+    {
+        if(buffer < duration)
+        {
+
+        }
+        else
+        {
+            context.currentState = context.idleState;
+        }
+        buffer += Time.deltaTime;
     }
 }
