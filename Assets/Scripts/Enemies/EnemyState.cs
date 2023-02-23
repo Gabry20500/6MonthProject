@@ -75,7 +75,6 @@ public class AttackState : EnemyState
     public override void Update()
     {
         enemy.distance = Vector3.Distance(enemy.targetPlayer.position, enemy.transform.position);
-
         if (enemy.distance < enemy.attackReach && attacking == false)
         {
             enemy._animator.SetBool("Attack", true);
