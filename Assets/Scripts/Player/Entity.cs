@@ -33,25 +33,32 @@ public class Entity : MonoBehaviour
         healtBar.value = health;
     }
 
-    public void TakeDamage(float value, Collision collision)
+    public void TakeDamage(float value, SwordData otherSword, Vector3 knockDir, EnemyData enemy = null)
     {
-        audioSource.Play();     
+        audioSource.Play();
         health -= value;
         healtBar.value = health;
-        if(health <= 0.0f)
+        if (health <= 0.0f)
         {
             Destroy(gameObject);
         }
+        ReceiveKnockBack(otherSword, knockDir, enemy);
+
+    }
+
+    public void ReceiveKnockBack(SwordData otherSword, Vector3 knockDir, EnemyData enemy)
+    {
         if (gameObject.tag == "Player")
         {
-            EMovement player = GetComponent<EMovement>();
-            //player.OnHit(collision);
+            EMovement AI = GetComponent<EMovement>();
+            if (AI == null) { return; }
+            AI.OnHit(knockDir, enemy);
         }
         else
         {
-            EnemyAI enemy = GetComponent<EnemyAI>();
-            //enemy.OnHit(collision);
+            EnemyAI AI = GetComponent<EnemyAI>();
+            if (AI == null) { return; }
+            AI.OnHit(knockDir, otherSword);
         }
-
     }
 }

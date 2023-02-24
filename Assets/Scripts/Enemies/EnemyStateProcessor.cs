@@ -10,7 +10,7 @@ public class EnemyStateProcessor
     public IdleState idleState;
     public SeekState seekState;
     public AttackState attackState;
-    public HittedState hittedState;
+    public KnockBackState knockBackState;
 
     public EnemyState currentState;
 
@@ -22,7 +22,7 @@ public class EnemyStateProcessor
         idleState = new IdleState(this, enemy);
         seekState = new SeekState(this, enemy);
         attackState = new AttackState(this, enemy, sword);
-        hittedState = new HittedState(this, enemy);
+        knockBackState = new KnockBackState(this, enemy);
     }
 
     public void Init()

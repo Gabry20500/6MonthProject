@@ -12,15 +12,6 @@ public class Sword : MonoBehaviour
 
     [SerializeField] public bool canRotate = true;
 
-    [Header("Swing values")] 
-    [SerializeField] float swingWidth = 180.0f; //Range of motion of the swinging sword
-    [SerializeField] float swingSpeed = 2f; //The duration of the swing movement
-    [SerializeField] float swingCoolDown = 0.1f; //CoolDown to prevent spam
-    [SerializeField] protected float swordPhisicalDamage = 5.0f; //Not yet implemented value
-    [Header("DashAttack values")]
-    [SerializeField] private float dashSpeed = 4.0f;
-    [SerializeField] private float dashDuration = 0.10f;
-
     #region MouseTracing
     private Vector2 mousePos;
     private Ray ray; //Ray to detect the world poin hitted by the mouse position
@@ -44,7 +35,7 @@ public class Sword : MonoBehaviour
     {
         get
         {
-            return swordPhisicalDamage;
+            return sword.Damage;
         }
     }
 
@@ -53,6 +44,7 @@ public class Sword : MonoBehaviour
         audioSource = GetComponentInParent<AudioSource>();
         audioSource.clip = baseSwingEffect;
         _entity = gameObject.GetComponentInParent<EMovement>();
+        sword = new SwordData(swordData);
     }
 
     /// <summary>
@@ -122,9 +114,9 @@ public class Sword : MonoBehaviour
     private IEnumerator SwingAnimation(Vector3 swingDir)
     {
 
-         initialDir = Quaternion.AngleAxis(-(swingWidth / 2) * i, Vector3.up) * pivot.forward; //Calculcate the initial direction of the swing animation
+         initialDir = Quaternion.AngleAxis(-(sword.swingWidth / 2) * i, Vector3.up) * pivot.forward; //Calculcate the initial direction of the swing animation
          pivot.forward = initialDir;//Set forward to the initial position of the animation
-         targetDir = Quaternion.AngleAxis(+(swingWidth * 1.2f) * i, Vector3.up) * pivot.forward;//Calculcate the desired final direction 
+         targetDir = Quaternion.AngleAxis(+(sword.swingWidth * 1.2f) * i, Vector3.up) * pivot.forward;//Calculcate the desired final direction 
          Quaternion targetRot = Quaternion.LookRotation(targetDir);
 
         i *= -1;
@@ -133,12 +125,12 @@ public class Sword : MonoBehaviour
         float percentace = 0.0f;//Percentage for lerp
 
         //Call the attack dash function in the entity attached to this script
-        _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), dashSpeed, dashDuration));
+        _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), sword.dashSpeed, sword.dashDuration));
 
         audioSource.Play();
-        while (t < swingSpeed) //Cicle
+        while (t < sword.swingSpeed) //Cicle
         {
-            percentace = t / swingSpeed;//New percentage
+            percentace = t / sword.swingSpeed;//New percentage
             Quaternion nextRotation = Quaternion.Lerp(pivot.localRotation, targetRot, percentace);//Calculate next rotation stem
             pivot.localRotation = nextRotation; //Change rotation
 
@@ -148,7 +140,7 @@ public class Sword : MonoBehaviour
 
         pivot.forward = targetDir;//Safe repositioning??
 
-        yield return new WaitForSeconds(swingCoolDown);
+        yield return new WaitForSeconds(sword.swingCoolDown);
         animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         _entity.CanMove = true;//Enable entity movment
@@ -185,9 +177,15 @@ public class Sword : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && _entity.IsAttacking == true)
         {
-            Debug.Log("Enemy");
-            //Here must pass the position of the entity that swing, so posso fare la direzione
-            collision.gameObject.GetComponentInParent<Entity>().TakeDamage(Damage, collision);
+            //Passing knock back direction to applicate to te hitted entity
+            Vector3 knockBackDir = collision.gameObject.transform.position - transform.parent.position;
+            knockBackDir = new Vector3(knockBackDir.x, 0.0f, knockBackDir.z);
+            knockBackDir.Normalize();
+
+            collision.gameObject.GetComponent<Entity>().TakeDamage(Damage, sword, knockBackDir);
         }
+
+        //If colliding an enemy sword simply knock the enemy
+        //cALL RECEIVEKNOCKBACK IN The entity scrpt
     }
 }

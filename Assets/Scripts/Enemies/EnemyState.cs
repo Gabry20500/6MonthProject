@@ -16,6 +16,7 @@ public class EnemyState
     {
         
     }
+    public virtual void OnStateExit() { }
 }
 
 public class IdleState : EnemyState
@@ -90,40 +91,51 @@ public class AttackState : EnemyState
             context.currentState = context.seekState;
         }
     }
+
+    public override void OnStateExit()
+    {
+        enemy.animator.SetBool("Attack", false);
+        sword.IsAttacking = false;
+        attacking = false;
+    }
 }
 
-public class HittedState : EnemyState
+public class KnockBackState : EnemyState
 {
-    Vector3 hitDir;
-    float hitSpeed;
-    float duration;
+    Vector3 knockDir;
+    float knockSpeed;
+    float kncockDuration;
 
     float buffer = 0.0f;
-    public HittedState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {}
+    public KnockBackState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {}
 
-    public void Init(Vector3 hitDir, float hitSpeed, float duration)
+    public void Init(Vector3 hitDir, float knockSpeed, float duration)
     {
+        flag = false;
         buffer = 0.0f;
-        this.duration = duration;
-        this.hitSpeed = hitSpeed;
-        this.hitDir = hitDir;
+        this.kncockDuration = duration;
+        this.knockSpeed = knockSpeed;
+        this.knockDir = hitDir;
 
     }
 
     public override void OnStateEnter()
     {
-        enemy.agent.SetDestination(enemy.transform.position);
+        enemy.agent.isStopped = true;
     }
 
+    bool flag = false;
     public override void Update()
     {
-        if(buffer < duration)
+        if(flag == false) { OnStateEnter(); flag = true; }
+        if(buffer < kncockDuration)
         {
-
+            enemy.transform.position += knockDir * knockSpeed * Time.deltaTime;
         }
         else
         {
             context.currentState = context.idleState;
+            enemy.agent.isStopped = false;
         }
         buffer += Time.deltaTime;
     }

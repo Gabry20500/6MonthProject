@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Generic class that handle Movement and dash in an entity
 /// </summary>
-public class EMovement : MonoBehaviour
+public class EMovement : MonoBehaviour, IHittable
 {
     [Header("Movement variables")]
     [SerializeField] public float speed;
@@ -151,19 +151,6 @@ public class EMovement : MonoBehaviour
         canDash = true;
     }
 
-    private IEnumerator DashCoroutine(Vector2 knockBackDir, float knockTime)
-    {       
-        canMove = false;
-        canDash = false;
-        isDashing = true;
-
-        yield return new WaitForSeconds(knockTime);
-        isDashing = false;
-        canMove = true;
-
-        yield return new WaitForSeconds(0);
-        canDash = true;
-    }
 
     /// <summary>
     /// Public function to call the Dash, do nothing if already dashing
@@ -178,12 +165,14 @@ public class EMovement : MonoBehaviour
     }
 
 
-    public void OnHit(Collision collision)
+    public void OnHit(Vector3 knockBackDir, EnemyData enemy)
     {
-        Debug.Log("Entering INTERFACE Player");
-        //Logic to detect the collision normal
-        //dashDir = InputController.instance.LeftStickDir;
+        //Elaborate all and start knock back coroutine
 
-        //StartCoroutine();
     }
+    //coroutine enable and disable tutte cose
+    //spinge indietro
+
+    //per spada contro spada
+    //trova spada e blocca tutte coroutine
 }

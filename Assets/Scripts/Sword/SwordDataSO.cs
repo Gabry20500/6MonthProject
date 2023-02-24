@@ -5,11 +5,14 @@ public class SwordData
 {
     public string name;
     [Header("Swing:")]
-    public float swingCoolDown;
-    public float swingWidth;
     public float swingSpeed;
+    public float swingWidth;
+    public float swingCoolDown;
     [Header("Damage:")]
     public float swordPhysicDamage;
+    [Header("KnockBack:")]
+    public float knockBackSpeed;
+    public float knockBackDuration;
     [Header("Attack dash:")]
     public float dashSpeed;
     public float dashDuration;
@@ -28,6 +31,8 @@ public class SwordData
         this.swingWidth = SwordSO.swingWidth;
         this.swingSpeed = SwordSO.swingSpeed;
         this.swordPhysicDamage = SwordSO.SwordPhysicDamage;
+        this.knockBackSpeed = SwordSO.knockBackSpeed;
+        this.knockBackDuration = SwordSO.knockBackDuration;
         this.dashSpeed = SwordSO.dashSpeed;
         this.dashDuration = SwordSO.dashDuration;
         this.swordScale = SwordSO.swordScale;
@@ -39,11 +44,14 @@ public class SwordData
 public class SwordDataSO : ScriptableObject
 {
     [Header("Swing:")]
-    public float swingCoolDown;
-    public float swingWidth;
     public float swingSpeed;
+    public float swingWidth;
+    public float swingCoolDown;
     [Header("Damage:")]
     public float SwordPhysicDamage;
+    [Header("KnockBack:")]
+    public float knockBackSpeed;
+    public float knockBackDuration;
     [Header("Attack dash:")]
     public float dashSpeed;
     public float dashDuration;
@@ -59,6 +67,8 @@ public class SwordDataSO : ScriptableObject
         this.swingWidth = data.swingWidth;
         this.swingSpeed = data.swingSpeed;
         this.SwordPhysicDamage = data.swordPhysicDamage;
+        this.knockBackSpeed = data.knockBackSpeed;
+        this.knockBackDuration = data.knockBackDuration;
         this.dashSpeed = data.dashSpeed;
         this.dashDuration = data.dashDuration;
         this.swordScale = data.swordScale;

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordDamage: 10
   attackRate: 1
+  knockBackSpeed: 5
+  knockBackDuration: 2
   sightDistance: 20
   attackReach: 7

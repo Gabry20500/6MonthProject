@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IHittable
 {
     [Header("EnemyData:")]
     [SerializeField] private EnemyDataSO enemyDataSO;
@@ -48,12 +48,9 @@ public class EnemyAI : MonoBehaviour
         
         rb = GetComponentInChildren<Rigidbody>();
         stateProcessor = new EnemyStateProcessor(this, sword);
-    }
-
-    private void Start()
-    {
         stateProcessor.Init();
     }
+
     void Update()
     {
         if (canMove == true)
@@ -62,11 +59,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void OnHit(Collision collision)
+    public void OnHit(Vector3 knockBackDir, SwordData sword)
     {
-        Debug.Log("Entering INTERFACE ENEMY");
         //Logic to init anche change state in state processor
-        //logic to detect collision direction normal
+        stateProcessor.knockBackState.Init(knockBackDir, sword.knockBackSpeed, sword.knockBackDuration);
+        stateProcessor.currentState.OnStateExit();
+        stateProcessor.currentState = stateProcessor.knockBackState;   
     }
-
 }

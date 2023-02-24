@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 82037113}
   - component: {fileID: 82037116}
   - component: {fileID: 82037117}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Sword
-  m_TagString: Sword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a5fcaf6e7cc6e4e8dd8b79b092823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordDamage: 0
+  enemyData:
+    swordDamage: 0
+    attackRate: 0
+    knockBackSpeed: 0
+    knockBackDuration: 0
+    sightDistance: 0
+    attackReach: 0
 --- !u!54 &82037117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1348,6 +1354,8 @@ MonoBehaviour:
   enemyData:
     swordDamage: 0
     attackRate: 0
+    knockBackSpeed: 0
+    knockBackDuration: 0
     sightDistance: 0
     attackReach: 0
   agent: {fileID: 0}
@@ -1966,21 +1974,17 @@ MonoBehaviour:
   swordData: {fileID: 11400000, guid: 369f55de8ba555444b5b249bf87be021, type: 2}
   sword:
     name: 
-    swingCoolDown: 0
-    swingWidth: 0
     swingSpeed: 0
+    swingWidth: 0
+    swingCoolDown: 0
     swordPhysicDamage: 0
+    knockBackSpeed: 0
+    knockBackDuration: 0
     dashSpeed: 0
     dashDuration: 0
     swordScale: {x: 0, y: 0, z: 0}
     isBlockable: 1
   canRotate: 1
-  swingWidth: 120
-  swingSpeed: 0.3
-  swingCoolDown: 0.15
-  swordPhisicalDamage: 5
-  dashSpeed: 4
-  dashDuration: 0.1
   animator: {fileID: 790440883}
   pivot: {fileID: 591969782}
   baseSwingEffect: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
@@ -2198,9 +2202,9 @@ GameObject:
   - component: {fileID: 1878617362}
   - component: {fileID: 1878617361}
   - component: {fileID: 1878617364}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Body
-  m_TagString: Enemy
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

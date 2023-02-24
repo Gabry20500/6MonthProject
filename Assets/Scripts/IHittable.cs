@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 public interface IHittable 
 {
-    public abstract void OnHit(Collision collision);
-    public abstract IEnumerator KnockbackStunTime(float cooldown);
+    public void OnHit(Vector3 knockBackDir, SwordData sword) { }
+    public void OnHit(Vector3 knockBackDir, EnemyData enemy) { }
+    public IEnumerator KnockbackCoroutine(float cooldown) { yield return null; }
 
 }
