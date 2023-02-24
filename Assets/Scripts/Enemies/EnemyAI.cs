@@ -4,32 +4,49 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public NavMeshAgent _agent;
-    public Transform targetPlayer;
-    public Animator _animator;
+    [Header("EnemyData:")]
+    [SerializeField] private EnemyDataSO enemyDataSO;
+    [SerializeField] public EnemyData enemyData;
+
+    public NavMeshAgent agent;
+    public Transform target;
+    public Animator animator;
     private EnemySword sword;
-    private Rigidbody _rigidBody;
+    private Rigidbody rb;
 
     [Header("Movement parameters:")]
-    [SerializeField] public float sightDistance = 20f;
-    [SerializeField] public float attackReach = 4f;
-    public float distance;
+    private float distance;
+    public float Distance 
+    {
+        get
+        {
+            return distance;
+        }
+        set
+        {
+            distance = value;
+        }    
+    }
+    public bool canMove = true;
 
-    [Header("Attack parameters")]
-    [SerializeField] public float attackRate = 0.20f;
-    [SerializeField] public float attackDamage = 10f;
-
+    //State processor to handle states flow
     private EnemyStateProcessor stateProcessor;
 
-    public bool canMove = true;
 
     private void Awake()
     {
-        targetPlayer = GameObject.FindWithTag("Player").transform;
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponentInChildren<Animator>();
+        //Enemy data init and sowrd init
+        enemyData = new EnemyData(enemyDataSO);
         sword = GetComponentInChildren<EnemySword>();
-        _rigidBody = GetComponentInChildren<Rigidbody>();
+        sword.Init(enemyData);
+
+
+
+        target = GameObject.FindWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+        
+        rb = GetComponentInChildren<Rigidbody>();
         stateProcessor = new EnemyStateProcessor(this, sword);
     }
 

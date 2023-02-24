@@ -16,7 +16,7 @@ public enum Direction
 /// <summary>
 /// Class that animate the any entity in a isometric 3D world with a sprite character with 8 possible direction of moving
 /// </summary>
-public class MovementAnimation : MonoBehaviour
+public class EAnimator : MonoBehaviour
 {
     /// <summary>
     /// Reference to the needed Animator to animate
@@ -25,7 +25,7 @@ public class MovementAnimation : MonoBehaviour
     /// <summary>
     /// Reference to the Movement class that elaborates and pass the movement value
     /// </summary>
-    private EntityMovement _movement;
+    private EMovement _movement;
 
     /// <summary>
     ///Using string prefix to help calling the right animations by name
@@ -36,7 +36,7 @@ public class MovementAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _movement = GetComponentInParent<EntityMovement>();
+        _movement = GetComponentInParent<EMovement>();
     }
 
     /// <summary>

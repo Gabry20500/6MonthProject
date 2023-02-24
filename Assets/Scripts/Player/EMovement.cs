@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Generic class that handle Movement and dash in an entity
 /// </summary>
-public class EntityMovement : MonoBehaviour
+public class EMovement : MonoBehaviour
 {
     [Header("Movement variables")]
     [SerializeField] public float speed;
@@ -14,7 +14,7 @@ public class EntityMovement : MonoBehaviour
     private bool canMove = true;
 
     private Rigidbody _rigidBody;
-    private MovementAnimation _animator;
+    private EAnimator _animator;
 
     [Header("Dash variables")]
     //Variable used for Dash
@@ -72,7 +72,7 @@ public class EntityMovement : MonoBehaviour
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        _animator = GetComponentInChildren<MovementAnimation>();
+        _animator = GetComponentInChildren<EAnimator>();
 
     }
 

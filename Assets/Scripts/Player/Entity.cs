@@ -44,7 +44,7 @@ public class Entity : MonoBehaviour
         }
         if (gameObject.tag == "Player")
         {
-            EntityMovement player = GetComponent<EntityMovement>();
+            EMovement player = GetComponent<EMovement>();
             //player.OnHit(collision);
         }
         else

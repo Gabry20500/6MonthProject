@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 82037113}
   - component: {fileID: 82037116}
   - component: {fileID: 82037117}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,8 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a5fcaf6e7cc6e4e8dd8b79b092823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  isAttacking: 0
+  swordDamage: 0
 --- !u!54 &82037117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -421,7 +420,7 @@ GameObject:
   - component: {fileID: 591969783}
   m_Layer: 3
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -848,7 +847,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 790440879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de6544f38e58b94085b98d35dd4ec01, type: 3}
+  m_Script: {fileID: 11500000, guid: 70b2e8a8d4443a04c98e7d77cc4d81f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &846801966
@@ -1345,14 +1344,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f82b8fb9c8b744ab11f5f8e0f2d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 0}
-  targetPlayer: {fileID: 0}
-  _animator: {fileID: 0}
-  sightDistance: 20
-  attackReach: 6
-  distance: 0
-  attackRate: 0.2
-  attackDamage: 10
+  enemyDataSO: {fileID: 11400000, guid: f0466a9e083e8fe409ac19e6f20d7f3d, type: 2}
+  enemyData:
+    swordDamage: 0
+    attackRate: 0
+    sightDistance: 0
+    attackReach: 0
+  agent: {fileID: 0}
+  target: {fileID: 0}
+  animator: {fileID: 0}
   canMove: 1
 --- !u!195 &1112555049
 NavMeshAgent:
@@ -1597,7 +1597,7 @@ GameObject:
   - component: {fileID: 1173340329}
   m_Layer: 3
   m_Name: Tip
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1849,9 +1849,9 @@ GameObject:
   - component: {fileID: 1734717856}
   - component: {fileID: 1734717859}
   - component: {fileID: 1734717861}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1963,6 +1963,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41bb3690e5f3db459a287c2bebae3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordData: {fileID: 11400000, guid: 369f55de8ba555444b5b249bf87be021, type: 2}
+  sword:
+    name: 
+    swingCoolDown: 0
+    swingWidth: 0
+    swingSpeed: 0
+    swordPhysicDamage: 0
+    dashSpeed: 0
+    dashDuration: 0
+    swordScale: {x: 0, y: 0, z: 0}
+    isBlockable: 1
   canRotate: 1
   swingWidth: 120
   swingSpeed: 0.3
@@ -1970,7 +1981,7 @@ MonoBehaviour:
   swordPhisicalDamage: 5
   dashSpeed: 4
   dashDuration: 0.1
-  _animator: {fileID: 790440883}
+  animator: {fileID: 790440883}
   pivot: {fileID: 591969782}
   baseSwingEffect: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
   audioSource: {fileID: 0}

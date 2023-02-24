@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82128a121e56bbe4d8c5fdaadc721741, type: 3}
+  m_Name: BaseSword
+  m_EditorClassIdentifier: 
+  swingCoolDown: 0.15
+  swingWidth: 120
+  swingSpeed: 0.3
+  SwordPhysicDamage: 10
+  dashSpeed: 4
+  dashDuration: 0.1
+  swordScale: {x: 1, y: 1, z: 1}
+  isBlockable: 1

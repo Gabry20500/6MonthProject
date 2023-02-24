@@ -20,16 +20,17 @@ public class EnemyState
 
 public class IdleState : EnemyState
 {
-    public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
+
+    public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {  }
 
     public override void Update()
     {
-        enemy.distance = Vector3.Distance(enemy.targetPlayer.position, enemy.transform.position);
-        if (enemy.distance <= enemy.sightDistance && enemy.distance > enemy.attackReach)
+        enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
+        if (enemy.Distance <= enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
             context.currentState = context.seekState;
         }
-        else if (enemy.distance > enemy.sightDistance)
+        else if (enemy.Distance > enemy.enemyData.sightDistance)
         {
             return;
         }
@@ -42,26 +43,26 @@ public class SeekState : EnemyState
     public SeekState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
     public override void Update()
     {
-        enemy.distance = Vector3.Distance(enemy.targetPlayer.position, enemy.transform.position);
+        enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
 
-        if(enemy.distance < enemy.attackReach)
+        if(enemy.Distance < enemy.enemyData.attackReach)
         {
             seeking = false;
-            enemy._agent.velocity = Vector3.zero;
+            enemy.agent.velocity = Vector3.zero;
             context.currentState = context.attackState;
         }
-        else if (enemy.distance <= enemy.sightDistance && enemy.distance > enemy.attackReach)
+        else if (enemy.Distance <= enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
             if(seeking == false)
             {
-                enemy._agent.SetDestination(enemy.targetPlayer.position);
+                enemy.agent.SetDestination(enemy.target.position);
                 seeking = true;
             }
         }
-        else if (enemy.distance > enemy.sightDistance)
+        else if (enemy.Distance > enemy.enemyData.sightDistance)
         {
             seeking = false;
-            enemy._agent.SetDestination(enemy.transform.position);
+            enemy.agent.SetDestination(enemy.transform.position);
             context.currentState = context.idleState;
         }
     }
@@ -74,16 +75,16 @@ public class AttackState : EnemyState
     public AttackState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
-        enemy.distance = Vector3.Distance(enemy.targetPlayer.position, enemy.transform.position);
-        if (enemy.distance < enemy.attackReach && attacking == false)
+        enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
+        if (enemy.Distance < enemy.enemyData.attackReach && attacking == false)
         {
-            enemy._animator.SetBool("Attack", true);
+            enemy.animator.SetBool("Attack", true);
             sword.IsAttacking = true;
             attacking = true;
         }
-        else if (enemy.distance > enemy.attackReach)
+        else if (enemy.Distance > enemy.enemyData.attackReach)
         {
-            enemy._animator.SetBool("Attack", false);
+            enemy.animator.SetBool("Attack", false);
             sword.IsAttacking = false;
             attacking = false;
             context.currentState = context.seekState;
@@ -111,7 +112,7 @@ public class HittedState : EnemyState
 
     public override void OnStateEnter()
     {
-        enemy._agent.SetDestination(enemy.transform.position);
+        enemy.agent.SetDestination(enemy.transform.position);
     }
 
     public override void Update()

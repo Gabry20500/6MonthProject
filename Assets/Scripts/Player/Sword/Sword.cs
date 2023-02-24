@@ -7,16 +7,16 @@ using UnityEngine;
 /// </summary>
 public class Sword : MonoBehaviour
 {
+    [SerializeField] private SwordDataSO swordData;
+    [SerializeField] protected SwordData sword;
+
     [SerializeField] public bool canRotate = true;
 
     [Header("Swing values")] 
     [SerializeField] float swingWidth = 180.0f; //Range of motion of the swinging sword
     [SerializeField] float swingSpeed = 2f; //The duration of the swing movement
     [SerializeField] float swingCoolDown = 0.1f; //CoolDown to prevent spam
-
-
     [SerializeField] protected float swordPhisicalDamage = 5.0f; //Not yet implemented value
-
     [Header("DashAttack values")]
     [SerializeField] private float dashSpeed = 4.0f;
     [SerializeField] private float dashDuration = 0.10f;
@@ -28,8 +28,8 @@ public class Sword : MonoBehaviour
     private Vector3 currentDir; //Real world 3D direction elaborated from the mouse-world hit position
     #endregion
 
-    private EntityMovement _entity; //Link to the entity movement class to sto his movement and to perform other actions
-    [SerializeField] private MovementAnimation _animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
+    private EMovement _entity; //Link to the entity movement class to sto his movement and to perform other actions
+    [SerializeField] private EAnimator animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
     [SerializeField] Transform pivot;
     
     #region SwingAnimation parameters
@@ -52,7 +52,7 @@ public class Sword : MonoBehaviour
     {
         audioSource = GetComponentInParent<AudioSource>();
         audioSource.clip = baseSwingEffect;
-        _entity = gameObject.GetComponentInParent<EntityMovement>();
+        _entity = gameObject.GetComponentInParent<EMovement>();
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ public class Sword : MonoBehaviour
         _entity.CanMove = false; //The linked entity can't move
         canRotate = false; //The sword can no more rotate
         //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
-        _animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
+        animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
         InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
         //Starting the coroutine swing animation
         StartCoroutine(SwingAnimation(currentDir));
@@ -149,7 +149,7 @@ public class Sword : MonoBehaviour
         pivot.forward = targetDir;//Safe repositioning??
 
         yield return new WaitForSeconds(swingCoolDown);
-        _animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
+        animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         _entity.CanMove = true;//Enable entity movment
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
