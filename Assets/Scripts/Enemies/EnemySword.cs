@@ -3,23 +3,22 @@ using UnityEngine;
 public class EnemySword : MonoBehaviour
 {
     [Header("Sword data:")] 
-    [SerializeField] public EnemyData enemyData;
+    [SerializeField] public EnemyData ownerEnemy;
 
     private bool isAttacking = false;
     public bool IsAttacking { set => isAttacking = value; }
 
-    [SerializeField] AudioClip baseSwingEffect;
-    [SerializeField] AudioClip baseClashEffect;
-    AudioSource audioSource;
+    [SerializeField] AudioClip baseSwing;
+    [SerializeField] AudioClip baseClash;
+    AudioSource enemyS_Audio;
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        enemyS_Audio = GetComponent<AudioSource>();
     }
 
     public void Init(EnemyData enemyData)
     {
-        this.enemyData = enemyData;
-
+        ownerEnemy = enemyData;
     }
 
 
@@ -28,28 +27,27 @@ public class EnemySword : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword") && collision.gameObject.GetComponent<Sword>().canRotate == false)
         {
             //Passing knock back direction to applicate to te hitted entity
-            Vector3 knockBackDir = transform.parent.position - collision.gameObject.transform.position;
-            knockBackDir = new Vector3(knockBackDir.x, 0.0f, knockBackDir.z);
-            knockBackDir.Normalize();
+            Vector3 knockDir = transform.parent.position - collision.gameObject.transform.position;
+            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
+            knockDir.Normalize();
 
-            audioSource.clip = baseClashEffect;
-            audioSource.Play();
+            enemyS_Audio.clip = baseClash;
+            enemyS_Audio.Play();
 
-            this.gameObject.GetComponentInParent<EnemyAI>().OnClash(knockBackDir, collision.gameObject.GetComponent<Sword>().sword);
-
+            gameObject.GetComponentInParent<EnemyAI>().OnClash(knockDir, collision.gameObject.GetComponent<Sword>().swordData);
         }
 
         else if (collision.gameObject.CompareTag("Player") && isAttacking == true)
         {
-            Vector3 knockBackDir = collision.gameObject.transform.position - transform.parent.position;
-            knockBackDir = new Vector3(knockBackDir.x, 0.0f, knockBackDir.z);
-            knockBackDir.Normalize();
+            Vector3 knockDir = collision.gameObject.transform.position - transform.parent.position;
+            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
+            knockDir.Normalize();
 
 
-            audioSource.clip = baseSwingEffect;
-            audioSource.Play();
+            enemyS_Audio.clip = baseSwing;
+            enemyS_Audio.Play();
 
-            collision.gameObject.GetComponent<EMovement>().OnHit(enemyData.swordDamage, knockBackDir, enemyData);
+            collision.gameObject.GetComponent<EMovement>().OnHit(ownerEnemy.swordDamage, knockDir, ownerEnemy);
         }
     }
 }

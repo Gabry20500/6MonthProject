@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class EnemyState
 {
-    protected EnemyStateProcessor context;
+    protected EnemyStateProcessor processor;
     protected EnemyAI enemy;
 
     public EnemyState(EnemyStateProcessor context, EnemyAI enemy)
     {
-        this.context = context;
+        this.processor = context;
         this.enemy = enemy;
     }
 
@@ -27,7 +27,7 @@ public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, ene
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance <= enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
-            context.currentState = context.seekState;
+            processor.currentState = processor.seekState;
         }
         else if (enemy.Distance > enemy.enemyData.sightDistance)
         {
@@ -91,7 +91,7 @@ public class SeekState : EnemyState
         {
             seeking = false;
             enemy.agent.isStopped = true;
-            context.currentState = context.attackState;
+            processor.currentState = processor.attackState;
         }
         else if (enemy.Distance < enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
@@ -106,7 +106,7 @@ public class SeekState : EnemyState
         {
             seeking = false;
             enemy.agent.SetDestination(enemy.transform.position);
-            context.currentState = context.idleState;
+            processor.currentState = processor.idleState;
             //context.currentState = context.wanderingState;
         }
     }
@@ -132,7 +132,7 @@ public class AttackState : EnemyState
             enemy.animator.SetBool("Attack", false);
             sword.IsAttacking = false;
             attacking = false;
-            context.currentState = context.seekState;
+            processor.currentState = processor.seekState;
         }
     }
 
@@ -179,7 +179,7 @@ public class KnockBackState : EnemyState
         }
         else
         {
-            context.currentState = context.idleState;
+            processor.currentState = processor.idleState;
             //context.currentState = context.wanderingState;
             enemy.agent.isStopped = false;
         }

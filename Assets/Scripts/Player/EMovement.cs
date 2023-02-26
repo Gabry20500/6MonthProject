@@ -13,11 +13,10 @@ public class EMovement : MonoBehaviour, IHittable
 
     private bool canMove = true;
 
-    private Rigidbody _rigidBody;
-    private EAnimator _animator;
+    private Rigidbody rB_Mov;
+    private EAnimator animator_Mov;
 
     [Header("Dash variables")]
-    //Variable used for Dash
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing = false;
     [SerializeField] private float dashingSpeed = 6f;
@@ -31,7 +30,7 @@ public class EMovement : MonoBehaviour, IHittable
     #region Getter
     public Rigidbody Rigidbody
     {
-        get { return _rigidBody; }
+        get { return rB_Mov; }
     }
     public Vector2 Direction
     {
@@ -71,8 +70,8 @@ public class EMovement : MonoBehaviour, IHittable
 
     private void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-        _animator = GetComponentInChildren<EAnimator>();
+        rB_Mov = GetComponent<Rigidbody>();
+        animator_Mov = GetComponentInChildren<EAnimator>();
 
     }
 
@@ -101,17 +100,17 @@ public class EMovement : MonoBehaviour, IHittable
             //If direction is none make RigidBody velocity to be 0
             if (direction == Vector2.zero)
             {
-                _rigidBody.velocity += -(_rigidBody.velocity);
-                _animator.SetDirection(direction);
+                rB_Mov.velocity += -(rB_Mov.velocity);
+                animator_Mov.SetDirection(direction);
             }
             else
             {
                 //Generate 3D Vector from a 2D Vector
                 velocity = new Vector3(InputController.instance.LeftStickDir.normalized.x * speed * Time.fixedDeltaTime, 0,
                                        InputController.instance.LeftStickDir.normalized.y * speed * Time.fixedDeltaTime);
-                _rigidBody.velocity = velocity;
+                rB_Mov.velocity = velocity;
                 //Call Animation class to play animation
-                _animator.SetDirection(direction);
+                animator_Mov.SetDirection(direction);
             }
         }
         //If isDashing has become true since the last frame
@@ -121,13 +120,13 @@ public class EMovement : MonoBehaviour, IHittable
             velocity = new Vector3(dashDir.normalized.x * (speed * dashingSpeed) * Time.fixedDeltaTime, 0,
                                    dashDir.normalized.y * (speed * dashingSpeed) * Time.fixedDeltaTime);
 
-            _rigidBody.velocity = velocity;
+            rB_Mov.velocity = velocity;
         }       
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
         else if(isAttacking == false)
-        { _rigidBody.velocity += -(_rigidBody.velocity); }
+        { rB_Mov.velocity += -(rB_Mov.velocity); }
     }
 
 
@@ -138,7 +137,7 @@ public class EMovement : MonoBehaviour, IHittable
     /// <returns></returns>
     private IEnumerator DashCoroutine()
     {
-        _animator.SetDirection(dashDir);
+        animator_Mov.SetDirection(dashDir);
         canMove = false;
         canDash = false; 
         isDashing = true;
@@ -164,9 +163,8 @@ public class EMovement : MonoBehaviour, IHittable
         }
     }
 
-    private IEnumerator KnockBackCoroutine(Vector3 knockBackDir, EnemyData enemy)
+    private IEnumerator KnockBackCoroutine(Vector3 knockDir, EnemyData enemy)
     {
-        Debug.Log("Player hotted");
         float buffer = 0;
 
         //canMove = false;
@@ -174,10 +172,9 @@ public class EMovement : MonoBehaviour, IHittable
         isDashing = false;
         isAttacking = false;
 
-
-        while (buffer < enemy.knockBackDuration)
+        while (buffer < enemy.knockDuration)
         {
-            transform.position += knockBackDir * enemy.knockBackSpeed * Time.fixedDeltaTime;
+            transform.position += knockDir * enemy.knockSpeed * Time.fixedDeltaTime;
             buffer += Time.fixedDeltaTime;
             yield return null;
         }
@@ -187,9 +184,15 @@ public class EMovement : MonoBehaviour, IHittable
         GetComponentInChildren<Sword>().canRotate = true;
         InputController.instance.LeftMouseDown += GetComponentInChildren<Sword>().Swing;//Re-inscribe swing to InputController
     }
+
+    /// <summary>
+    /// Function called when player is hitted by something that cuold or not make damage
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="knockBackDir"></param>
+    /// <param name="enemy"></param>
     public void OnHit(float damage, Vector3 knockBackDir, EnemyData enemy)
     {
-
         GetComponent<Entity>().TakeDamage(damage);
         //Elaborate all and start knock back coroutine
         StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
@@ -197,9 +200,8 @@ public class EMovement : MonoBehaviour, IHittable
 
     public void OnClash(Vector3 knockBackDir, EnemyData enemy)
     {
-        StopAllCoroutines();
+        this.StopAllCoroutines();
         GetComponentInChildren<Sword>().StopAllCoroutines();
-
         StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
     }
 }

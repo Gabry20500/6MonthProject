@@ -47,7 +47,7 @@ public class InputController : Singleton<InputController>
         get { return leftAnalogDir; }
     }
     
-    public Vector2 RightStickDir
+    public Vector2 RT_Stick_Dir
     {
         get { return rightAnalogDir; }
     }

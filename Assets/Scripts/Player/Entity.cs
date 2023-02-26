@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Entity : MonoBehaviour
 {
     [SerializeField] protected Slider healtBar;
@@ -8,7 +7,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float maxHealth = 30;
 
     [SerializeField] protected AudioClip hitClip;
-    protected AudioSource audioSource;
+    protected AudioSource eAudio;
     #region Getter
     public float Healt
     {
@@ -27,20 +26,33 @@ public class Entity : MonoBehaviour
 
     protected void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = hitClip;
+        eAudio = GetComponent<AudioSource>();
+        InitHealthBar();
+    }
+
+    private void InitHealthBar()
+    {
         healtBar.maxValue = maxHealth;
         healtBar.value = health;
     }
 
     public void TakeDamage(float value)
     {
-        audioSource.Play();
+        if (value != 0.0f)
+        {
+            PlaySound(hitClip);
+        }
         health -= value;
         healtBar.value = health;
         if (health <= 0.0f)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        eAudio.clip = clip;
+        eAudio.Play();
     }
 }

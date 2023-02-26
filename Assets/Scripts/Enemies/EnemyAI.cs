@@ -11,8 +11,7 @@ public class EnemyAI : MonoBehaviour, IHittable
     public NavMeshAgent agent;
     public Transform target;
     public Animator animator;
-    private EnemySword sword;
-    private Rigidbody rb;
+    private EnemySword enemySword;
 
     [Header("Movement parameters:")]
     private float distance;
@@ -37,20 +36,20 @@ public class EnemyAI : MonoBehaviour, IHittable
     {
         //Enemy data init and sowrd init
         enemyData = new EnemyData(enemyDataSO);
-        sword = GetComponentInChildren<EnemySword>();
-        sword.Init(enemyData);
+        enemySword = GetComponentInChildren<EnemySword>();
+        enemySword.Init(enemyData);
 
-
-
+        //Find player in the world and get self NavMeshAgent and animator
         target = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         
-        rb = GetComponentInChildren<Rigidbody>();
-        stateProcessor = new EnemyStateProcessor(this, sword);
+        //Initialize state processor and states
+        stateProcessor = new EnemyStateProcessor(this, enemySword);
         stateProcessor.Init();
     }
 
+    //Every frame update current state in stateprocessor
     void Update()
     {
         if (canMove == true)
@@ -59,19 +58,18 @@ public class EnemyAI : MonoBehaviour, IHittable
         }
     }
 
-    public void OnHit(float damage, Vector3 knockBackDir, SwordData sword)
+    public void OnHit(float damage, Vector3 knockDir, SwordData sword)
     {
         GetComponent<Entity>().TakeDamage(damage);
         //Logic to init anche change state in state processor
-        stateProcessor.knockBackState.Init(knockBackDir, sword.knockBackSpeed, sword.knockBackDuration);
+        stateProcessor.knockBackState.Init(knockDir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
         stateProcessor.currentState = stateProcessor.knockBackState;   
     }
 
     public void OnClash(Vector3 knockBackDir, SwordData sword)
     {
-        
-        stateProcessor.knockBackState.Init(knockBackDir, sword.knockBackSpeed, sword.knockBackDuration);
+        stateProcessor.knockBackState.Init(knockBackDir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
         stateProcessor.currentState = stateProcessor.knockBackState;
     }
