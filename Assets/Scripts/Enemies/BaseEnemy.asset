@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83ced2ed56413941a20799766c8e9fb, type: 3}
   m_Name: BaseEnemy
   m_EditorClassIdentifier: 
-  swordDamage: 10
+  swordDamage: 1
   attackRate: 1
-  knockBackSpeed: 5
-  knockBackDuration: 2
+  knockBackSpeed: 25
+  knockBackDuration: 0.25
   sightDistance: 20
   attackReach: 7

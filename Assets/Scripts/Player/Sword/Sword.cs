@@ -8,7 +8,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField] private SwordDataSO swordData;
-    [SerializeField] protected SwordData sword;
+    [SerializeField] public SwordData sword;
 
     [SerializeField] public bool canRotate = true;
 
@@ -29,6 +29,7 @@ public class Sword : MonoBehaviour
     Quaternion targetRot;
     #endregion
     [SerializeField] AudioClip baseSwingEffect;
+    [SerializeField] AudioClip baseClashEffect;
     [SerializeField] AudioSource audioSource;
 
     public float Damage
@@ -125,7 +126,7 @@ public class Sword : MonoBehaviour
         float percentace = 0.0f;//Percentage for lerp
 
         //Call the attack dash function in the entity attached to this script
-        _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), sword.dashSpeed, sword.dashDuration));
+       // _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), sword.dashSpeed, sword.dashDuration));
 
         audioSource.Play();
         while (t < sword.swingSpeed) //Cicle
@@ -175,17 +176,24 @@ public class Sword : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && _entity.IsAttacking == true)
+
+        if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().animator.GetBool("Attack") == true)
         {
             //Passing knock back direction to applicate to te hitted entity
+            Vector3 knockBackDir = transform.parent.position - collision.gameObject.transform.position;
+            knockBackDir = new Vector3(knockBackDir.x, 0.0f, knockBackDir.z);
+            knockBackDir.Normalize();
+
+            this.gameObject.GetComponentInParent<EMovement>().OnClash(knockBackDir, collision.gameObject.GetComponent<EnemySword>().enemyData);
+        }
+
+        else if (collision.gameObject.CompareTag("Enemy") && _entity.IsAttacking == true)
+        {
             Vector3 knockBackDir = collision.gameObject.transform.position - transform.parent.position;
             knockBackDir = new Vector3(knockBackDir.x, 0.0f, knockBackDir.z);
             knockBackDir.Normalize();
 
-            collision.gameObject.GetComponent<Entity>().TakeDamage(Damage, sword, knockBackDir);
+            collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockBackDir, sword);
         }
-
-        //If colliding an enemy sword simply knock the enemy
-        //cALL RECEIVEKNOCKBACK IN The entity scrpt
     }
 }

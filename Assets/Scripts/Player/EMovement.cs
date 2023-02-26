@@ -164,15 +164,42 @@ public class EMovement : MonoBehaviour, IHittable
         }
     }
 
-
-    public void OnHit(Vector3 knockBackDir, EnemyData enemy)
+    private IEnumerator KnockBackCoroutine(Vector3 knockBackDir, EnemyData enemy)
     {
-        //Elaborate all and start knock back coroutine
+        Debug.Log("Player hotted");
+        float buffer = 0;
 
+        //canMove = false;
+        canDash = false;
+        isDashing = false;
+        isAttacking = false;
+
+
+        while (buffer < enemy.knockBackDuration)
+        {
+            transform.position += knockBackDir * enemy.knockBackSpeed * Time.fixedDeltaTime;
+            buffer += Time.fixedDeltaTime;
+            yield return null;
+        }
+
+        canMove = true;
+        canDash = true;
+        GetComponentInChildren<Sword>().canRotate = true;
+        InputController.instance.LeftMouseDown += GetComponentInChildren<Sword>().Swing;//Re-inscribe swing to InputController
     }
-    //coroutine enable and disable tutte cose
-    //spinge indietro
+    public void OnHit(float damage, Vector3 knockBackDir, EnemyData enemy)
+    {
 
-    //per spada contro spada
-    //trova spada e blocca tutte coroutine
+        GetComponent<Entity>().TakeDamage(damage);
+        //Elaborate all and start knock back coroutine
+        StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+    }
+
+    public void OnClash(Vector3 knockBackDir, EnemyData enemy)
+    {
+        StopAllCoroutines();
+        GetComponentInChildren<Sword>().StopAllCoroutines();
+
+        StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+    }
 }

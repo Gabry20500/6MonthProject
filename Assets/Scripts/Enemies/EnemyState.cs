@@ -12,20 +12,18 @@ public class EnemyState
     }
 
     public virtual void OnStateEnter() { }
-    virtual public void Update()
-    {
-        
-    }
+    virtual public void Update() { }
     public virtual void OnStateExit() { }
 }
 
+
 public class IdleState : EnemyState
 {
-
-    public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {  }
+public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) {  }
 
     public override void Update()
     {
+        Debug.Log(this.GetType().ToString());
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance <= enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
@@ -34,9 +32,51 @@ public class IdleState : EnemyState
         else if (enemy.Distance > enemy.enemyData.sightDistance)
         {
             return;
+            //context.currentState = context.wanderingState;
         }
     }
 }
+
+//public class WanderingState : EnemyState
+//{
+//    bool wandering = false;
+//    float wanderBuffer = 0.0f;
+//    float wanderTime = 10.0f;
+//    float wanderRange = 10.0f;
+//    Vector3 wanderDestination;
+
+//    public WanderingState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
+
+//    public override void Update()
+//    {
+//        Debug.Log(this.GetType().ToString());
+//        enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
+
+//        if (enemy.Distance > enemy.enemyData.sightDistance)
+//        {
+//            if(wandering == false || wanderBuffer > wanderTime)
+//            {
+//                wandering = true;
+//                wanderBuffer = 0.0f;
+//                wanderDestination = new Vector3(enemy.gameObject.transform.position.x + Random.Range(0, wanderRange), 0.0f,
+//                                                enemy.gameObject.transform.position.z + Random.Range(0, wanderRange));
+//                enemy.agent.SetDestination(wanderDestination);
+//            }
+//            else
+//            {
+//                wanderBuffer += Time.deltaTime;
+//            }
+//        }
+//        else if (enemy.Distance < enemy.enemyData.sightDistance)
+//        {
+//            wandering = false;
+//            wanderBuffer = 0.0f;
+//            enemy.agent.isStopped = true;
+//            context.currentState = context.seekState;
+//        }
+//    }
+//}
+
 
 public class SeekState : EnemyState
 {
@@ -44,18 +84,20 @@ public class SeekState : EnemyState
     public SeekState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
     public override void Update()
     {
+        //Debug.Log(this.GetType().ToString());
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
 
         if(enemy.Distance < enemy.enemyData.attackReach)
         {
             seeking = false;
-            enemy.agent.velocity = Vector3.zero;
+            enemy.agent.isStopped = true;
             context.currentState = context.attackState;
         }
-        else if (enemy.Distance <= enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
+        else if (enemy.Distance < enemy.enemyData.sightDistance && enemy.Distance > enemy.enemyData.attackReach)
         {
             if(seeking == false)
             {
+                enemy.agent.isStopped = false;
                 enemy.agent.SetDestination(enemy.target.position);
                 seeking = true;
             }
@@ -65,6 +107,7 @@ public class SeekState : EnemyState
             seeking = false;
             enemy.agent.SetDestination(enemy.transform.position);
             context.currentState = context.idleState;
+            //context.currentState = context.wanderingState;
         }
     }
 }
@@ -76,6 +119,7 @@ public class AttackState : EnemyState
     public AttackState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
+        Debug.Log(this.GetType().ToString());
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.enemyData.attackReach && attacking == false)
         {
@@ -99,6 +143,7 @@ public class AttackState : EnemyState
         attacking = false;
     }
 }
+
 
 public class KnockBackState : EnemyState
 {
@@ -135,6 +180,7 @@ public class KnockBackState : EnemyState
         else
         {
             context.currentState = context.idleState;
+            //context.currentState = context.wanderingState;
             enemy.agent.isStopped = false;
         }
         buffer += Time.deltaTime;

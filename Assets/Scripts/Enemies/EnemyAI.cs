@@ -59,11 +59,20 @@ public class EnemyAI : MonoBehaviour, IHittable
         }
     }
 
-    public void OnHit(Vector3 knockBackDir, SwordData sword)
+    public void OnHit(float damage, Vector3 knockBackDir, SwordData sword)
     {
+        GetComponent<Entity>().TakeDamage(damage);
         //Logic to init anche change state in state processor
         stateProcessor.knockBackState.Init(knockBackDir, sword.knockBackSpeed, sword.knockBackDuration);
         stateProcessor.currentState.OnStateExit();
         stateProcessor.currentState = stateProcessor.knockBackState;   
+    }
+
+    public void OnClash(Vector3 knockBackDir, SwordData sword)
+    {
+        
+        stateProcessor.knockBackState.Init(knockBackDir, sword.knockBackSpeed, sword.knockBackDuration);
+        stateProcessor.currentState.OnStateExit();
+        stateProcessor.currentState = stateProcessor.knockBackState;
     }
 }
