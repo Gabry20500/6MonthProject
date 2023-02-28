@@ -235,15 +235,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a5fcaf6e7cc6e4e8dd8b79b092823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData:
+  ownerEnemy:
     swordDamage: 0
     attackRate: 0
-    knockBackSpeed: 0
-    knockBackDuration: 0
+    knockSpeed: 0
+    knockDuration: 0
     sightDistance: 0
     attackReach: 0
-  baseSwingEffect: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
-  baseClashEffect: {fileID: 8300000, guid: b3d930e2dc4b0e246bf689b545369ae4, type: 3}
+  baseSwing: {fileID: 0}
+  baseClash: {fileID: 0}
 --- !u!54 &82037117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1453,8 +1453,8 @@ MonoBehaviour:
   enemyData:
     swordDamage: 0
     attackRate: 0
-    knockBackSpeed: 0
-    knockBackDuration: 0
+    knockSpeed: 0
+    knockDuration: 0
     sightDistance: 0
     attackReach: 0
   agent: {fileID: 0}
@@ -2070,25 +2070,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41bb3690e5f3db459a287c2bebae3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordData: {fileID: 11400000, guid: 369f55de8ba555444b5b249bf87be021, type: 2}
-  sword:
+  swordSO: {fileID: 11400000, guid: 369f55de8ba555444b5b249bf87be021, type: 2}
+  swordData:
     name: 
     swingSpeed: 0
     swingWidth: 0
     swingCoolDown: 0
-    swordPhysicDamage: 0
-    knockBackSpeed: 0
-    knockBackDuration: 0
+    physicDamage: 0
+    knockSpeed: 0
+    knockDuration: 0
     dashSpeed: 0
     dashDuration: 0
     swordScale: {x: 0, y: 0, z: 0}
     isBlockable: 1
   canRotate: 1
-  animator: {fileID: 790440883}
-  pivot: {fileID: 591969782}
-  baseSwingEffect: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
-  baseClashEffect: {fileID: 0}
-  audioSource: {fileID: 0}
+  e_Animator: {fileID: 0}
+  rot_Pivot: {fileID: 0}
+  baseSwing: {fileID: 0}
+  baseClash: {fileID: 0}
+  sword_Audio: {fileID: 0}
 --- !u!1 &1772839937
 GameObject:
   m_ObjectHideFlags: 0
