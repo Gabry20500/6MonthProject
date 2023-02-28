@@ -140,7 +140,7 @@ public class Sword : MonoBehaviour
         }
 
         rot_Pivot.forward = targetDir;//Safe repositioning??
-
+        Debug.Log(swordData.swingCoolDown);
         yield return new WaitForSeconds(swordData.swingCoolDown);
         e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
@@ -174,9 +174,17 @@ public class Sword : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy") && e_Movement.IsAttacking == true)
+        {
+            Vector3 knockDir = collision.gameObject.transform.position - transform.parent.position;
+            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
+            knockDir.Normalize();
 
+            collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
+            return;
+        }
         if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().animator.GetBool("Attack") == true)
         {
             //Passing knock back direction to applicate to te hitted entity
@@ -185,15 +193,9 @@ public class Sword : MonoBehaviour
             knockDir.Normalize();
 
             this.gameObject.GetComponentInParent<EMovement>().OnClash(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
+            return;
         }
 
-        else if (collision.gameObject.CompareTag("Enemy") && e_Movement.IsAttacking == true)
-        {
-            Vector3 knockDir = collision.gameObject.transform.position - transform.parent.position;
-            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
-            knockDir.Normalize();
-
-            collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
-        }
+        
     }
 }
