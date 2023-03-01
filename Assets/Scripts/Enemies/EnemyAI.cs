@@ -40,9 +40,11 @@ public class EnemyAI : MonoBehaviour, IHittable
         enemySword.Init(enemyData);
 
         //Find player in the world and get self NavMeshAgent and animator
-        target = GameObject.FindWithTag("Player").transform;
+        target = GameObject.FindWithTag("Player").transform;     
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
+        agent.updateRotation = false;
+
+        //animator = GetComponentInChildren<Animator>();
         
         //Initialize state processor and states
         stateProcessor = new EnemyStateProcessor(this, enemySword);
