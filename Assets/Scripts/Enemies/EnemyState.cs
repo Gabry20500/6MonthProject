@@ -84,7 +84,7 @@ public class SeekState : EnemyState
     public SeekState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
     public override void Update()
     {
-        //Debug.Log(this.GetType().ToString());
+        Debug.Log(this.GetType().ToString());
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
 
         if(enemy.Distance < enemy.enemyData.attackReach)
@@ -98,7 +98,7 @@ public class SeekState : EnemyState
             if(seeking == false)
             {
                 enemy.agent.isStopped = false;
-                enemy.agent.SetDestination(enemy.target.position);
+                enemy.agent.SetDestination(enemy.target.position);              
                 seeking = true;
             }
         }
@@ -126,6 +126,13 @@ public class AttackState : EnemyState
             enemy.animator.SetBool("Attack", true);
             sword.IsAttacking = true;
             attacking = true;
+        }
+        if (enemy.Distance < enemy.enemyData.attackReach && attacking == true)
+        {
+            Vector3 targetDir = (enemy.target.position - enemy.transform.position).normalized;
+            Quaternion targetRot = Quaternion.LookRotation(targetDir);
+            Quaternion nextRotation = Quaternion.Lerp(enemy.transform.localRotation, targetRot, 0.01f);
+            enemy.transform.localRotation = nextRotation;
         }
         else if (enemy.Distance > enemy.enemyData.attackReach)
         {

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82128a121e56bbe4d8c5fdaadc721741, type: 3}
   m_Name: BaseSword
   m_EditorClassIdentifier: 
-  swingSpeed: 0.3
-  swingWidth: 120
-  swingCoolDown: 0.15
-  SwordPhysicDamage: 1
-  knockBackSpeed: 25
-  knockBackDuration: 0.1
+  swingSpeed: 0.2
+  swingWidth: 90
+  swingCoolDown: 0
+  physicDamage: 5
+  knockSpeed: 25
+  knockDuration: 0.25
   dashSpeed: 4
   dashDuration: 0.1
   swordScale: {x: 1, y: 1, z: 1}
