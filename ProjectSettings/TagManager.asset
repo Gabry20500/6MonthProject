@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Sword
   - EnemySword
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Enemy
   - EnemySword
   - Sword
-  - 
+  - Destroyer
   - 
   - 
   - 
