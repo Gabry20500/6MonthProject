@@ -3,7 +3,6 @@ public class EnemyStateProcessor
     public EnemyAI enemy;
 
     public IdleState idleState;
-    //public WanderingState wanderingState;
     public SeekState seekState;
     public AttackState attackState;
     public KnockBackState knockBackState;
@@ -16,7 +15,6 @@ public class EnemyStateProcessor
     {
         enemy = context;
         idleState = new IdleState(this, enemy);
-        //wanderingState = new WanderingState(this, enemy);
         seekState = new SeekState(this, enemy);
         attackState = new AttackState(this, enemy, sword);
         knockBackState = new KnockBackState(this, enemy);
@@ -25,7 +23,6 @@ public class EnemyStateProcessor
     public void Init()
     {
         currentState = idleState;
-        //currentState = wanderingState;
     }
 
     public void Update()

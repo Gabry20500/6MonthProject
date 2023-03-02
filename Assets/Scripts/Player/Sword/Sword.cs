@@ -99,25 +99,32 @@ public class Sword : MonoBehaviour
     /// <summary>
     /// Swing public function to perform a swing
     /// </summary>
+    bool swinging = false;
     public void Swing()
     {
-        Debug.Log("Swinging");
-        e_Movement.CanMove = false; //The linked entity can't move
-        canRotate = false; //The sword can no more rotate
-        //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
-        e_Animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
-        InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
-        //Starting the coroutine swing animation
-        StartCoroutine(SwingAnimation(currentDir));
+        if (swinging == false)
+        {
+            swinging = true;
+            InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
+            e_Movement.CanMove = false; //The linked entity can't move
+            canRotate = false; //The sword can no more rotate
+                               //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
+            e_Animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
+                                                                                //Starting the coroutine swing animation
+            StartCoroutine(SwingAnimation(currentDir));
+        }
+        else if(swinging == true)
+        {
+            return;
+        }
     }
 
     int i = 1;
     private IEnumerator SwingAnimation(Vector3 swingDir)
     {
-
          initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
          rot_Pivot.forward = initialDir;//Set forward to the initial position of the animation
-         targetDir = Quaternion.AngleAxis(+(swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
+         targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
          Quaternion targetRot = Quaternion.LookRotation(targetDir);
 
         i *= -1;
@@ -140,12 +147,12 @@ public class Sword : MonoBehaviour
         }
 
         rot_Pivot.forward = targetDir;//Safe repositioning??
-        Debug.Log(swordData.swingCoolDown);
         yield return new WaitForSeconds(swordData.swingCoolDown);
         e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         e_Movement.CanMove = true;//Enable entity movment
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
+        swinging = false;
     }
 
     public IEnumerator AtkDash(Vector2 direction, float dashAtkSpeed, float duration)
@@ -174,13 +181,12 @@ public class Sword : MonoBehaviour
 
 
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && e_Movement.IsAttacking == true)
         {
-            Vector3 knockDir = collision.gameObject.transform.position - transform.parent.position;
-            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
-            knockDir.Normalize();
+            Vector3 knockDir = CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+
 
             collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
             return;
@@ -188,14 +194,47 @@ public class Sword : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().animator.GetBool("Attack") == true)
         {
             //Passing knock back direction to applicate to te hitted entity
-            Vector3 knockDir = transform.parent.position - collision.gameObject.transform.position;
-            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
-            knockDir.Normalize();
+            Vector3 knockDir = CalculateDir(transform.parent.position, collision.gameObject.transform.position);
 
-            this.gameObject.GetComponentInParent<EMovement>().OnClash(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
+            gameObject.GetComponentInParent<EMovement>().OnClash(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
+            StopAllCoroutines();
+            StartCoroutine(SwordClash());
             return;
         }
+    }
 
-        
+    public IEnumerator SwordClash()
+    {
+        Debug.Log("SWORD CLASHING");
+        targetDir = initialDir;
+        Quaternion targetRot = Quaternion.LookRotation(targetDir);
+
+        float t = 0.0f;
+        float percentace = 0.0f;
+
+        while (t < 0.2f)
+        {
+            percentace = t / 0.2f;
+            Quaternion nextRotation = Quaternion.Lerp(rot_Pivot.localRotation, targetRot, percentace);
+            rot_Pivot.localRotation = nextRotation; 
+
+            yield return null;
+            t += Time.deltaTime;        
+        }
+        rot_Pivot.forward = targetDir;
+        canRotate = true;
+        e_Movement.IsAttacking = false;
+        e_Movement.CanMove = true;
+        e_Movement.CanDash = true;
+        InputController.instance.LeftMouseDown += Swing;
+        swinging = false;
+    }
+
+
+    private Vector3 CalculateDir(Vector3 A, Vector3 B)
+    {
+        Vector3 dir = A - B;
+        dir = new Vector3(dir.x, 0.0f, dir.z);
+        return dir.normalized;
     }
 }
