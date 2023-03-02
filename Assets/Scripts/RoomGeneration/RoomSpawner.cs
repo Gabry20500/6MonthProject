@@ -20,36 +20,73 @@ public class RoomSpawner : MonoBehaviour
     private bool spawned = false;
     
     
-    public float waitTime = 4f;
+    public float waitTime = 0.1f;
+    [SerializeField] bool spawnedWall = false;
+    
     private void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn",0.1f);
     }
 
+    private void Update()
+    {
+        if (waitTime <= 0 && !spawnedWall)
+        {
+            SpawnWall();
+            spawnedWall = true;
+        }
+        else if (!spawnedWall)
+        {
+            waitTime -= Time.deltaTime;
+        }
+    }
+    
     void Spawn()
     {
-        if (spawned == false && templates.currentRooms < templates.maxRoom)
+        if (spawned == false)
         {
-            if (openingDirection == 1)
+            if (templates.currentRooms < templates.maxRoom - 1)
             {
-                rand = Random.Range(0, templates.downRooms.Length);
-                Instantiate(templates.downRooms[rand], transform.position, templates.downRooms[rand].transform.rotation);
-            }else if (openingDirection == 2)
-            {
-                rand = Random.Range(0, templates.topRooms.Length);
-                Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
-            }else if (openingDirection == 3)
-            {
-                rand = Random.Range(0, templates.leftRooms.Length);
-                Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
-            }else if (openingDirection == 4)
-            {
-                rand = Random.Range(0, templates.rightRooms.Length);
-                Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation); 
+                if (openingDirection == 1)
+                {
+                    rand = Random.Range(0, templates.downRooms.Length);
+                    Instantiate(templates.downRooms[rand], transform.position, templates.downRooms[rand].transform.rotation);
+                }else if (openingDirection == 2)
+                {
+                    rand = Random.Range(0, templates.topRooms.Length);
+                    Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
+                }else if (openingDirection == 3)
+                {
+                    rand = Random.Range(0, templates.leftRooms.Length);
+                    Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+                }else if (openingDirection == 4)
+                {
+                    rand = Random.Range(0, templates.rightRooms.Length);
+                    Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation); 
+                }
+                spawned = true;
+                templates.currentRooms++;
             }
-            spawned = true;
-            templates.currentRooms++;
+            else if (templates.currentRooms == templates.maxRoom - 1)
+            {
+                if (openingDirection == 1)
+                {
+                    Instantiate(templates.downRooms[0], transform.position, templates.downRooms[0].transform.rotation);
+                }else if (openingDirection == 2)
+                {
+                    Instantiate(templates.topRooms[0], transform.position, templates.topRooms[0].transform.rotation);
+                }else if (openingDirection == 3)
+                {
+                    Instantiate(templates.leftRooms[0], transform.position, templates.leftRooms[0].transform.rotation);
+                }else if (openingDirection == 4)
+                {
+                    Instantiate(templates.rightRooms[0], transform.position, templates.rightRooms[0].transform.rotation); 
+                }
+                spawned = true;
+                templates.currentRooms++;
+            }
+            
         }
     }
 
