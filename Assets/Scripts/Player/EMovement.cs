@@ -194,14 +194,12 @@ public class EMovement : MonoBehaviour, IHittable
     public void OnHit(float damage, Vector3 knockBackDir, EnemyData enemy)
     {
         GetComponent<Entity>().TakeDamage(damage);
-        //Elaborate all and start knock back coroutine
+
         StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
     }
 
     public void OnClash(Vector3 knockBackDir, EnemyData enemy)
-    {
-        this.StopAllCoroutines();
-        GetComponentInChildren<Sword>().StopAllCoroutines();
+    { 
         StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
     }
 }

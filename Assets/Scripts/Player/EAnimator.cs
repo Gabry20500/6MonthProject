@@ -21,7 +21,7 @@ public class EAnimator : MonoBehaviour
     /// <summary>
     /// Reference to the needed Animator to animate
     /// </summary>
-    private Animator _animator;
+    protected Animator _animator;
     /// <summary>
     /// Reference to the Movement class that elaborates and pass the movement value
     /// </summary>
@@ -30,8 +30,8 @@ public class EAnimator : MonoBehaviour
     /// <summary>
     ///Using string prefix to help calling the right animations by name
     /// </summary>
-    string prefix = "Idle_";
-    private Direction lastDir;
+    protected string prefix = "Idle_";
+    protected Direction lastDir;
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class EAnimator : MonoBehaviour
     ///Detect if player is moving and detect the direction, then call the animation
     /// </summary>
     /// <param name="direction">Direction of the entity to animate</param>
-    public void SetDirection( Vector2 direction)
+    public void SetDirection( Vector2 direction )
     {
         if(direction.magnitude < 0.01f)
         {
@@ -62,7 +62,7 @@ public class EAnimator : MonoBehaviour
     /// </summary>
     /// <param name="direction">The direction as 2D Vector of the entity movement</param>
     /// <returns></returns>
-    private Direction DirectionIndex(Vector2 direction)
+    protected Direction DirectionIndex(Vector2 direction)
     {
         Vector2 norDir = direction.normalized;
        

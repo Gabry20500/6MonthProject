@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemySword : MonoBehaviour
 {
@@ -21,33 +22,55 @@ public class EnemySword : MonoBehaviour
         ownerEnemy = enemyData;
     }
 
-
+    bool canDamage = true;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Sword") && collision.gameObject.GetComponent<Sword>().canRotate == false)
         {
             //Passing knock back direction to applicate to te hitted entity
-            Vector3 knockDir = transform.parent.position - collision.gameObject.transform.position;
-            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
-            knockDir.Normalize();
+            Vector3 knockDir = CalculateDir(transform.parent.position, collision.gameObject.transform.position);
 
-            enemyS_Audio.clip = baseClash;
-            enemyS_Audio.Play();
+            PlayAudio(baseClash);
 
             gameObject.GetComponentInParent<EnemyAI>().OnClash(knockDir, collision.gameObject.GetComponent<Sword>().swordData);
         }
 
-        else if (collision.gameObject.CompareTag("Player") && isAttacking == true)
+        else if (collision.gameObject.CompareTag("Player") && isAttacking == true && canDamage == true)
         {
-            Vector3 knockDir = collision.gameObject.transform.position - transform.parent.position;
-            knockDir = new Vector3(knockDir.x, 0.0f, knockDir.z);
-            knockDir.Normalize();
-
-
-            enemyS_Audio.clip = baseSwing;
-            enemyS_Audio.Play();
-
-            collision.gameObject.GetComponent<EMovement>().OnHit(ownerEnemy.swordDamage, knockDir, ownerEnemy);
+            canDamage = false;
+            StartCoroutine(PlayerTickDamage(collision));
+            
         }
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        enemyS_Audio.clip = clip;
+        enemyS_Audio.Play();
+    }
+
+    private Vector3 CalculateDir(Vector3 A, Vector3 B)
+    {
+        Vector3 dir = A - B;
+        dir = new Vector3(dir.x, 0.0f, dir.z);
+        return dir.normalized;
+    }
+
+    private IEnumerator PlayerTickDamage(Collision collision)
+    {
+        Vector3 knockdir = CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+
+        PlayAudio(baseSwing);
+
+        collision.gameObject.GetComponent<EMovement>().OnHit(ownerEnemy.swordDamage, knockdir, ownerEnemy);
+        float t = 0;
+        float tickTime = 1f;
+        while(t < tickTime)
+        {
+            yield return null;
+            t += Time.deltaTime;
+        }
+        canDamage = true;
+
     }
 }
