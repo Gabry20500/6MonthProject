@@ -133,7 +133,7 @@ public class Sword : MonoBehaviour
         float percentace = 0.0f;//Percentage for lerp
 
         //Call the attack dash function in the entity attached to this script
-       // _entity.StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), sword.dashSpeed, sword.dashDuration));
+        StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), swordData.dashSpeed, swordData.dashDuration));
 
         sword_Audio.Play();
         while (t < swordData.swingSpeed) //Cicle
