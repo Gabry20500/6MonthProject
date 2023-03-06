@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     [SerializeField] public SwordData swordData;
 
     [SerializeField] public bool canRotate = true;
+    [SerializeField] bool swinging = false;
 
     #region MouseTracing
     private Vector2 mousePos;
@@ -22,7 +23,7 @@ public class Sword : MonoBehaviour
     private EMovement e_Movement; //Link to the entity movement class to sto his movement and to perform other actions
     [SerializeField] private EAnimator e_Animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
     [SerializeField] Transform rot_Pivot;
-    
+
     #region SwingAnimation parameters
     private Vector3 initialDir;
     private Vector3 targetDir;
@@ -51,11 +52,10 @@ public class Sword : MonoBehaviour
     /// <summary>
     /// Inscribe Swing function to desired event in InputController
     /// </summary>
-    private void OnEnable()
+    private void Start()
     {
         InputController.instance.LeftMouseDown += Swing;
     }
-
     /// <summary>
     /// Unscribe Swing function to desired event in InputController
     /// </summary>
@@ -99,7 +99,7 @@ public class Sword : MonoBehaviour
     /// <summary>
     /// Swing public function to perform a swing
     /// </summary>
-    bool swinging = false;
+
     public void Swing()
     {
         if (swinging == false)

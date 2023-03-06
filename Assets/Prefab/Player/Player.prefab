@@ -142,6 +142,7 @@ MonoBehaviour:
     swordScale: {x: 0, y: 0, z: 0}
     isBlockable: 1
   canRotate: 1
+  swinging: 0
   e_Animator: {fileID: 5693687257214280715}
   rot_Pivot: {fileID: 5693687257009582670}
   baseSwing: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
@@ -491,8 +492,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   canDash: 1
   isDashing: 0
-  dashingSpeed: 4
-  dashingTime: 0.4
+  dashingSpeed: 3
+  dashingTime: 0.35
   dashingCooldown: 1
   isAttacking: 0
 --- !u!114 &5693687256937972818

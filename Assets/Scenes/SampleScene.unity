@@ -578,10 +578,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 694917649108951228, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 694917650093578212, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -629,30 +625,6 @@ PrefabInstance:
     - target: {fileID: 694917650093578213, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578216, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: health
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578216, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: maxHealth
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578219, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578219, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: m_Acceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578219, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650093578219, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 694917650811450687, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_Camera
@@ -735,22 +707,6 @@ PrefabInstance:
     - target: {fileID: 5693687256937972826, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693687256937972827, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
-      propertyPath: speed
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693687256937972827, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
-      propertyPath: dashingTime
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693687256937972827, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
-      propertyPath: dashingSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693687256937972827, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
-      propertyPath: dashingCooldown
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_RootOrder
