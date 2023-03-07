@@ -23,6 +23,7 @@ public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, ene
 
     public override void Update()
     {
+        Debug.Log("Idle");
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.enemyData.sightDistance )
         {
@@ -84,16 +85,21 @@ public class SeekState : EnemyState
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.enemyData.attackReach)
         {
+            Debug.Log("Transition to attack");
             enemy.agent.isStopped = true;
             processor.currentState = processor.attackState;
         }
         else if (enemy.Distance < enemy.enemyData.sightDistance)
         {
-                enemy.agent.isStopped = false;
-                enemy.agent.SetDestination(enemy.target.position);              
+            Debug.Log("Transition to FOLLOWING");
+            enemy.agent.isStopped = false;
+            enemy.agent.SetDestination(enemy.target.position);
+            Debug.DrawRay(enemy.target.position, enemy.agent.velocity, Color.red, 1.0f);
+            Debug.DrawRay(enemy.target.position, Vector3.up, Color.red, 1.0f);
         }
         else if (enemy.Distance > enemy.enemyData.sightDistance)
         {
+            Debug.Log("Transition to IDLEEEEE");
             enemy.agent.SetDestination(enemy.transform.position);
             processor.currentState = processor.idleState;
         }
@@ -107,6 +113,7 @@ public class AttackState : EnemyState
     public AttackState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
+        Debug.Log("Attack");
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.enemyData.attackReach && attacking == false)
         {
