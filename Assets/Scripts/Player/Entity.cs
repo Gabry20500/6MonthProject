@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
@@ -46,7 +47,15 @@ public class Entity : MonoBehaviour
         healtBar.value = health;
         if (health <= 0.0f)
         {
-            Destroy(gameObject);
+            if (gameObject.CompareTag("Player"))
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            //Destroy(gameObject);
         }
     }
 

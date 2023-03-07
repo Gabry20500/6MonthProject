@@ -20,12 +20,12 @@ public class RoomSpawner : MonoBehaviour
     private bool spawned = false;
     
     
-    public float waitTime = 0.1f;
+    private float waitTime = 0.1f;
     [SerializeField] bool spawnedWall = false;
     
     private void Start()
     {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        templates = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomTemplates>();
         Invoke("Spawn",0.1f);
     }
 
@@ -44,26 +44,28 @@ public class RoomSpawner : MonoBehaviour
     
     void Spawn()
     {
+        
         if (spawned == false)
         {
+            GameObject newRoom;
             if (templates.currentRooms < templates.maxRoom - 1)
             {
                 if (openingDirection == 1)
                 {
                     rand = Random.Range(0, templates.downRooms.Length);
-                    Instantiate(templates.downRooms[rand], transform.position, templates.downRooms[rand].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.downRooms[rand], transform.position, templates.downRooms[rand].transform.rotation, templates.transform);
                 }else if (openingDirection == 2)
                 {
                     rand = Random.Range(0, templates.topRooms.Length);
-                    Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation, templates.transform);
                 }else if (openingDirection == 3)
                 {
                     rand = Random.Range(0, templates.leftRooms.Length);
-                    Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation, templates.transform);
                 }else if (openingDirection == 4)
                 {
                     rand = Random.Range(0, templates.rightRooms.Length);
-                    Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation, templates.transform); 
+                    newRoom = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation, templates.transform);
                 }
                 spawned = true;
                 templates.currentRooms++;
@@ -72,16 +74,20 @@ public class RoomSpawner : MonoBehaviour
             {
                 if (openingDirection == 1)
                 {
-                    Instantiate(templates.downRooms[0], transform.position, templates.downRooms[0].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.downRooms[0], transform.position, templates.downRooms[0].transform.rotation, templates.transform);
+                    StartCoroutine(templates.DeactiveRoom());
                 }else if (openingDirection == 2)
                 {
-                    Instantiate(templates.topRooms[0], transform.position, templates.topRooms[0].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.topRooms[0], transform.position, templates.topRooms[0].transform.rotation, templates.transform);
+                    StartCoroutine(templates.DeactiveRoom());
                 }else if (openingDirection == 3)
                 {
-                    Instantiate(templates.leftRooms[0], transform.position, templates.leftRooms[0].transform.rotation, templates.transform);
+                    newRoom = Instantiate(templates.leftRooms[0], transform.position, templates.leftRooms[0].transform.rotation, templates.transform);
+                    StartCoroutine(templates.DeactiveRoom());
                 }else if (openingDirection == 4)
                 {
-                    Instantiate(templates.rightRooms[0], transform.position, templates.rightRooms[0].transform.rotation, templates.transform); 
+                    newRoom = Instantiate(templates.rightRooms[0], transform.position, templates.rightRooms[0].transform.rotation, templates.transform);
+                    StartCoroutine(templates.DeactiveRoom());
                 }
                 spawned = true;
                 templates.currentRooms++;
@@ -93,23 +99,5 @@ public class RoomSpawner : MonoBehaviour
     void SpawnWall()
     {
         Instantiate(templates.closedRoom, transform.position, Quaternion.identity, templates.transform);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("SpawnPoint"))
-        {
-            try
-            {
-                if (other.GetComponent<RoomSpawner>().spawned && !spawned)
-                {
-                    Instantiate(templates.closedRoom, transform.position, Quaternion.identity, templates.transform);
-                    Destroy(gameObject);
-                }    
-            }
-            //DANGEROUS
-            catch { }
-            spawned = true;
-        }
     }
 }
