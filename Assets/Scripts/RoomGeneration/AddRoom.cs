@@ -13,7 +13,8 @@ public class AddRoom : MonoBehaviour
         if (gameObject.CompareTag("Rooms"))
         {
             templates.rooms.Add(this.gameObject);
-        }else if (gameObject.CompareTag("Garden"))
+        }
+        else if (gameObject.CompareTag("Garden"))
         {
             templates.gardens.Add(this.gameObject);
         }

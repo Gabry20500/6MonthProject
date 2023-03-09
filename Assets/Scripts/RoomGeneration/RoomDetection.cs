@@ -7,45 +7,69 @@ public class RoomDetection : MonoBehaviour
 {
     [SerializeField] private int direction;
     private RoomData roomData;
-
+    private Collider[] hitCollider;
     private void Start()
     {
         roomData = GetComponentInParent<RoomData>();
-        StartCoroutine(Detect());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Ground"))
+        hitCollider = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity);
+
+        foreach (var collider in hitCollider)
         {
-            switch (direction)
+            if (collider.CompareTag("Ground") || collider.CompareTag("Garden"))
+            {
+                GameObject currentRoom = collider.gameObject;
+                switch (direction)
                 {
                     case 1:
-                        roomData.roomNord = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        roomData.roomNord = currentRoom.transform.parent.gameObject.transform.parent.gameObject;
                         Destroy(this.gameObject);
                         break;
                     case 2:
-                        roomData.roomSouth = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        roomData.roomSouth = currentRoom.transform.parent.gameObject.transform.parent.gameObject;
                         Destroy(this.gameObject);
                         break;
                     case 3:
-                        roomData.roomEst = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        roomData.roomEst = currentRoom.transform.parent.gameObject.transform.parent.gameObject;
                         Destroy(this.gameObject);
                         break;
                     case 4:
-                        roomData.roomWest = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        roomData.roomWest = currentRoom.transform.parent.gameObject.transform.parent.gameObject;
                         Destroy(this.gameObject);
                         break;
-                
                 }
+            }
         }
     }
 
-    private IEnumerator Detect()
-    {
-        yield return new WaitForSeconds(1f);
-        this.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        this.gameObject.SetActive(true);
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("Ground"))
+    //     {
+    //         switch (direction)
+    //             {
+    //                 case 1:
+    //                     roomData.roomNord = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+    //                     Destroy(this.gameObject);
+    //                     break;
+    //                 case 2:
+    //                     roomData.roomSouth = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+    //                     Destroy(this.gameObject);
+    //                     break;
+    //                 case 3:
+    //                     roomData.roomEst = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+    //                     Destroy(this.gameObject);
+    //                     break;
+    //                 case 4:
+    //                     roomData.roomWest = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+    //                     Destroy(this.gameObject);
+    //                     break;
+    //             
+    //             }
+    //     }
+    // }
+    
 }

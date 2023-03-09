@@ -97,7 +97,7 @@ public class RoomSpawner : MonoBehaviour
     }
 
     void SpawnWall()
-    {
+    { 
         Instantiate(templates.closedRoom, transform.position, Quaternion.identity, templates.transform);
     }
 }

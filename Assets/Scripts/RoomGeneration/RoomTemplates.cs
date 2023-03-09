@@ -29,6 +29,7 @@ public class RoomTemplates : MonoBehaviour
 
     private void Update()
     {
+
         if (waitTime <= 0 && !spawnedBoss)
         {
             for (int i = 0; i < rooms.Count; i++)
@@ -38,9 +39,22 @@ public class RoomTemplates : MonoBehaviour
                     Instantiate(boos, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
                     spawnedBoss = true;
 
-                    foreach (var garden in gardens)
+                    for (int j = 1; j < rooms.Count; j++)
                     {
-                       garden.SetActive(false);
+                        rooms[j].SetActive(false);
+                    }
+
+                    for (int j = 0; j < gardens.Count; j++)
+                    {
+                        if (gardens[j] == null)
+                        {
+                            gardens.Remove(gardens[j]);
+                        }
+                        else
+                        {
+                            gardens[j].SetActive(false);
+                        }
+                        
                     }
                 }
             }
@@ -57,10 +71,7 @@ public class RoomTemplates : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         
-            for (int j = 1; j < rooms.Count; j++)
-            {
-                rooms[j].SetActive(false);
-            }
+            
 
     }
 }
