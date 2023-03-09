@@ -15,6 +15,7 @@ public class EMovement : MonoBehaviour, IHittable
 
     private Rigidbody rB_Mov;
     private EAnimator animator_Mov;
+    private SpriteRenderer body_Renderer;
 
     [Header("Dash variables")]
     [SerializeField] private bool canDash = true;
@@ -26,6 +27,10 @@ public class EMovement : MonoBehaviour, IHittable
 
     [Header("Attack variables")]
     [SerializeField] private bool isAttacking = false;
+     private bool isVulnerable = true;
+    [SerializeField] private float invincibilityTime = 1.0f;
+    [SerializeField] private float flashingTick = 0.1f;
+    [SerializeField] Color invincibilityColor = Color.clear;
 
     #region Getter
     public Rigidbody Rigidbody
@@ -72,6 +77,7 @@ public class EMovement : MonoBehaviour, IHittable
     {
         rB_Mov = GetComponent<Rigidbody>();
         animator_Mov = GetComponentInChildren<EAnimator>();
+        body_Renderer = animator_Mov.gameObject.GetComponent<SpriteRenderer>();
 
     }
 
@@ -191,15 +197,42 @@ public class EMovement : MonoBehaviour, IHittable
     /// <param name="damage"></param>
     /// <param name="knockBackDir"></param>
     /// <param name="enemy"></param>
-    public void OnHit(float damage, Vector3 knockBackDir, EnemyData enemy)
+    public void OnHit(Vector3 knockBackDir, EnemyData enemy, float damage = 0.0f)
     {
-        GetComponent<Entity>().TakeDamage(damage);
+        if (isVulnerable == true)
+        {
+            if (damage != 0.0f)
+            {
+                GetComponent<Entity>().TakeDamage(damage);
+                StartCoroutine(InvincibilityCoroutine());
+            }
 
-        StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+            StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+        }
     }
 
-    public void OnClash(Vector3 knockBackDir, EnemyData enemy)
-    { 
-        StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isVulnerable = false;
+        Color buffer;
+        Color toColor = invincibilityColor;
+        Color initial = body_Renderer.color;
+        int i = 1;
+        float buff = 0.0f;
+        while (buff < invincibilityTime)
+        {
+            if (buff > flashingTick * i)
+            {
+                buffer = body_Renderer.material.color;
+                body_Renderer.material.color = toColor;
+                toColor = buffer;
+                i = i + 1;
+            }
+            yield return null;
+            buff += Time.deltaTime;
+        }
+        body_Renderer.material.color = initial;
+        isVulnerable = true;
+
     }
 }

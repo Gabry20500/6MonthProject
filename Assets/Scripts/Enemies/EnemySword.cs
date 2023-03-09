@@ -31,13 +31,14 @@ public class EnemySword : MonoBehaviour
             Vector3 knockDir = CalculateDir(transform.parent.position, collision.gameObject.transform.position);
 
             PlayAudio(baseClash);
-
+            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
             gameObject.GetComponentInParent<EnemyAI>().OnClash(knockDir, collision.gameObject.GetComponent<Sword>().swordData);
         }
 
         else if (collision.gameObject.CompareTag("Player") && isAttacking == true && canDamage == true)
         {
             canDamage = false;
+            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
             StartCoroutine(PlayerTickDamage(collision));
             
         }
@@ -62,7 +63,7 @@ public class EnemySword : MonoBehaviour
 
         PlayAudio(baseSwing);
 
-        collision.gameObject.GetComponent<EMovement>().OnHit(ownerEnemy.swordDamage, knockdir, ownerEnemy);
+        collision.gameObject.GetComponent<EMovement>().OnHit(knockdir, ownerEnemy, ownerEnemy.swordDamage);
         float t = 0;
         float tickTime = 1f;
         while(t < tickTime)

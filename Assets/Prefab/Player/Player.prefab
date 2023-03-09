@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693687256906785481}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.12, y: 18.629, z: -18.229}
+  m_LocalPosition: {x: -0.12, y: 11.95, z: -7.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -496,6 +496,9 @@ MonoBehaviour:
   dashingTime: 0.35
   dashingCooldown: 1
   isAttacking: 0
+  invincibilityTime: 1
+  flashingTick: 0.1
+  invincibilityColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5693687256937972818
 MonoBehaviour:
   m_ObjectHideFlags: 0
