@@ -9,6 +9,9 @@ TagManager:
   - EnemySword
   - SpawnPoint
   - Rooms
+  - RoomManager
+  - Garden
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -21,8 +24,8 @@ TagManager:
   - EnemySword
   - Sword
   - Destroyer
-  - 
-  - 
+  - Spawn Point
+  - Ignore Collision
   - 
   - 
   - 
