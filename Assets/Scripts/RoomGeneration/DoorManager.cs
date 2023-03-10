@@ -10,11 +10,14 @@ public class DoorManager : MonoBehaviour
     private GameObject currentRoom;
     private GameObject player;
     private Vector3 playerPos;
+    private GameObject mainCamera;
 
     private void Start()
     {
-        currentRoom = GameObject.FindGameObjectWithTag("Rooms");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        currentRoom = gameObject.transform.parent.gameObject.transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
+        roomData = currentRoom.GetComponent<RoomData>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,30 +26,30 @@ public class DoorManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("PORTA");
-            roomData = GetComponentInParent<RoomData>();
             switch (direction)
             {
                 case 1:
+                    //mainCamera.transform.position
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 5f);
+                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 15f);
                     roomData.roomNord.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 case 2:
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 5f);
+                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 15f);
                     roomData.roomSouth.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 case 3:
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x + 5f,playerPos.y,playerPos.z);
+                    player.transform.position = new Vector3(playerPos.x + 15f,playerPos.y,playerPos.z);
                     roomData.roomEst.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 case 4:
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x - 5f,playerPos.y,playerPos.z);
+                    player.transform.position = new Vector3(playerPos.x - 15f,playerPos.y,playerPos.z);
                     roomData.roomWest.SetActive(true);
                     currentRoom.SetActive(false);
                     break;

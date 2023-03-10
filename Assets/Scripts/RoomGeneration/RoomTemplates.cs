@@ -21,50 +21,54 @@ public class RoomTemplates : MonoBehaviour
     [Header("Max rooms number")] 
     public int maxRoom;
     [NonSerialized]public int currentRooms = 0;
-
-    public float waitTime;
+    private bool allFinish = false;
+    
     bool spawnedBoss;
     public GameObject boos;
-    
 
     private void Update()
     {
-
-        if (waitTime <= 0 && !spawnedBoss)
+        if (rooms.Count >= maxRoom && !allFinish)
         {
-            for (int i = 0; i < rooms.Count; i++)
+            FinishLevel();
+            allFinish = true;
+        }
+    }
+
+    public void FinishLevel()
+    {
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (i == rooms.Count -1)
             {
-                if (i == rooms.Count -1)
+                Instantiate(boos, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
+                spawnedBoss = true;
+
+
+                foreach (var room in rooms)
                 {
-                    Instantiate(boos, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
-                    spawnedBoss = true;
+                    room.GetComponent<RoomData>().InitRoomDetector();
+                }
+                    
+                for (int j = 1; j < rooms.Count; j++)
+                {
+                    rooms[j].SetActive(false);
+                }
 
-                    for (int j = 1; j < rooms.Count; j++)
+                for (int j = 0; j < gardens.Count; j++)
+                {
+                    if (gardens[j] == null)
                     {
-                        rooms[j].SetActive(false);
+                        gardens.Remove(gardens[j]);
                     }
-
-                    for (int j = 0; j < gardens.Count; j++)
+                    else
                     {
-                        if (gardens[j] == null)
-                        {
-                            gardens.Remove(gardens[j]);
-                        }
-                        else
-                        {
-                            gardens[j].SetActive(false);
-                        }
+                        gardens[j].SetActive(false);
+                    }
                         
-                    }
                 }
             }
         }
-        else if (!spawnedBoss)
-        {
-            waitTime -= Time.deltaTime;
-        }
-
-        
     }
 
     public IEnumerator DeactiveRoom()
