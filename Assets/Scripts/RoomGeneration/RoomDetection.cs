@@ -13,7 +13,7 @@ public class RoomDetection : MonoBehaviour
         roomData = GetComponentInParent<RoomData>();
     }
 
-    private void Update()
+    public void InitDoor()
     {
         hitCollider = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity);
 

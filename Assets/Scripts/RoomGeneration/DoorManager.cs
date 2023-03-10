@@ -13,8 +13,9 @@ public class DoorManager : MonoBehaviour
 
     private void Start()
     {
-        currentRoom = GameObject.FindGameObjectWithTag("Rooms");
+        currentRoom = gameObject.transform.parent.gameObject.transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
+        roomData = currentRoom.GetComponent<RoomData>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +24,6 @@ public class DoorManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("PORTA");
-            roomData = GetComponentInParent<RoomData>();
             switch (direction)
             {
                 case 1:

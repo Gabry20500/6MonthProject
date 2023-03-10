@@ -187,8 +187,7 @@ MonoBehaviour:
   closedRoom: {fileID: 7010966605786061520, guid: 38f733f7332f6514888b9abac5c5211b, type: 3}
   rooms: []
   gardens: []
-  maxRoom: 24
-  waitTime: 1.5
+  maxRoom: 7
   boos: {fileID: 919132149155446097, guid: ff94a1d056aa7cb43bd69d0314af71ac, type: 3}
 --- !u!4 &108331627
 Transform:
@@ -576,18 +575,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TDLR
       objectReference: {fileID: 0}
-    - target: {fileID: 284131790079146971, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 976426762536818774, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3510150193920608137, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6763833835944952385, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -631,14 +618,6 @@ PrefabInstance:
     - target: {fileID: 6763833835944952385, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8051707891383111099, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8660545197200726769, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}

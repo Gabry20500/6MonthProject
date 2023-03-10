@@ -9,4 +9,15 @@ public class RoomData : MonoBehaviour
     public GameObject roomSouth;
     public GameObject roomEst;
     public GameObject roomWest;
+
+    [SerializeField]private List<RoomDetection> roomDetection;
+
+
+    public void InitRoomDetector()
+    {
+        foreach (var room in roomDetection)
+        {
+            room.InitDoor();
+        }
+    }
 }

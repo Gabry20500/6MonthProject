@@ -21,7 +21,7 @@ public class RoomSpawner : MonoBehaviour
     
     
     private float waitTime = 0.1f;
-    [SerializeField] bool spawnedWall = false;
+    [SerializeField] bool spawnedGarden = false;
     
     private void Start()
     {
@@ -29,19 +29,6 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn",0.1f);
     }
 
-    private void Update()
-    {
-        if (waitTime <= 0 && !spawnedWall)
-        {
-            SpawnWall();
-            spawnedWall = true;
-        }
-        else if (!spawnedWall)
-        {
-            waitTime -= Time.deltaTime;
-        }
-    }
-    
     void Spawn()
     {
         
@@ -92,12 +79,17 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.currentRooms++;
             }
+            else
+            {
+                SpawnGarden();
+            }
             
         }
     }
 
-    void SpawnWall()
+    void SpawnGarden()
     { 
         Instantiate(templates.closedRoom, transform.position, Quaternion.identity, templates.transform);
+        spawnedGarden = true;
     }
 }

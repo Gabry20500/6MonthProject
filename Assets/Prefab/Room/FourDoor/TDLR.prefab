@@ -65,6 +65,11 @@ MonoBehaviour:
   roomSouth: {fileID: 0}
   roomEst: {fileID: 0}
   roomWest: {fileID: 0}
+  roomDetection:
+  - {fileID: 2038906266}
+  - {fileID: 1090116806363989026}
+  - {fileID: 7854131405431823759}
+  - {fileID: 8201757018878117825}
 --- !u!1 &976426762536818774
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7708649539193805014}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5468980738061557494}
   m_Layer: 0
-  m_Name: RoomDetecter
+  m_Name: RoomDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,6 +788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorN
       objectReference: {fileID: 0}
+    - target: {fileID: 315164272631747472, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2883776695371307015, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1012,9 +1021,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 2
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 5119
 --- !u!1001 &3061566183855602562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1118,6 +1124,10 @@ PrefabInstance:
     - target: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_Name
       value: DoorE
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6788932744340109496, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_RootOrder
@@ -1250,9 +1260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 3
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 5119
 --- !u!4 &6310347312412184251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 35364541523824144, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
@@ -1268,6 +1275,10 @@ PrefabInstance:
     - target: {fileID: 2456048140834860744, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_Name
       value: DoorS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456048140834860744, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9161410234031252268, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_RootOrder
@@ -1400,9 +1411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!4 &6609127267435092692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 35364541523824144, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
@@ -1587,6 +1595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorW
       objectReference: {fileID: 0}
+    - target: {fileID: 1889385940067168875, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
 --- !u!4 &8552175818983055563 stripped
@@ -1674,9 +1686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 4
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 5119
 --- !u!4 &9199234380043319207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 35364541523824144, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
