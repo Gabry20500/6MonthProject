@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 1533782786710816661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 2, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7201635793194789620}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
-  spawnedWall: 0
+  spawnedGarden: 0
 --- !u!54 &3543288965919459006
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
-  spawnedWall: 0
+  spawnedGarden: 0
 --- !u!54 &4567678412538764615
 Rigidbody:
   m_ObjectHideFlags: 0

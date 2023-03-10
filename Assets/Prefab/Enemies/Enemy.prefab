@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53cb6af0ea957bf47aa1127ddc945081, type: 2}
+  - {fileID: 2100000, guid: 31f68dba4741042468210bbeca964266, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &694917650093578213
 Transform:
   m_ObjectHideFlags: 0
@@ -853,11 +853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1981854877257990369, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1981854877257990369, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882606108529867825, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.x
