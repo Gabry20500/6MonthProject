@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -108,9 +108,8 @@ public class Sword : MonoBehaviour
             InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
             e_Movement.CanMove = false; //The linked entity can't move
             canRotate = false; //The sword can no more rotate
-                               //entityAnimation.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
-            e_Animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));//Call the appropriate attack animation
-                                                                                //Starting the coroutine swing animation
+            e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
+            //Starting the coroutine swing animation
             StartCoroutine(SwingAnimation(currentDir));
         }
         else if(swinging == true)
@@ -139,6 +138,7 @@ public class Sword : MonoBehaviour
         while (t < swordData.swingSpeed) //Cicle
         {
             percentace = t / swordData.swingSpeed;//New percentage
+
             Quaternion nextRotation = Quaternion.Lerp(rot_Pivot.localRotation, targetRot, percentace);//Calculate next rotation stem
             rot_Pivot.localRotation = nextRotation; //Change rotation
 
@@ -146,9 +146,9 @@ public class Sword : MonoBehaviour
             t += Time.deltaTime;//Increment timer         
         }
 
+
         rot_Pivot.forward = targetDir;//Safe repositioning??
         yield return new WaitForSeconds(swordData.swingCoolDown);
-        e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z));//Set player animation to the resting actual direction
         canRotate = true;//Enable sword movement
         e_Movement.CanMove = true;//Enable entity movment
         InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
@@ -185,9 +185,8 @@ public class Sword : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && e_Movement.IsAttacking == true)
         {
+            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
             Vector3 knockDir = CalculateDir(collision.gameObject.transform.position, transform.parent.position);
-
-
             collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
             return;
         }
@@ -196,8 +195,9 @@ public class Sword : MonoBehaviour
             //Passing knock back direction to applicate to te hitted entity
             Vector3 knockDir = CalculateDir(transform.parent.position, collision.gameObject.transform.position);
 
-            gameObject.GetComponentInParent<EMovement>().OnClash(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
+            gameObject.GetComponentInParent<EMovement>().OnHit(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
             StopAllCoroutines();
+            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
             StartCoroutine(SwordClash());
             return;
         }
@@ -205,7 +205,6 @@ public class Sword : MonoBehaviour
 
     public IEnumerator SwordClash()
     {
-        Debug.Log("SWORD CLASHING");
         targetDir = initialDir;
         Quaternion targetRot = Quaternion.LookRotation(targetDir);
 

@@ -83,8 +83,8 @@ public class EAnimator : MonoBehaviour
     /// Activate the Attack animation based on the given direction
     /// </summary>
     /// <param name="direction"></param>
-    public void AttackAnimation(Vector2 direction)
-    {
-        _animator.Play("Atk_" + DirectionIndex(direction).ToString());   
-    }
+    //public void AttackAnimation(Vector2 direction)
+    //{
+    //    _animator.Play("Atk_" + DirectionIndex(direction).ToString());   
+    //}
 }
