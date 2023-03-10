@@ -11,6 +11,10 @@ public class InputController : Singleton<InputController>
     /// </summary>
     public event OnButtonDown LeftMouseDown;
     /// <summary>
+    /// Event for Right mouse click on Computer.
+    /// </summary>
+    public event OnButtonDown RightMouseDown;
+    /// <summary>
     /// Event for Space key down on computer.
     /// </summary>
     public event OnButtonDown SpaceDown;
@@ -74,6 +78,13 @@ public class InputController : Singleton<InputController>
                 LeftMouseDown(); 
             }          
         }
+        //else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button5)) // find what is l1 button in unity and if 1 is mouse right
+        //{
+        //    if (LeftMouseDown != null)
+        //    {
+        //        LeftMouseDown();
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {

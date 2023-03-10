@@ -4,46 +4,52 @@ using UnityEngine;
 /// <summary>
 /// Generic class that handle Movement and dash in an entity
 /// </summary>
-public class EMovement : MonoBehaviour, IHittable
+public class EMovement : MonoBehaviour, IHittable, IClashable
 {
     [Header("Movement variables")]
-    [SerializeField] public float speed;
-    [SerializeField] private Vector2 direction;
-    private Vector3 velocity;
-
     private bool canMove = true;
+    [SerializeField] public float move_Speed;
+    [SerializeField] private Vector2 move_Dir;
+    private Vector3 move_Vel;
 
-    private Rigidbody rB_Mov;
-    private EAnimator animator_Mov;
+
+    private Rigidbody mov_RigidB;
+    private EAnimator mov_Animator;
     private SpriteRenderer body_Renderer;
+    private Sword player_Sword;
 
     [Header("Dash variables")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing = false;
-    [SerializeField] private float dashingSpeed = 6f;
-    [SerializeField] private float dashingTime = 0.5f;
-    [SerializeField] private float dashingCooldown = 1f;
-    private Vector2 dashDir;
+    [SerializeField] private float dash_Speed = 6f;
+    [SerializeField] private float dash_Time = 0.5f;
+    [SerializeField] private float dash_Cooldown = 1f;
+    private Vector2 dash_Dir;
 
     [Header("Attack variables")]
     [SerializeField] private bool isAttacking = false;
      private bool isVulnerable = true;
-    [SerializeField] private float invincibilityTime = 1.0f;
-    [SerializeField] private float flashingTick = 0.1f;
-    [SerializeField] Color invincibilityColor = Color.clear;
+
+    [Header("Dameged frames variables")]
+    [SerializeField] private float inv_Time = 1.0f;
+    [SerializeField] private float inv_Flash_Tick = 0.1f;
+    [SerializeField] Color inv_Color = Color.clear;
+    private Color color_Buff;
+    private Color color_To;
+    private Color init_Color;
 
     #region Getter
     public Rigidbody Rigidbody
     {
-        get { return rB_Mov; }
+        get { return mov_RigidB; }
     }
     public Vector2 Direction
     {
-        get { return direction; }
+        get { return move_Dir; }
     }
     public Vector3 Velocity
     {
-        get { return velocity; }
+        get { return move_Vel; }
     }
     public ref bool CanMove
     {
@@ -75,9 +81,10 @@ public class EMovement : MonoBehaviour, IHittable
 
     private void Awake()
     {
-        rB_Mov = GetComponent<Rigidbody>();
-        animator_Mov = GetComponentInChildren<EAnimator>();
-        body_Renderer = animator_Mov.gameObject.GetComponent<SpriteRenderer>();
+        mov_RigidB = GetComponent<Rigidbody>();
+        mov_Animator = GetComponentInChildren<EAnimator>();
+        body_Renderer = mov_Animator.gameObject.GetComponent<SpriteRenderer>();
+        player_Sword = GetComponentInChildren<Sword>();
 
     }
 
@@ -102,37 +109,37 @@ public class EMovement : MonoBehaviour, IHittable
         //If in dash or in attack made the canMove value to be false
         if (canMove)
         {
-            direction = InputController.instance.LeftStickDir;
+            move_Dir = InputController.instance.LeftStickDir;
             //If direction is none make RigidBody velocity to be 0
-            if (direction == Vector2.zero)
+            if (move_Dir == Vector2.zero)
             {
-                rB_Mov.velocity += -(rB_Mov.velocity);
-                animator_Mov.SetDirection(direction);
+                mov_RigidB.velocity += -(mov_RigidB.velocity);
+                mov_Animator.SetDirection(move_Dir);
             }
             else
             {
                 //Generate 3D Vector from a 2D Vector
-                velocity = new Vector3(InputController.instance.LeftStickDir.normalized.x * speed * Time.fixedDeltaTime, 0,
-                                       InputController.instance.LeftStickDir.normalized.y * speed * Time.fixedDeltaTime);
-                rB_Mov.velocity = velocity;
+                move_Vel = new Vector3(InputController.instance.LeftStickDir.normalized.x * move_Speed * Time.fixedDeltaTime, 0,
+                                       InputController.instance.LeftStickDir.normalized.y * move_Speed * Time.fixedDeltaTime);
+                mov_RigidB.velocity = move_Vel;
                 //Call Animation class to play animation
-                animator_Mov.SetDirection(direction);
+                mov_Animator.SetDirection(move_Dir);
             }
         }
         //If isDashing has become true since the last frame
         else if (isDashing)
         {
             //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
-            velocity = new Vector3(dashDir.normalized.x * (speed * dashingSpeed) * Time.fixedDeltaTime, 0,
-                                   dashDir.normalized.y * (speed * dashingSpeed) * Time.fixedDeltaTime);
+            move_Vel = new Vector3(dash_Dir.normalized.x * (move_Speed * dash_Speed) * Time.fixedDeltaTime, 0,
+                                   dash_Dir.normalized.y * (move_Speed * dash_Speed) * Time.fixedDeltaTime);
 
-            rB_Mov.velocity = velocity;
+            mov_RigidB.velocity = move_Vel;
         }       
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
         else if(isAttacking == false)
-        { rB_Mov.velocity += -(rB_Mov.velocity); }
+        { mov_RigidB.velocity += -(mov_RigidB.velocity); }
     }
 
 
@@ -143,16 +150,16 @@ public class EMovement : MonoBehaviour, IHittable
     /// <returns></returns>
     private IEnumerator DashCoroutine()
     {
-        animator_Mov.SetDirection(dashDir);
+        mov_Animator.SetDirection(dash_Dir);
         canMove = false;
         canDash = false; 
         isDashing = true;
 
-        yield return new WaitForSeconds(dashingTime);
+        yield return new WaitForSeconds(dash_Time);
         isDashing = false;
         canMove = true;
 
-        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds(dash_Cooldown);
         canDash = true;
     }
 
@@ -164,7 +171,7 @@ public class EMovement : MonoBehaviour, IHittable
     {
         if (canDash)
         {
-            dashDir = InputController.instance.LeftStickDir;
+            dash_Dir = InputController.instance.LeftStickDir;
             StartCoroutine(DashCoroutine());
         }
     }
@@ -187,8 +194,8 @@ public class EMovement : MonoBehaviour, IHittable
 
         canMove = true;
         canDash = true;
-        GetComponentInChildren<Sword>().canRotate = true;
-        InputController.instance.LeftMouseDown += GetComponentInChildren<Sword>().Swing;//Re-inscribe swing to InputController
+        player_Sword.canRotate = true;
+        InputController.instance.LeftMouseDown += player_Sword.Swing;//Re-inscribe swing to InputController
     }
 
     /// <summary>
@@ -211,27 +218,30 @@ public class EMovement : MonoBehaviour, IHittable
         }
     }
 
+
+
     private IEnumerator InvincibilityCoroutine()
     {
         isVulnerable = false;
-        Color buffer;
-        Color toColor = invincibilityColor;
-        Color initial = body_Renderer.color;
+
+        color_To = inv_Color;
+        init_Color = body_Renderer.color;
         int i = 1;
         float buff = 0.0f;
-        while (buff < invincibilityTime)
+        while (buff < inv_Time)
         {
-            if (buff > flashingTick * i)
+            if (buff > inv_Flash_Tick * i)
             {
-                buffer = body_Renderer.material.color;
-                body_Renderer.material.color = toColor;
-                toColor = buffer;
+                color_Buff = body_Renderer.material.color;
+                body_Renderer.material.color = color_To;
+                color_To = color_Buff;
                 i = i + 1;
             }
             yield return null;
             buff += Time.deltaTime;
         }
-        body_Renderer.material.color = initial;
+        body_Renderer.material.color = init_Color;
+
         isVulnerable = true;
 
     }

@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float maxHealth = 30;
 
     [SerializeField] protected AudioClip hitClip;
-    protected AudioSource eAudio;
+    protected AudioSource entity_Audio;
     #region Getter
     public float Healt
     {
@@ -26,11 +26,11 @@ public class Entity : MonoBehaviour
 
     protected void Awake()
     {
-        eAudio = GetComponent<AudioSource>();
+        entity_Audio = GetComponent<AudioSource>();
         InitHealthBar();
     }
 
-    private void InitHealthBar()
+    protected virtual void InitHealthBar()
     {
         healtBar.maxValue = maxHealth;
         healtBar.value = health;
@@ -46,13 +46,18 @@ public class Entity : MonoBehaviour
         healtBar.value = health;
         if (health <= 0.0f)
         {
-            Destroy(gameObject);
+            Death();
         }
     }
 
-    private void PlaySound(AudioClip clip)
+    protected virtual void PlaySound(AudioClip clip)
     {
-        eAudio.clip = clip;
-        eAudio.Play();
+        entity_Audio.clip = clip;
+        entity_Audio.Play();
+    }
+
+    protected virtual void Death()
+    {
+        Destroy(gameObject);
     }
 }

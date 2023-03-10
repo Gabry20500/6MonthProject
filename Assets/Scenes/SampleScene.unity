@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &67691700 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 694917649108951229, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
+  m_PrefabInstance: {fileID: 694917649048152514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694917650093578213, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 694917650093578213, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_LocalPosition.z
@@ -626,6 +631,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 694917650093578218, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
+      propertyPath: enemy_SO
+      value: 
+      objectReference: {fileID: 11400000, guid: f0466a9e083e8fe409ac19e6f20d7f3d, type: 2}
+    - target: {fileID: 694917650093578218, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
+      propertyPath: enemy_Animator
+      value: 
+      objectReference: {fileID: 67691700}
     - target: {fileID: 694917650811450687, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
       propertyPath: m_Camera
       value: 
