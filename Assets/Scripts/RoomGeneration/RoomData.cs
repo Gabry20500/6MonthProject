@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomData : MonoBehaviour
@@ -11,8 +12,7 @@ public class RoomData : MonoBehaviour
     public GameObject roomWest;
 
     [SerializeField]private List<RoomDetection> roomDetection;
-
-
+    
     public void InitRoomDetector()
     {
         foreach (var room in roomDetection)
