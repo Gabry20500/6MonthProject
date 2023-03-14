@@ -1,28 +1,28 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IHittable
+public class EnemyAI : MonoBehaviour, IHittable, IClashable
 {
     [Header("EnemyData:")]
-    [SerializeField] private EnemyDataSO enemyDataSO;
-    [SerializeField] public EnemyData enemyData;
+    [SerializeField] private EnemyDataSO enemy_SO;
+    [SerializeField] public EnemyData enemy_Data;
 
-    public NavMeshAgent agent;
+    public NavMeshAgent enemy_Agent;
     public Transform target;
-    public Animator animator;
-    private EnemySword enemySword;
+    public Animator enemy_Animator;
+    private EnemySword enemy_Sword;
 
     [Header("Movement parameters:")]
-    private float distance;
+    private float target_Distance;
     public float Distance 
     {
         get
         {
-            return distance;
+            return target_Distance;
         }
         set
         {
-            distance = value;
+            target_Distance = value;
         }    
     }
     public bool canMove = true;
@@ -34,19 +34,19 @@ public class EnemyAI : MonoBehaviour, IHittable
     private void Awake()
     {
         //Enemy data init and sowrd init
-        enemyData = new EnemyData(enemyDataSO);
-        enemySword = GetComponentInChildren<EnemySword>();
-        enemySword.Init(enemyData);
+        enemy_Data = new EnemyData(enemy_SO);
+        enemy_Sword = GetComponentInChildren<EnemySword>();
+        enemy_Sword.Init(enemy_Data);
 
         //Find player in the world and get self NavMeshAgent and animator
         target = GameObject.FindWithTag("Player").transform;     
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
+        enemy_Agent = GetComponent<NavMeshAgent>();
+        enemy_Agent.updateRotation = false;
 
         //animator = GetComponentInChildren<Animator>();
         
         //Initialize state processor and states
-        stateProcessor = new EnemyStateProcessor(this, enemySword);
+        stateProcessor = new EnemyStateProcessor(this, enemy_Sword);
         stateProcessor.Init();
     }
 
@@ -59,16 +59,16 @@ public class EnemyAI : MonoBehaviour, IHittable
         }
     }
 
-    public void OnHit(float damage, Vector3 knockDir, SwordData sword)
+    public void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
         GetComponent<Entity>().TakeDamage(damage);
         //Logic to init anche change state in state processor
-        stateProcessor.knockBackState.Init(knockDir, sword.knockSpeed, sword.knockDuration);
+        stateProcessor.knockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
         stateProcessor.currentState = stateProcessor.knockBackState;   
     }
 
-    public void OnClash(Vector3 knockBackDir, SwordData sword)
+    public void OnClash(Vector3 knockBackDir, Player_SwordData sword)
     {
         stateProcessor.knockBackState.Init(knockBackDir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();

@@ -131,6 +131,7 @@ MonoBehaviour:
   swordSO: {fileID: 11400000, guid: 369f55de8ba555444b5b249bf87be021, type: 2}
   swordData:
     name: 
+    swingEase: 0
     swingSpeed: 0
     swingWidth: 0
     swingCoolDown: 0
@@ -369,8 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d7a42c830ea61469e50aaa1da08e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 600
-  direction: {x: 0, y: 0}
+  move_Speed: 600
+  move_Dir: {x: 0, y: 0}
   canDash: 1
   isDashing: 0
   dashingSpeed: 3

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82128a121e56bbe4d8c5fdaadc721741, type: 3}
   m_Name: BaseSword
   m_EditorClassIdentifier: 
+  swingEase: 12
   swingSpeed: 0.65
   swingWidth: 90
   swingCoolDown: 0.25

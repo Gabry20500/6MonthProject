@@ -25,7 +25,7 @@ public class EAnimator : MonoBehaviour
     /// <summary>
     /// Reference to the Movement class that elaborates and pass the movement value
     /// </summary>
-    private EMovement _movement;
+    private EMovement player_Movement;
 
     /// <summary>
     ///Using string prefix to help calling the right animations by name
@@ -36,7 +36,7 @@ public class EAnimator : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _movement = GetComponentInParent<EMovement>();
+        player_Movement = GetComponentInParent<EMovement>();
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class EAnimator : MonoBehaviour
         Vector2 norDir = direction.normalized;
        
         float step = 360 / 8;  //Decide the 8 step of an isometic movement
-        float offset = step / 2; //An offset to be sure never to go under 0
+        //float offset = step / 2; //An offset to be sure never to go under 0
         float angle = Vector2.SignedAngle(Vector2.up, norDir); //Using Vector2.up as reference calculate the angle between him and entity movement dir
 
         //angle += offset;
@@ -79,12 +79,12 @@ public class EAnimator : MonoBehaviour
         return (Direction)Mathf.FloorToInt(stepCount); 
     }
 
-    /// <summary>
-    /// Activate the Attack animation based on the given direction
-    /// </summary>
-    /// <param name="direction"></param>
-    //public void AttackAnimation(Vector2 direction)
-    //{
-    //    _animator.Play("Atk_" + DirectionIndex(direction).ToString());   
-    //}
+    ///// <summary>
+    ///// Activate the Attack animation based on the given direction
+    ///// </summary>
+    ///// <param name="direction"></param>
+    ////public void AttackAnimation(Vector2 direction)
+    ////{
+    ////    _animator.Play("Atk_" + DirectionIndex(direction).ToString());   
+    ////}
 }

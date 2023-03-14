@@ -1,10 +1,12 @@
 using UnityEngine;
+using DG.Tweening;
 
 [System.Serializable]
-public class SwordData
+public class Player_SwordData
 {
     public string name;
     [Header("Swing:")]
+    public Ease swingEase;
     public float swingSpeed;
     public float swingWidth;
     public float swingCoolDown;
@@ -23,27 +25,29 @@ public class SwordData
     public float DashDistance { get => dashSpeed * dashDuration; }
     public float Damage { get => physicDamage; }
 
-    public SwordData() { }
-    public SwordData(SwordDataSO SwordSO)
+    public Player_SwordData() { }
+    public Player_SwordData(Player_SwordSO swordSO)
     {
-        this.name = SwordSO.name;
-        this.swingCoolDown = SwordSO.swingCoolDown;
-        this.swingWidth = SwordSO.swingWidth;
-        this.swingSpeed = SwordSO.swingSpeed;
-        this.physicDamage = SwordSO.physicDamage;
-        this.knockSpeed = SwordSO.knockSpeed;
-        this.knockDuration = SwordSO.knockDuration;
-        this.dashSpeed = SwordSO.dashSpeed;
-        this.dashDuration = SwordSO.dashDuration;
-        this.swordScale = SwordSO.swordScale;
-        this.isBlockable = SwordSO.isBlockable;
+        this.name = swordSO.name;
+        this.swingEase = swordSO.swingEase;
+        this.swingSpeed = swordSO.swingSpeed;       
+        this.swingWidth = swordSO.swingWidth;
+        this.swingCoolDown = swordSO.swingCoolDown;
+        this.physicDamage = swordSO.physicDamage;
+        this.knockSpeed = swordSO.knockSpeed;
+        this.knockDuration = swordSO.knockDuration;
+        this.dashSpeed = swordSO.dashSpeed;
+        this.dashDuration = swordSO.dashDuration;
+        this.swordScale = swordSO.swordScale;
+        this.isBlockable = swordSO.isBlockable;
     }
 }
 
-[CreateAssetMenu(menuName = "SwordData", fileName = "New SwordData")]
-public class SwordDataSO : ScriptableObject
+[CreateAssetMenu(menuName = "Player_SwordSO", fileName = "New Player_SwordSO")]
+public class Player_SwordSO : ScriptableObject
 {
     [Header("Swing:")]
+    public Ease swingEase; 
     public float swingSpeed;
     public float swingWidth;
     public float swingCoolDown;
@@ -60,12 +64,13 @@ public class SwordDataSO : ScriptableObject
     public bool isBlockable = true;
     public float DashDistance { get => dashSpeed * dashDuration; }
 
-    public void SetData(SwordData data)
+    public void SetData(Player_SwordData data)
     {
         this.name = data.name;
-        this.swingCoolDown = data.swingCoolDown;
-        this.swingWidth = data.swingWidth;
+        this.swingEase = data.swingEase;
         this.swingSpeed = data.swingSpeed;
+        this.swingWidth = data.swingWidth;
+        this.swingCoolDown = data.swingCoolDown;
         this.physicDamage = data.physicDamage;
         this.knockSpeed = data.knockSpeed;
         this.knockDuration = data.knockDuration;
