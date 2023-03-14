@@ -374,13 +374,13 @@ MonoBehaviour:
   move_Dir: {x: 0, y: 0}
   canDash: 1
   isDashing: 0
-  dashingSpeed: 3
-  dashingTime: 0.35
-  dashingCooldown: 1
+  dash_Speed: 6
+  dash_Time: 0.1
+  dash_Cooldown: 1
   isAttacking: 0
-  invincibilityTime: 1
-  flashingTick: 0.1
-  invincibilityColor: {r: 0, g: 0, b: 0, a: 0}
+  inv_Time: 1
+  inv_Flash_Tick: 0.1
+  inv_Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5693687256937972818
 MonoBehaviour:
   m_ObjectHideFlags: 0

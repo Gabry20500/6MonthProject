@@ -45,31 +45,4 @@ public class RoomDetection : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Ground"))
-    //     {
-    //         switch (direction)
-    //             {
-    //                 case 1:
-    //                     roomData.roomNord = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-    //                     Destroy(this.gameObject);
-    //                     break;
-    //                 case 2:
-    //                     roomData.roomSouth = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-    //                     Destroy(this.gameObject);
-    //                     break;
-    //                 case 3:
-    //                     roomData.roomEst = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-    //                     Destroy(this.gameObject);
-    //                     break;
-    //                 case 4:
-    //                     roomData.roomWest = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-    //                     Destroy(this.gameObject);
-    //                     break;
-    //             
-    //             }
-    //     }
-    // }
-    
 }
