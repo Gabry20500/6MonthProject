@@ -33,7 +33,8 @@ public class DoorManager : MonoBehaviour
             {
                 case 1:
                     
-                    cameraPosition = new Vector3(cameraPosition.x, cameraPosition.y, CalcCameraPositionUp(roomData.roomNord.transform.position, cameraPosition).z);
+                    //cameraPosition = new Vector3(cameraPosition.x, cameraPosition.y, CalcCameraPositionUp(roomData.roomNord.transform.position, cameraPosition).z);
+                    cameraPosition = roomData.roomNord.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
@@ -45,7 +46,7 @@ public class DoorManager : MonoBehaviour
                 
                 case 2:
                     
-                    cameraPosition = new Vector3(cameraPosition.x, cameraPosition.y, CalcCameraPositionDown(roomData.roomSouth.transform.position, cameraPosition).z);
+                    cameraPosition = roomData.roomSouth.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
@@ -57,7 +58,7 @@ public class DoorManager : MonoBehaviour
                 
                 case 3:
                     
-                    cameraPosition = new Vector3( roomData.roomEst.transform.position.x , cameraPosition.y, cameraPosition.z);
+                    cameraPosition = roomData.roomEst.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
@@ -69,7 +70,7 @@ public class DoorManager : MonoBehaviour
                 
                 case 4:
                     
-                    cameraPosition = new Vector3( roomData.roomWest.transform.position.x, cameraPosition.y, cameraPosition.z);
+                    cameraPosition = roomData.roomWest.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;

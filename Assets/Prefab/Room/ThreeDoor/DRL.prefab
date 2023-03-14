@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 2385124187583544286}
   - component: {fileID: 191814050620366101}
   - component: {fileID: 8129240918427657102}
+  - component: {fileID: -8068748660059213188}
   m_Layer: 0
   m_Name: DRL
   m_TagString: Rooms
@@ -417,6 +418,18 @@ MonoBehaviour:
   - {fileID: 4048108283728975637}
   - {fileID: 4565749671282360381}
   - {fileID: 991886395924611069}
+--- !u!114 &-8068748660059213188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385124187583544285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b27e98318d9d541ae957e37db732ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2385124187703611559
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,11 +885,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.28
+      value: 17.1
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.9
+      value: -9.67
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalRotation.w

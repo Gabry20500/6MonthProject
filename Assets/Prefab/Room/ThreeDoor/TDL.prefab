@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 4986080352359868427}
   - component: {fileID: 2098656379908056161}
   - component: {fileID: -357891073153539024}
+  - component: {fileID: -1331645399983416859}
   m_Layer: 0
   m_Name: TDL
   m_TagString: Rooms
@@ -179,6 +180,18 @@ MonoBehaviour:
   - {fileID: 3990417024312505913}
   - {fileID: 8546063872814060859}
   - {fileID: 3604455580661101516}
+--- !u!114 &-1331645399983416859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340939242953084220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b27e98318d9d541ae957e37db732ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4388734395287199319
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,11 +637,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.28
+      value: 17.1
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.9
+      value: -9.67
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalRotation.w
