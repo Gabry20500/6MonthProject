@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &694917650093578213
 Transform:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 694917650093578212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 694917650811450680}
@@ -360,17 +360,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f82b8fb9c8b744ab11f5f8e0f2d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDataSO: {fileID: 11400000, guid: f0466a9e083e8fe409ac19e6f20d7f3d, type: 2}
-  enemyData:
+  enemy_SO: {fileID: 11400000, guid: f0466a9e083e8fe409ac19e6f20d7f3d, type: 2}
+  enemy_Data:
     swordDamage: 0
     attackRate: 0
     knockSpeed: 0
     knockDuration: 0
     sightDistance: 0
     attackReach: 0
-  agent: {fileID: 0}
+  enemy_Agent: {fileID: 0}
   target: {fileID: 0}
-  animator: {fileID: 694917649108951229}
+  enemy_Animator: {fileID: 694917649108951229}
   canMove: 1
 --- !u!114 &694917650093578216
 MonoBehaviour:
@@ -853,11 +853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1981854877257990369, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1981854877257990369, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3882606108529867825, guid: b1db1476844539a49ba29f11bd0fe431, type: 3}
       propertyPath: m_AnchorMax.x

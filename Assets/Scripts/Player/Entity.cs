@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] protected AudioClip hitClip;
     protected AudioSource entity_Audio;
+    protected Mob_Spawner myRoom;
     #region Getter
     public float Healt
     {
@@ -20,6 +21,12 @@ public class Entity : MonoBehaviour
     {
         get { return maxHealth; }
         set {  maxHealth = value; }
+    }
+    
+    public Mob_Spawner MyRoom
+    {
+        get { return myRoom; }
+        set {  myRoom = value; }
     }
 
     #endregion
@@ -58,6 +65,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Death()
     {
+        myRoom.EnemyDeath();
         Destroy(gameObject);
     }
 }

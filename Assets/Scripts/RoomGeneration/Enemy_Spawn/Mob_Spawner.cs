@@ -1,35 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Mob_Spawner : MonoBehaviour
 {
     public int enemyNum;
     [SerializeField] private List<SpawnPointEnemy> enemiesSpawnPoint;
     [SerializeField] private List<SpawnPointEnemy> occupiedSpawnPoint;
-    [SerializeField] private List<GameObject> _doors;
+    [SerializeField] private List<Collider> _doors;
     [SerializeField] private GameObject enemyParent;
-    private EnemyPool enemyPool;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyPool = FindObjectOfType<EnemyPool>();
         int rand = Random.Range(0, enemiesSpawnPoint.Count);
         for (int i = 0; i < enemyNum; i++)
         {
-            Instantiate(enemyPool.baseEnemy, enemiesSpawnPoint[rand].GameObject().transform.position,Quaternion.identity,enemyParent.transform);
+            GameObject enemy = Instantiate(EnemyPool.instance.baseEnemy, enemiesSpawnPoint[rand].transform.position,Quaternion.identity,enemyParent.transform);
+            enemy.GetComponent<Entity>().MyRoom = this;
             enemiesSpawnPoint[rand].isOccupied = true;
             occupiedSpawnPoint.Add(enemiesSpawnPoint[rand]);
-            enemiesSpawnPoint.Remove(occupiedSpawnPoint[rand]);
+            enemiesSpawnPoint.Remove(enemiesSpawnPoint[rand]);
             rand = Random.Range(0, enemiesSpawnPoint.Count);
+        }
+        
+        foreach (var door in _doors)
+        {
+            door.isTrigger = false;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        Debug.Log(enemyNum);
+    }
+
+    public void OpenDoors()
+    {
+        foreach (var door in _doors)
+        {
+            door.isTrigger = true;
+        }   
+    }
+    
+    public void EnemyDeath()
+    {
+        if (enemyNum > 0)
+        {
+            enemyNum--;
+        }
         
+        if (enemyNum <= 0)
+        {
+            OpenDoors();
+        }
     }
 }
