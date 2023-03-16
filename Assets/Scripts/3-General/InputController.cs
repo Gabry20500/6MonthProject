@@ -78,13 +78,13 @@ public class InputController : Singleton<InputController>
                 LeftMouseDown(); 
             }          
         }
-        //else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button5)) // find what is l1 button in unity and if 1 is mouse right
-        //{
-        //    if (LeftMouseDown != null)
-        //    {
-        //        LeftMouseDown();
-        //    }
-        //}
+        else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button5)) // find what is l1 button in unity and if 1 is mouse right
+        {
+            if (LeftMouseDown != null)
+            {
+               RightMouseDown();
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
