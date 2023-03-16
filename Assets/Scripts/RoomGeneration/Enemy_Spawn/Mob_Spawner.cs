@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,7 +17,7 @@ public class Mob_Spawner : MonoBehaviour
         for (int i = 0; i < enemyNum; i++)
         {
             GameObject enemy = Instantiate(EnemyPool.instance.baseEnemy, enemiesSpawnPoint[rand].transform.position,Quaternion.identity,enemyParent.transform);
-            enemy.GetComponent<Entity>().MyRoom = this;
+            enemy.GetComponent<Enemy>().MyRoom = this;
             enemiesSpawnPoint[rand].isOccupied = true;
             occupiedSpawnPoint.Add(enemiesSpawnPoint[rand]);
             enemiesSpawnPoint.Remove(enemiesSpawnPoint[rand]);

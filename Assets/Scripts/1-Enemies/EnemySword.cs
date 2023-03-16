@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemySword : MonoBehaviour
 {
     [Header("Sword data:")] 
-    [SerializeField] public EnemyData ownerEnemy;
+    [SerializeField] public EnemyData owner_En;
 
     private bool isAttacking = false;
     public bool IsAttacking { set => isAttacking = value; }
@@ -12,6 +12,9 @@ public class EnemySword : MonoBehaviour
     [SerializeField] AudioClip baseSwing;
     [SerializeField] AudioClip baseClash;
     AudioSource enemyS_Audio;
+
+    private Vector3 knockDir;
+    private EnemyAI my_En_AI;
     private void Awake()
     {
         enemyS_Audio = GetComponent<AudioSource>();
@@ -19,7 +22,8 @@ public class EnemySword : MonoBehaviour
 
     public void Init(EnemyData enemyData)
     {
-        ownerEnemy = enemyData;
+        owner_En = enemyData;
+        my_En_AI = gameObject.GetComponentInParent<EnemyAI>();
     }
 
     bool canDamage = true;
@@ -28,19 +32,18 @@ public class EnemySword : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword") && collision.gameObject.GetComponent<Sword>().canRotate == false)
         {
             //Passing knock back direction to applicate to te hitted entity
-            Vector3 knockDir = CalculateDir(transform.parent.position, collision.gameObject.transform.position);
-
+            knockDir = Utils.CalculateDir(transform.parent.position, collision.gameObject.transform.position);
             PlayAudio(baseClash);
-            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
-            gameObject.GetComponentInParent<EnemyAI>().OnClash(knockDir, collision.gameObject.GetComponent<Sword>().swordData);
+            my_En_AI.OnClash(knockDir, collision.gameObject.GetComponent<Sword>().swordData);
         }
 
         else if (collision.gameObject.CompareTag("Player") && isAttacking == true && canDamage == true)
         {
             canDamage = false;
-            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
-            StartCoroutine(PlayerTickDamage(collision));
-            
+            knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+            collision.gameObject.GetComponent<EMovement>().OnHit(knockDir, owner_En, owner_En.swordDamage);
+            StartCoroutine(Utils.FreezeFrames(owner_En.freeze_Intensity, owner_En.freeze_Duration));
+            StartCoroutine(PlayerTickDamage(collision)); 
         }
     }
 
@@ -49,21 +52,9 @@ public class EnemySword : MonoBehaviour
         enemyS_Audio.clip = clip;
         enemyS_Audio.Play();
     }
-
-    private Vector3 CalculateDir(Vector3 A, Vector3 B)
-    {
-        Vector3 dir = A - B;
-        dir = new Vector3(dir.x, 0.0f, dir.z);
-        return dir.normalized;
-    }
-
     private IEnumerator PlayerTickDamage(Collision collision)
     {
-        Vector3 knockdir = CalculateDir(collision.gameObject.transform.position, transform.parent.position);
-
         PlayAudio(baseSwing);
-
-        collision.gameObject.GetComponent<EMovement>().OnHit(knockdir, ownerEnemy, ownerEnemy.swordDamage);
         float t = 0;
         float tickTime = 1f;
         while(t < tickTime)
@@ -72,6 +63,5 @@ public class EnemySword : MonoBehaviour
             t += Time.deltaTime;
         }
         canDamage = true;
-
     }
 }
