@@ -229,7 +229,8 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         canMove = true;
         canDash = true;
         player_Sword.canRotate = true;
-        InputController.instance.LeftMouseDown += player_Sword.Swing;//Re-inscribe swing to InputController
+        InputController.instance.LeftMouseDown += player_Sword.LR_Swing;//Re-inscribe swing to InputController
+        InputController.instance.RightMouseDown += player_Sword.RL_Swing;//Re-inscribe swing to InputController
     }
 
     /// <summary>

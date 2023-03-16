@@ -28,8 +28,8 @@ public class Sword : MonoBehaviour
     private Vector3 initialDir;
     private Vector3 targetDir;
     private Quaternion targetRot;
-    private int i = 1;
     #endregion
+
     [SerializeField] AudioClip baseSwing;
     [SerializeField] AudioClip baseClash;
     [SerializeField] AudioSource sword_Audio;
@@ -56,7 +56,8 @@ public class Sword : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        InputController.instance.LeftMouseDown += Swing;
+        InputController.instance.LeftMouseDown += LR_Swing;
+        InputController.instance.RightMouseDown += RL_Swing;
     }
     /// <summary>
     /// Unscribe Swing function to desired event in InputController
@@ -65,7 +66,8 @@ public class Sword : MonoBehaviour
     {
         if (InputController.instance != null)
         {
-            InputController.instance.LeftMouseDown -= Swing;
+            InputController.instance.LeftMouseDown -= LR_Swing;
+            InputController.instance.RightMouseDown -= RL_Swing;
         }
     }
     void Update()
@@ -98,32 +100,47 @@ public class Sword : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// Swing public function to perform a swing
     /// </summary>
-
-    public void Swing()
+    public void RL_Swing()
     {
         if (swinging == false)
         {
             swinging = true;
-            InputController.instance.LeftMouseDown -= Swing; //Unscribe from Input controller to avoid spam
+            InputController.instance.LeftMouseDown -= LR_Swing;
+            InputController.instance.RightMouseDown -= RL_Swing;
             player_Movement.CanMove = false; //The linked entity can't move
             canRotate = false; //The sword can no more rotate
             e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
-            StartCoroutine(SwingAnimation(currentDir)); //Starting the coroutine swing animation
+            StartCoroutine(SwingAnimation(currentDir, 1)); //Starting the coroutine swing animation
+        }
+    }
+    public void LR_Swing()
+    {
+        if (swinging == false)
+        {
+            swinging = true;
+            InputController.instance.LeftMouseDown -= LR_Swing;
+            InputController.instance.RightMouseDown -= RL_Swing;
+            player_Movement.CanMove = false; //The linked entity can't move
+            canRotate = false; //The sword can no more rotate
+            e_Animator.SetDirection(new Vector2(currentDir.x, currentDir.z)); //Put the player in the swing direction before everything else
+            StartCoroutine(SwingAnimation(currentDir, -1)); //Starting the coroutine swing animation
         }
     }
 
+
+
     
-    private IEnumerator SwingAnimation(Vector3 swingDir)
+    private IEnumerator SwingAnimation(Vector3 swingDir, int i)
     {
          initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
          rot_Pivot.forward = initialDir;                                                                     //Set forward to the initial position of the animation
          targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
          targetRot = Quaternion.LookRotation(targetDir);
 
-         i *= -1;
 
         //Call the attack dash function in the entity attached to this script
         StartCoroutine(AtkDash(new Vector2(swingDir.x, swingDir.z), swordData.dashSpeed, swordData.dashDuration));
@@ -131,11 +148,13 @@ public class Sword : MonoBehaviour
         sword_Audio.Play();
  
         yield return rot_Pivot.DOLocalRotateQuaternion(targetRot, swordData.swingSpeed).SetEase(swordData.swingEase).WaitForCompletion();
-
+        canRotate = true; //Enable sword movement
+        player_Movement.CanMove = true;//Enable entity movment
         yield return new WaitForSeconds(swordData.swingCoolDown);
-        canRotate = true;                               //Enable sword movement
-        player_Movement.CanMove = true;                      //Enable entity movment
-        InputController.instance.LeftMouseDown += Swing;//Re-inscribe swing to InputController
+                               
+
+        InputController.instance.LeftMouseDown += LR_Swing;//Re-inscribe swing to InputController
+        InputController.instance.RightMouseDown += RL_Swing;
         swinging = false;
     }
 
@@ -159,8 +178,6 @@ public class Sword : MonoBehaviour
         player_Movement.CanDash = true;
     }
 
-
-    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && player_Movement.IsAttacking == true)
@@ -182,7 +199,6 @@ public class Sword : MonoBehaviour
             return;
         }
     }
-
     public IEnumerator SwordClash()
     {
         targetDir = initialDir;
@@ -194,7 +210,8 @@ public class Sword : MonoBehaviour
         player_Movement.IsAttacking = false;
         player_Movement.CanMove = true;
         player_Movement.CanDash = true;
-        InputController.instance.LeftMouseDown += Swing;
+        InputController.instance.LeftMouseDown += LR_Swing;
+        InputController.instance.RightMouseDown += RL_Swing;
         swinging = false;
     }
 }
