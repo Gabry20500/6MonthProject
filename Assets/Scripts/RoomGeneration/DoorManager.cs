@@ -14,6 +14,7 @@ public class DoorManager : MonoBehaviour
     
     private GameObject mainCamera;
     private Transform CameraPos;
+    public bool enemySpawned;
 
     private void Start()
     {
@@ -23,17 +24,74 @@ public class DoorManager : MonoBehaviour
         roomData = currentRoom.GetComponent<RoomData>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         var cameraPosition = mainCamera.transform.position;
+    //         switch (direction)
+    //         {
+    //             case 1:
+    //                 
+    //                 cameraPosition = roomData.roomNord.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+    //                 mainCamera.transform.position = cameraPosition;
+    //                 
+    //                 playerPos = player.transform.position;
+    //                 player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 15f);
+    //                 
+    //                 roomData.roomNord.SetActive(true);
+    //                 currentRoom.SetActive(false);
+    //                 break;
+    //             
+    //             case 2:
+    //                 
+    //                 cameraPosition = roomData.roomSouth.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+    //                 mainCamera.transform.position = cameraPosition;
+    //                 
+    //                 playerPos = player.transform.position;
+    //                 player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 15f);
+    //                 
+    //                 roomData.roomSouth.SetActive(true);
+    //                 currentRoom.SetActive(false);
+    //                 break;
+    //             
+    //             case 3:
+    //                 
+    //                 cameraPosition = roomData.roomEst.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+    //                 mainCamera.transform.position = cameraPosition;
+    //                 
+    //                 playerPos = player.transform.position;
+    //                 player.transform.position = new Vector3(playerPos.x + 15f,playerPos.y,playerPos.z);
+    //                 
+    //                 roomData.roomEst.SetActive(true);
+    //                 currentRoom.SetActive(false);
+    //                 break;
+    //             
+    //             case 4:
+    //                 
+    //                 cameraPosition = roomData.roomWest.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+    //                 mainCamera.transform.position = cameraPosition;
+    //                 
+    //                 playerPos = player.transform.position;
+    //                 player.transform.position = new Vector3(playerPos.x - 15f,playerPos.y,playerPos.z);
+    //                 
+    //                 roomData.roomWest.SetActive(true);
+    //                 currentRoom.SetActive(false);
+    //                 break;
+    //             
+    //         }
+    //     }
+    // }
+
+    private void OnCollisionEnter(Collision collision)
     {
-        
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && enemySpawned == false)
         {
             var cameraPosition = mainCamera.transform.position;
-            switch (direction)
-            {
+            switch (direction) {
                 case 1:
                     
-                    //cameraPosition = new Vector3(cameraPosition.x, cameraPosition.y, CalcCameraPositionUp(roomData.roomNord.transform.position, cameraPosition).z);
                     cameraPosition = roomData.roomNord.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
@@ -82,25 +140,5 @@ public class DoorManager : MonoBehaviour
                 
             }
         }
-    }
-
-    private Vector3 CalcCameraPositionUp(Vector3 room, Vector3 cam)
-    {
-        if (cam.z < 0)
-        {
-            return room + cam;    
-        }
-        
-        return room - cam;
-    }
-    
-    private Vector3 CalcCameraPositionDown(Vector3 room, Vector3 cam)
-    {
-        if (room.z < 0)
-        {
-            return cam + room;    
-        }
-        
-        return room - cam;
     }
 }

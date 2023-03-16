@@ -129,13 +129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a5fcaf6e7cc6e4e8dd8b79b092823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerEnemy:
+  owner_En:
     swordDamage: 0
     attackRate: 0
     knockSpeed: 0
     knockDuration: 0
     sightDistance: 0
     attackReach: 0
+    freeze_Intensity: 0
+    freeze_Duration: 0
   baseSwing: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
   baseClash: {fileID: 8300000, guid: 18aeebb729774014c843583a768acc55, type: 3}
 --- !u!82 &694917649108951228
@@ -317,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 694917650093578212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 694917650811450680}
@@ -368,6 +370,8 @@ MonoBehaviour:
     knockDuration: 0
     sightDistance: 0
     attackReach: 0
+    freeze_Intensity: 0
+    freeze_Duration: 0
   enemy_Agent: {fileID: 0}
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917649108951229}
@@ -511,8 +515,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6615188, y: 1.9912038, z: 1.6896837}
-  m_Center: {x: -0.0058430433, y: 0.30560172, z: 0.13561976}
+  m_Size: {x: 1.08, y: 1.9912038, z: 1.38}
+  m_Center: {x: -0.0058430433, y: 0.30560172, z: 0.05}
 --- !u!1 &694917650804065484
 GameObject:
   m_ObjectHideFlags: 0
