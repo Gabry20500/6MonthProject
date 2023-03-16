@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
     [Header("EnemyData:")]
     [SerializeField] private EnemyDataSO enemy_SO;
     [SerializeField] public EnemyData enemy_Data;
+    private Enemy enemy;
 
     public NavMeshAgent enemy_Agent;
     public Transform target;
@@ -37,6 +38,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
         enemy_Data = new EnemyData(enemy_SO);
         enemy_Sword = GetComponentInChildren<EnemySword>();
         enemy_Sword.Init(enemy_Data);
+        enemy = GetComponent<Enemy>();
 
         //Find player in the world and get self NavMeshAgent and animator
         target = GameObject.FindWithTag("Player").transform;     
@@ -61,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
 
     public void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
-        GetComponent<Entity>().TakeDamage(damage);
+        enemy.TakeDamage(damage);
         //Logic to init anche change state in state processor
         stateProcessor.knockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();

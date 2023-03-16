@@ -9,17 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82128a121e56bbe4d8c5fdaadc721741, type: 3}
-  m_Name: BaseSword
+  m_Script: {fileID: 11500000, guid: d83ced2ed56413941a20799766c8e9fb, type: 3}
+  m_Name: Base_Enemy_SO
   m_EditorClassIdentifier: 
-  swingEase: 12
-  swingSpeed: 0.65
-  swingWidth: 90
-  swingCoolDown: 0.25
-  physicDamage: 15
+  swordDamage: 0.1
+  attackRate: 0
   knockSpeed: 15
   knockDuration: 0.3
-  dashSpeed: 2.5
-  dashDuration: 0.1
-  swordScale: {x: 1, y: 1, z: 1}
-  isBlockable: 1
+  sightDistance: 14
+  attackReach: 4

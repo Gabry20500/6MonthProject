@@ -33,6 +33,7 @@ public class Sword : MonoBehaviour
     [SerializeField] AudioClip baseSwing;
     [SerializeField] AudioClip baseClash;
     [SerializeField] AudioSource sword_Audio;
+    private Vector3 knockDir;
 
     public float Damage
     {
@@ -159,24 +160,24 @@ public class Sword : MonoBehaviour
     }
 
 
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && player_Movement.IsAttacking == true)
         {
-            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
-            Vector3 knockDir = Utilities.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+            knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+            StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
             collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
             return;
         }
         if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().enemy_Animator.GetBool("Attack") == true)
         {
             //Passing knock back direction to applicate to te hitted entity
-            Vector3 knockDir = Utilities.CalculateDir(transform.parent.position, collision.gameObject.transform.position);
+            knockDir = Utils.CalculateDir(transform.parent.position, collision.gameObject.transform.position);
 
-            gameObject.GetComponentInParent<EMovement>().OnHit(knockDir, collision.gameObject.GetComponent<EnemySword>().ownerEnemy);
+            gameObject.GetComponentInParent<EMovement>().OnHit(knockDir, collision.gameObject.GetComponent<EnemySword>().owner_En);
             StopAllCoroutines();
-            StartCoroutine(Utilities.FreezeFrames(0.3f, 0.4f));
+            StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
             StartCoroutine(SwordClash());
             return;
         }

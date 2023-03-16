@@ -18,6 +18,9 @@ public class Player_SwordData
     [Header("Attack dash:")]
     public float dashSpeed;
     public float dashDuration;
+    [Header("Freeeze frames:")]
+    public float freeze_Intensity;
+    public float freeze_Duration;
     [Header("Other:")]
     public Vector3 swordScale;
     public bool isBlockable = true;
@@ -28,18 +31,20 @@ public class Player_SwordData
     public Player_SwordData() { }
     public Player_SwordData(Player_SwordSO swordSO)
     {
-        this.name = swordSO.name;
-        this.swingEase = swordSO.swingEase;
-        this.swingSpeed = swordSO.swingSpeed;       
-        this.swingWidth = swordSO.swingWidth;
-        this.swingCoolDown = swordSO.swingCoolDown;
-        this.physicDamage = swordSO.physicDamage;
-        this.knockSpeed = swordSO.knockSpeed;
-        this.knockDuration = swordSO.knockDuration;
-        this.dashSpeed = swordSO.dashSpeed;
-        this.dashDuration = swordSO.dashDuration;
-        this.swordScale = swordSO.swordScale;
-        this.isBlockable = swordSO.isBlockable;
+        name = swordSO.name;
+        swingEase = swordSO.swingEase;
+        swingSpeed = swordSO.swingSpeed;       
+        swingWidth = swordSO.swingWidth;
+        swingCoolDown = swordSO.swingCoolDown;
+        physicDamage = swordSO.physicDamage;
+        knockSpeed = swordSO.knockSpeed;
+        knockDuration = swordSO.knockDuration;
+        dashSpeed = swordSO.dashSpeed;
+        dashDuration = swordSO.dashDuration;
+        freeze_Intensity = swordSO.freeze_Intensity;
+        freeze_Duration = swordSO.freeze_Duration;
+        swordScale = swordSO.swordScale;
+        isBlockable = swordSO.isBlockable;
     }
 }
 
@@ -59,6 +64,9 @@ public class Player_SwordSO : ScriptableObject
     [Header("Attack dash:")]
     public float dashSpeed;
     public float dashDuration;
+    [Header("Freeeze frames:")]
+    public float freeze_Intensity;
+    public float freeze_Duration;
     [Header("Other:")]
     public Vector3 swordScale;
     public bool isBlockable = true;
@@ -66,17 +74,19 @@ public class Player_SwordSO : ScriptableObject
 
     public void SetData(Player_SwordData data)
     {
-        this.name = data.name;
-        this.swingEase = data.swingEase;
-        this.swingSpeed = data.swingSpeed;
-        this.swingWidth = data.swingWidth;
-        this.swingCoolDown = data.swingCoolDown;
-        this.physicDamage = data.physicDamage;
-        this.knockSpeed = data.knockSpeed;
-        this.knockDuration = data.knockDuration;
-        this.dashSpeed = data.dashSpeed;
-        this.dashDuration = data.dashDuration;
-        this.swordScale = data.swordScale;
-        this.isBlockable = data.isBlockable;
+        name = data.name;
+        swingEase = data.swingEase;
+        swingSpeed = data.swingSpeed;
+        swingWidth = data.swingWidth;
+        swingCoolDown = data.swingCoolDown;
+        physicDamage = data.physicDamage;
+        knockSpeed = data.knockSpeed;
+        knockDuration = data.knockDuration;
+        dashSpeed = data.dashSpeed;
+        dashDuration = data.dashDuration;
+        freeze_Intensity = data.freeze_Intensity;
+        freeze_Duration = data.freeze_Duration;
+        swordScale = data.swordScale;
+        isBlockable = data.isBlockable;
     }
 }

@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 694917650093578213}
   - component: {fileID: 694917650093578219}
   - component: {fileID: 694917650093578218}
-  - component: {fileID: 694917650093578216}
+  - component: {fileID: 57272198143595839}
   - component: {fileID: 694917650093578217}
   - component: {fileID: 694917650093578223}
   - component: {fileID: 694917650093578222}
@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 694917650093578212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 694917650811450680}
@@ -372,7 +372,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917649108951229}
   canMove: 1
---- !u!114 &694917650093578216
+--- !u!114 &57272198143595839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,13 +381,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 694917650093578212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58140ad4b5e14949b7d6bd13bb2cb30, type: 3}
+  m_Script: {fileID: 11500000, guid: 07165919f2d69bf469b3feec9d6e820d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healtBar: {fileID: 4823997940889673316}
-  health: 45
-  maxHealth: 45
-  hitClip: {fileID: 8300000, guid: 635dfd2d31c344946b36413a773b65cd, type: 3}
+  HP_Bar: {fileID: 4823997940889673316}
+  HP: 30
+  max_HP: 30
+  hit_Clip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
 --- !u!82 &694917650093578217
 AudioSource:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class AIAnimator : EAnimator
 {    
     private NavMeshAgent agent;
-
     Vector2 dir;
     private void Awake()
     {

@@ -11,7 +11,6 @@ public class EnemyState
         this.processor = context;
         this.enemy = enemy;
     }
-
     public virtual void OnStateEnter() { }
     virtual public void Update() { }
     public virtual void OnStateExit() { }
@@ -142,7 +141,6 @@ public class AttackState : EnemyState
         attacking = false;
     }
 }
-
 
 public class KnockState : EnemyState
 {

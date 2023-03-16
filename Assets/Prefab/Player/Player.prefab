@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 5693687256937972817}
   - component: {fileID: 5693687256937972816}
   - component: {fileID: 5693687256937972827}
-  - component: {fileID: 5693687256937972818}
+  - component: {fileID: 2189323738624452443}
   - component: {fileID: 5693687256937972819}
   m_Layer: 3
   m_Name: Player
@@ -381,7 +381,7 @@ MonoBehaviour:
   inv_Time: 1
   inv_Flash_Tick: 0.1
   inv_Color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &5693687256937972818
+--- !u!114 &2189323738624452443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,13 +390,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5693687256937972826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58140ad4b5e14949b7d6bd13bb2cb30, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e74478d18c493147866c7b3670a892b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healtBar: {fileID: 311475283383735221}
-  health: 6
-  maxHealth: 6
-  hitClip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
+  HP_Bar: {fileID: 311475283383735221}
+  HP: 30
+  max_HP: 30
+  hit_Clip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
+  player_SO: {fileID: 11400000, guid: 52204242367c4894ba91d1a0fd2bac7c, type: 2}
+  player_Data:
+    HP: 0
+    max_HP: 0
+    base_Hit_Clip: {fileID: 0}
+    move_Speed: 0
+    dash_Speed: 0
+    dash_Time: 0
+    dash_Cooldown: 0
+    inv_Time: 0
+    inv_Flash_Tick: 0
+    inv_Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!82 &5693687256937972819
 AudioSource:
   m_ObjectHideFlags: 0

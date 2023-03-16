@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public static class Utilities
+public static class Utils
 {
     private static Vector3 dir;
 

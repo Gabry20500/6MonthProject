@@ -21,9 +21,9 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     [Header("Dash variables")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing = false;
-    [SerializeField] private float dash_Speed = 6f;
-    [SerializeField] private float dash_Time = 0.5f;
-    [SerializeField] private float dash_Cooldown = 1f;
+    [SerializeField] private float dash_Speed;
+    [SerializeField] private float dash_Time;
+    [SerializeField] private float dash_Cooldown;
     private Vector2 dash_Dir;
 
     [Header("Attack variables")]
@@ -31,9 +31,9 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
      private bool isVulnerable = true;
 
     [Header("Dameged frames variables")]
-    [SerializeField] private float inv_Time = 1.0f;
-    [SerializeField] private float inv_Flash_Tick = 0.1f;
-    [SerializeField] Color inv_Color = Color.clear;
+    [SerializeField] private float inv_Time;
+    [SerializeField] private float inv_Flash_Tick;
+    [SerializeField] Color inv_Color;
     private Color color_Buff;
     private Color color_To;
     private Color init_Color;
@@ -77,6 +77,30 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         }
     }
 
+    public float Dash_Speed
+    {
+        get { return dash_Speed; }
+    }
+    public float Dash_Time
+    {
+        get { return dash_Time; }
+    }
+    public float Dash_Cooldown
+    {
+        get { return dash_Cooldown; }
+    }
+    public float Inv_Time
+    {
+        get { return inv_Time; }
+    }
+    public float Inv_Flash_Tick
+    {
+        get { return inv_Flash_Tick; }
+    }
+    public Color Inv_Color
+    {
+        get { return inv_Color; }
+    }
     #endregion
 
     private void Awake()
@@ -88,6 +112,16 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
 
     }
 
+    public void InitParameters(PlayerData data)
+    {
+        move_Speed = data.move_Speed;
+        dash_Speed = data.dash_Speed;
+        dash_Time = data.dash_Time;
+        dash_Cooldown = data.dash_Cooldown;
+        inv_Time = data.inv_Time;
+        inv_Flash_Tick = data.inv_Flash_Tick;
+        inv_Color = data.inv_Color;
+    }
     private void Start()
     {
         InputController.instance.SpaceDown += Dash;
@@ -210,7 +244,7 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         {
             if (damage != 0.0f)
             {
-                GetComponent<Entity>().TakeDamage(damage);
+                GetComponent<Player>().TakeDamage(damage);
                 StartCoroutine(InvincibilityCoroutine());
             }
 
