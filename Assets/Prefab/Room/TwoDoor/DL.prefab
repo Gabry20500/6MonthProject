@@ -247,6 +247,7 @@ MonoBehaviour:
   _doors:
   - {fileID: 5150209373438272183}
   - {fileID: 1925844932703362605}
+  enemys: 0
   enemyParent: {fileID: 6654733605125097436}
 --- !u!1 &3719977786442997984
 GameObject:
@@ -1155,6 +1156,10 @@ PrefabInstance:
     - target: {fileID: 2127932670178873208, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
       propertyPath: m_Name
       value: RoomDetector (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039193036996660664, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
+      propertyPath: direction
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c63e77b6d24dbc84dad0e351b0bc0a3b, type: 3}
