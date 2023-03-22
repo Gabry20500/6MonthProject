@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
@@ -20,5 +21,11 @@ public class Player : Entity
         HP = player_Data.HP;
         max_HP = player_Data.max_HP;
         hit_Clip = player_Data.base_Hit_Clip;
+    }
+
+    protected override void Death()
+    {
+        Debug.Log("Morendo");
+        SceneManager.LoadScene("LevelGenerationTest");
     }
 }

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82128a121e56bbe4d8c5fdaadc721741, type: 3}
   m_Name: Base_Sword_SO
   m_EditorClassIdentifier: 
-  swingEase: 12
-  swingSpeed: 0.65
+  swingEase: 3
+  swingSpeed: 0.5
   swingWidth: 90
   swingCoolDown: 0.25
   physicDamage: 15
-  knockSpeed: 15
+  knockSpeed: 10
   knockDuration: 0.3
-  dashSpeed: 2.5
+  dashSpeed: 3
   dashDuration: 0.1
-  freeze_Intensity: 0.3
-  freeze_Duration: 0.4
+  freeze_Intensity: 0.07
+  freeze_Duration: 0.05
   swordScale: {x: 1, y: 1, z: 1}
   isBlockable: 1
