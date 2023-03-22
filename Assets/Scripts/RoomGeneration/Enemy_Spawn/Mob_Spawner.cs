@@ -7,7 +7,8 @@ public class Mob_Spawner : MonoBehaviour
     public int enemyNum;
     [SerializeField] private List<SpawnPointEnemy> enemiesSpawnPoint;
     [SerializeField] private List<SpawnPointEnemy> occupiedSpawnPoint;
-    [SerializeField] private List<Collider> _doors;
+    [SerializeField] private List<DoorManager> _doors;
+    [SerializeField] private int enemys;
     [SerializeField] private GameObject enemyParent;
 
     // Start is called before the first frame update
@@ -26,8 +27,10 @@ public class Mob_Spawner : MonoBehaviour
         
         foreach (var door in _doors)
         {
-            door.isTrigger = false;
+            door.enemySpawned = true;
         }
+
+        Invoke(nameof(CountEnemy), 2f);
     }
 
     private void Update()
@@ -39,20 +42,25 @@ public class Mob_Spawner : MonoBehaviour
     {
         foreach (var door in _doors)
         {
-            door.isTrigger = true;
+            door.enemySpawned = false;
         }   
     }
     
     public void EnemyDeath()
     {
-        if (enemyNum > 0)
+        if (enemys > 0)
         {
-            enemyNum--;
+            enemys--;
         }
         
-        if (enemyNum <= 0)
+        if (enemys <= 0)
         {
             OpenDoors();
         }
+    }
+
+    private void CountEnemy()
+    {
+        enemys = this.gameObject.GetComponentsInChildren<Entity>().Length;
     }
 }

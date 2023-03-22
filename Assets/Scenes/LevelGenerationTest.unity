@@ -303,16 +303,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.024
+      value: 3.36
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -723,18 +735,6 @@ PrefabInstance:
     - target: {fileID: 202900399921479633, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
       propertyPath: m_Name
       value: TDLR
-      objectReference: {fileID: 0}
-    - target: {fileID: 2273814486514652976, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 394a9401d950f664e91b6cf702d2fc06, type: 2}
-    - target: {fileID: 2273814486514652976, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_OverrideVoxelSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366251104177473751, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
-      propertyPath: m_Name
-      value: EnemySpawnPoints
       objectReference: {fileID: 0}
     - target: {fileID: 6763833835944952385, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
       propertyPath: m_RootOrder
