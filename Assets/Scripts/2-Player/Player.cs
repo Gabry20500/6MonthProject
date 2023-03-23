@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,15 +10,16 @@ public class Player : Entity
     {
         base.Awake();
         player_Data = new PlayerData(player_SO);
-        InitParameters();
-        GetComponent<EMovement>().InitParameters(player_Data);
+        InitParameters();  
     }
 
     private void InitParameters()
     {
         HP = player_Data.HP;
         max_HP = player_Data.max_HP;
+        InitHealthBar();
         hit_Clip = player_Data.base_Hit_Clip;
+        GetComponent<EMovement>().InitParameters(player_Data);
     }
 
     protected override void Death()

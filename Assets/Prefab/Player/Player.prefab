@@ -135,6 +135,7 @@ MonoBehaviour:
   swinging: 0
   e_Animator: {fileID: 5693687257214280715}
   rot_Pivot: {fileID: 5693687257009582670}
+  trail: {fileID: 0}
   baseSwing: {fileID: 8300000, guid: e45a85eea1b07c04baa01b454e34df4e, type: 3}
   baseClash: {fileID: 8300000, guid: b3d930e2dc4b0e246bf689b545369ae4, type: 3}
   sword_Audio: {fileID: 0}
@@ -176,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693687256579968799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.035, z: -0}
+  m_LocalPosition: {x: 0.0004, y: 0.0139, z: -0.0003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,17 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d7a42c830ea61469e50aaa1da08e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_Speed: 600
-  move_Dir: {x: 0, y: 0}
+  canMove: 1
   canDash: 1
   isDashing: 0
-  dash_Speed: 6
-  dash_Time: 0.1
-  dash_Cooldown: 1
   isAttacking: 0
-  inv_Time: 1
-  inv_Flash_Tick: 0.1
-  inv_Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2189323738624452443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +402,9 @@ MonoBehaviour:
     dash_Speed: 0
     dash_Time: 0
     dash_Cooldown: 0
+    dash_Ease: 0
+    knock_Ease: 0
+    clash_Ease: 0
     inv_Time: 0
     inv_Flash_Tick: 0
     inv_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -533,7 +530,7 @@ Transform:
   m_GameObject: {fileID: 5693687257009582669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.36, z: 0}
-  m_LocalScale: {x: 0.8823529, y: 1.5, z: 1.4382352}
+  m_LocalScale: {x: 1, y: 1.7000002, z: 1.63}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5693687256000527910}
@@ -763,14 +760,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693687257214280727}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.30078897, y: 0, z: 0, w: 0.9536907}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5693687256937972831}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.01, y: 0, z: 0}
 --- !u!212 &5693687257214280713
 SpriteRenderer:
   m_ObjectHideFlags: 0

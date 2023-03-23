@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 /// <summary>
 /// Generic class that handle Movement and dash in an entity
@@ -7,36 +8,40 @@ using UnityEngine;
 public class EMovement : MonoBehaviour, IHittable, IClashable
 {
     [Header("Movement variables")]
-    private bool canMove = true;
-    [SerializeField] public float move_Speed;
-    [SerializeField] private Vector2 move_Dir;
+    [SerializeField] private bool canMove = true;
+    private float move_Speed;
+    private Vector2 move_Dir;
     private Vector3 move_Vel;
-
-
-    private Rigidbody mov_RigidB;
-    private EAnimator mov_Animator;
-    private SpriteRenderer body_Renderer;
-    private Sword player_Sword;
 
     [Header("Dash variables")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing = false;
-    [SerializeField] private float dash_Speed;
-    [SerializeField] private float dash_Time;
-    [SerializeField] private float dash_Cooldown;
-    private Vector2 dash_Dir;
+    private float dash_Speed;
+    private float dash_Time;
+    private float dash_Cooldown;
+    private Vector3 dash_Dir;
+    private Ease dash_Ease;
+    private Ease knock_Ease;
+    private Ease clash_Ease;
 
     [Header("Attack variables")]
     [SerializeField] private bool isAttacking = false;
      private bool isVulnerable = true;
 
     [Header("Dameged frames variables")]
-    [SerializeField] private float inv_Time;
-    [SerializeField] private float inv_Flash_Tick;
-    [SerializeField] Color inv_Color;
+    private float inv_Time;
+    private float inv_Flash_Tick;
+    private Color inv_Color;
     private Color color_Buff;
     private Color color_To;
     private Color init_Color;
+
+    //Components references area
+    private Rigidbody mov_RigidB;
+    private EAnimator mov_Animator;
+    private SpriteRenderer body_Renderer;
+    private Sword player_Sword;
+    private Player player;
 
     #region Getter
     public Rigidbody Rigidbody
@@ -77,6 +82,10 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         }
     }
 
+    public float Move_Speed
+    {
+        get { return move_Speed; }
+    }
     public float Dash_Speed
     {
         get { return dash_Speed; }
@@ -109,7 +118,7 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         mov_Animator = GetComponentInChildren<EAnimator>();
         body_Renderer = mov_Animator.gameObject.GetComponent<SpriteRenderer>();
         player_Sword = GetComponentInChildren<Sword>();
-
+        player = GetComponent<Player>();
     }
 
     public void InitParameters(PlayerData data)
@@ -118,10 +127,14 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         dash_Speed = data.dash_Speed;
         dash_Time = data.dash_Time;
         dash_Cooldown = data.dash_Cooldown;
+        dash_Ease = data.dash_Ease;
+        knock_Ease = data.knock_Ease;
+        clash_Ease = data.clash_Ease;
         inv_Time = data.inv_Time;
         inv_Flash_Tick = data.inv_Flash_Tick;
         inv_Color = data.inv_Color;
     }
+
     private void Start()
     {
         InputController.instance.SpaceDown += Dash;
@@ -159,23 +172,26 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
                 //Call Animation class to play animation
                 mov_Animator.SetDirection(move_Dir);
             }
-        }
-        //If isDashing has become true since the last frame
-        else if (isDashing)
-        {
-            //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
-            move_Vel = new Vector3(dash_Dir.normalized.x * (move_Speed * dash_Speed) * Time.fixedDeltaTime, 0,
-                                   dash_Dir.normalized.y * (move_Speed * dash_Speed) * Time.fixedDeltaTime);
-
-            mov_RigidB.velocity = move_Vel;
-        }       
+        }  
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
-        else if(isAttacking == false)
+        else if(isAttacking == false && IsDashing == false)
         { mov_RigidB.velocity += -(mov_RigidB.velocity); }
     }
 
+
+    /// <summary>
+    /// Public function to call the Dash, do nothing if already dashing
+    /// </summary>
+    public void Dash()
+    {
+        if (canDash)
+        {
+            dash_Dir = new Vector3(InputController.instance.LeftStickDir.x, 0.0f, InputController.instance.LeftStickDir.y).normalized;
+            StartCoroutine(DashCoroutine());
+        }
+    }
 
     /// <summary>
     /// Dash coroutine with 2 Time delay, the first set the dash duration in wich the player is locked sprinting in the givend direction,
@@ -189,7 +205,7 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         canDash = false; 
         isDashing = true;
 
-        yield return new WaitForSeconds(dash_Time);
+        yield return transform.DOMove(transform.position + dash_Dir * dash_Speed, dash_Time).SetEase(dash_Ease).WaitForCompletion();
         isDashing = false;
         canMove = true;
 
@@ -198,33 +214,16 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     }
 
 
-    /// <summary>
-    /// Public function to call the Dash, do nothing if already dashing
-    /// </summary>
-    public void Dash()
-    {
-        if (canDash)
-        {
-            dash_Dir = InputController.instance.LeftStickDir;
-            StartCoroutine(DashCoroutine());
-        }
-    }
 
-    private IEnumerator KnockBackCoroutine(Vector3 knockDir, EnemyData enemy)
-    {
-        float buffer = 0;
 
+    private IEnumerator KnockBackCoroutine(Vector3 knock_Dir, EnemyData enemy, Ease ease)
+    {
         //canMove = false;
         canDash = false;
         isDashing = false;
         isAttacking = false;
 
-        while (buffer < enemy.knockDuration)
-        {
-            transform.position += knockDir * enemy.knockSpeed * Time.fixedDeltaTime;
-            buffer += Time.fixedDeltaTime;
-            yield return null;
-        }
+        yield return transform.DOMove(transform.position + knock_Dir * enemy.knockSpeed, dash_Time).SetEase(ease).WaitForCompletion();
 
         canMove = true;
         canDash = true;
@@ -245,11 +244,14 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         {
             if (damage != 0.0f)
             {
-                GetComponent<Player>().TakeDamage(damage);
+                player.TakeDamage(damage);
                 StartCoroutine(InvincibilityCoroutine());
+                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, knock_Ease));
             }
-
-            StartCoroutine(KnockBackCoroutine(knockBackDir, enemy));
+            else
+            {
+                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, clash_Ease));
+            } 
         }
     }
 

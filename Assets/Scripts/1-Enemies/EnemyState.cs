@@ -6,6 +6,11 @@ public class EnemyState
     protected EnemyStateProcessor processor;
     protected EnemyAI enemy;
 
+    protected EnemySword sword;
+
+    protected Vector3 targetDir;
+    protected Quaternion targetRot;
+
     public EnemyState(EnemyStateProcessor context, EnemyAI enemy)
     {
         this.processor = context;
@@ -78,25 +83,30 @@ public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, ene
 
 public class SeekState : EnemyState
 {
-    public SeekState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
+    public SeekState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
+
+        targetDir = new Vector3(enemy.nav_Agent.velocity.x, 0.0f, enemy.nav_Agent.velocity.z).normalized; 
+        targetRot = Quaternion.LookRotation(-targetDir);
+        sword.transform.parent.transform.DOLocalRotateQuaternion(targetRot, 0.01f);
+
         if (enemy.Distance < enemy.enemy_Data.attackReach)
         {
-            enemy.enemy_Agent.isStopped = true;
+            enemy.nav_Agent.isStopped = true;
             processor.currentState = processor.attackState;
         }
         else if (enemy.Distance < enemy.enemy_Data.sightDistance)
         {
-            enemy.enemy_Agent.isStopped = false;
-            enemy.enemy_Agent.SetDestination(enemy.target.position);
-            Debug.DrawRay(enemy.target.position, enemy.enemy_Agent.velocity, Color.red, 1.0f);
+            enemy.nav_Agent.isStopped = false;
+            enemy.nav_Agent.SetDestination(enemy.target.position);
+            Debug.DrawRay(enemy.target.position, enemy.nav_Agent.velocity, Color.red, 1.0f);
             Debug.DrawRay(enemy.target.position, Vector3.up, Color.red, 1.0f);
         }
         else if (enemy.Distance > enemy.enemy_Data.sightDistance)
         {
-            enemy.enemy_Agent.SetDestination(enemy.transform.position);
+            enemy.nav_Agent.SetDestination(enemy.transform.position);
             processor.currentState = processor.idleState;
         }
     }
@@ -105,10 +115,7 @@ public class SeekState : EnemyState
 public class AttackState : EnemyState
 {
     private bool attacking = false;
-    private EnemySword sword;
-
-    Vector3 targetDir;
-    Quaternion targetRot;
+    
     public AttackState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
     public override void Update()
     {
@@ -162,7 +169,7 @@ public class KnockState : EnemyState
 
     public override void OnStateEnter()
     {
-        enemy.enemy_Agent.isStopped = true;
+        enemy.nav_Agent.isStopped = true;
     }
 
     bool flag = false;
@@ -176,7 +183,7 @@ public class KnockState : EnemyState
         else
         {
             processor.currentState = processor.idleState;
-            enemy.enemy_Agent.isStopped = false;
+            enemy.nav_Agent.isStopped = false;
         }
         buffer += Time.deltaTime;
     }

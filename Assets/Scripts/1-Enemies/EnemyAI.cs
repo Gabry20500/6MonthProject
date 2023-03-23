@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
     [SerializeField] public EnemyData enemy_Data;
     private Enemy enemy;
 
-    public NavMeshAgent enemy_Agent;
+    public NavMeshAgent nav_Agent;
     public Transform target;
     public Animator enemy_Animator;
     private EnemySword enemy_Sword;
@@ -42,8 +42,8 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
 
         //Find player in the world and get self NavMeshAgent and animator
         target = GameObject.FindWithTag("Player").transform;     
-        enemy_Agent = GetComponent<NavMeshAgent>();
-        enemy_Agent.updateRotation = false;
+        nav_Agent = GetComponent<NavMeshAgent>();
+        nav_Agent.updateRotation = false;
 
         //animator = GetComponentInChildren<Animator>();
         

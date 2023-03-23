@@ -10,6 +10,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private Player_SwordSO swordSO;
     [SerializeField] public Player_SwordData swordData;
 
+
     [SerializeField] public bool canRotate = true;
     [SerializeField] bool swinging = false;
 
@@ -30,9 +31,10 @@ public class Sword : MonoBehaviour
     private Quaternion targetRot;
     #endregion
 
-    [SerializeField] AudioClip baseSwing;
-    [SerializeField] AudioClip baseClash;
-    [SerializeField] AudioSource sword_Audio;
+    [SerializeField] private TrailRenderer trail;
+    [SerializeField] private AudioClip baseSwing;
+    [SerializeField] private AudioClip baseClash;
+    [SerializeField] private AudioSource sword_Audio;
     private Vector3 knockDir;
 
     public float Damage
@@ -45,6 +47,8 @@ public class Sword : MonoBehaviour
 
     private void Awake()
     {
+        trail = GetComponentInChildren<TrailRenderer>();
+        trail.enabled = false;
         sword_Audio = GetComponentInParent<AudioSource>();
         sword_Audio.clip = baseSwing;
         player_Movement = gameObject.GetComponentInParent<EMovement>();
@@ -136,6 +140,8 @@ public class Sword : MonoBehaviour
     
     private IEnumerator SwingAnimation(Vector3 swingDir, int i)
     {
+        trail.enabled = true;
+
          initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
          rot_Pivot.forward = initialDir;                                                                     //Set forward to the initial position of the animation
          targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
@@ -148,6 +154,8 @@ public class Sword : MonoBehaviour
         sword_Audio.Play();
  
         yield return rot_Pivot.DOLocalRotateQuaternion(targetRot, swordData.swingSpeed).SetEase(swordData.swingEase).WaitForCompletion();
+
+        trail.enabled = false;
         canRotate = true; //Enable sword movement
         player_Movement.CanMove = true;//Enable entity movment
         yield return new WaitForSeconds(swordData.swingCoolDown);
@@ -167,8 +175,8 @@ public class Sword : MonoBehaviour
         player_Movement.IsAttacking = true;
 
         //Lock the velocity on the dashDirection multyplied for speed * dashingSpeed multyplier
-        velocity = new Vector3(direction.normalized.x * (player_Movement.move_Speed * dashAtkSpeed) * Time.fixedDeltaTime, 0,
-                               direction.normalized.y * (player_Movement.move_Speed * dashAtkSpeed) * Time.fixedDeltaTime);
+        velocity = new Vector3(direction.normalized.x * (player_Movement.Move_Speed * dashAtkSpeed) * Time.fixedDeltaTime, 0,
+                               direction.normalized.y * (player_Movement.Move_Speed * dashAtkSpeed) * Time.fixedDeltaTime);
 
          player_Movement.Rigidbody.velocity = velocity;
          yield return new WaitForSeconds(duration);
@@ -191,8 +199,7 @@ public class Sword : MonoBehaviour
         {
             //Passing knock back direction to applicate to te hitted entity
             knockDir = Utils.CalculateDir(transform.parent.position, collision.gameObject.transform.position);
-
-            gameObject.GetComponentInParent<EMovement>().OnHit(knockDir, collision.gameObject.GetComponent<EnemySword>().owner_En);
+            player_Movement.OnHit(knockDir, collision.gameObject.GetComponent<EnemySword>().owner_En);
             StopAllCoroutines();
             StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
             StartCoroutine(SwordClash());

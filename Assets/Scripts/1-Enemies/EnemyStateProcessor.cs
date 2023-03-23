@@ -15,7 +15,7 @@ public class EnemyStateProcessor
     {
         enemy = context;
         idleState = new IdleState(this, enemy);
-        seekState = new SeekState(this, enemy);
+        seekState = new SeekState(this, enemy, sword);
         attackState = new AttackState(this, enemy, sword);
         knockBackState = new KnockState(this, enemy);
     }
