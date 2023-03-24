@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
-
 /// <summary>
 /// Generic class that handle Movement and dash in an entity
 /// </summary>
@@ -9,8 +8,11 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
 {
     [Header("Movement variables")]
     [SerializeField] private bool canMove = true;
-    private float move_Speed;
+    private float move_Max_Speed;
+    private float acceleration;
+    private float deceleration;
     private Vector2 move_Dir;
+    private Vector3 move_Dir3D;
     private Vector3 move_Vel;
 
     [Header("Dash variables")]
@@ -84,7 +86,15 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
 
     public float Move_Speed
     {
-        get { return move_Speed; }
+        get { return acceleration; }
+    }
+    public float Acceleration
+    {
+        get { return move_Max_Speed; }
+    }
+    public float Deceleration
+    {
+        get { return deceleration; }
     }
     public float Dash_Speed
     {
@@ -120,10 +130,11 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         player_Sword = GetComponentInChildren<Sword>();
         player = GetComponent<Player>();
     }
-
     public void InitParameters(PlayerData data)
     {
-        move_Speed = data.move_Speed;
+        move_Max_Speed = data.move_Max_Speed;
+        acceleration = data.acceleration;
+        deceleration = data.deceleration;
         dash_Speed = data.dash_Speed;
         dash_Time = data.dash_Time;
         dash_Cooldown = data.dash_Cooldown;
@@ -134,12 +145,10 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         inv_Flash_Tick = data.inv_Flash_Tick;
         inv_Color = data.inv_Color;
     }
-
     private void Start()
     {
         InputController.instance.SpaceDown += Dash;
     }
-
     private void OnDisable()
     {
         if (InputController.instance != null)
@@ -160,15 +169,12 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
             //If direction is none make RigidBody velocity to be 0
             if (move_Dir == Vector2.zero)
             {
-                mov_RigidB.velocity += -(mov_RigidB.velocity);
+                Decelerate();
                 mov_Animator.SetDirection(move_Dir);
             }
             else
             {
-                //Generate 3D Vector from a 2D Vector
-                move_Vel = new Vector3(InputController.instance.LeftStickDir.normalized.x * move_Speed * Time.fixedDeltaTime, 0,
-                                       InputController.instance.LeftStickDir.normalized.y * move_Speed * Time.fixedDeltaTime);
-                mov_RigidB.velocity = move_Vel;
+                Accelerate();
                 //Call Animation class to play animation
                 mov_Animator.SetDirection(move_Dir);
             }
@@ -177,7 +183,35 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         //That could happen in a CoolDown Phase of an action or its execution, that prevent the entity to continue moving with the previous
         //velocity value
         else if(isAttacking == false && IsDashing == false)
-        { mov_RigidB.velocity += -(mov_RigidB.velocity); }
+        {
+            Decelerate();
+        }
+    }
+
+    private void Accelerate()
+    {
+        //Generate 3D Vector from a 2D Vector
+        move_Dir3D = new Vector3(InputController.instance.LeftStickDir.normalized.x, 0, InputController.instance.LeftStickDir.normalized.y);
+        if( (mov_RigidB.velocity + (move_Dir3D * (acceleration * Time.fixedDeltaTime))).magnitude > move_Max_Speed)
+        {
+            Vector3 a = mov_RigidB.velocity + (move_Dir3D * (acceleration * Time.fixedDeltaTime));
+            a.Normalize();
+            a = a * move_Max_Speed;
+            mov_RigidB.velocity = a;
+        }
+        else
+        {
+            mov_RigidB.velocity += (move_Dir3D * (acceleration * Time.fixedDeltaTime));
+        }
+    }
+
+    private void Decelerate()
+    {
+        mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (deceleration * Time.fixedDeltaTime));
+        if (mov_RigidB.velocity.magnitude <= 0.0f)
+        {
+            mov_RigidB.velocity = Vector3.zero;
+        }
     }
 
 
@@ -212,9 +246,6 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         yield return new WaitForSeconds(dash_Cooldown);
         canDash = true;
     }
-
-
-
 
     private IEnumerator KnockBackCoroutine(Vector3 knock_Dir, EnemyData enemy, Ease ease)
     {
@@ -255,8 +286,6 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         }
     }
 
-
-
     private IEnumerator InvincibilityCoroutine()
     {
         isVulnerable = false;
@@ -278,8 +307,6 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
             buff += Time.deltaTime;
         }
         body_Renderer.material.color = init_Color;
-
         isVulnerable = true;
-
     }
 }

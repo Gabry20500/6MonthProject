@@ -10,7 +10,9 @@ public class Player_Data_SO : ScriptableObject
     [SerializeField] public AudioClip base_Hit_Clip;
     [Space]
     [Header("EMovement paramenters:")]
-    [SerializeField] public float move_Speed;
+    [SerializeField] public float move_Max_Speed;
+    [SerializeField] public float acceleration;
+    [SerializeField] public float deceleration;
     [Header("Dash paramenters:")]
     [SerializeField] public float dash_Speed;
     [SerializeField] public float dash_Time;
@@ -32,7 +34,9 @@ public class Player_Data_SO : ScriptableObject
         HP = data.HP;
         max_HP = data.max_HP;
         base_Hit_Clip = data.base_Hit_Clip;
-        move_Speed = data.move_Speed;
+        move_Max_Speed = data.move_Max_Speed;
+        acceleration = data.acceleration;
+        deceleration = data.deceleration;
         dash_Speed = data.dash_Speed;
         dash_Time = data.dash_Time;
         dash_Cooldown = data.dash_Cooldown;
@@ -54,7 +58,9 @@ public class PlayerData
     [SerializeField] public AudioClip base_Hit_Clip;
     [Space]
     [Header("EMovement paramenters:")]
-    [SerializeField] public float move_Speed;
+    [SerializeField] public float move_Max_Speed;
+    [SerializeField] public float acceleration;
+    [SerializeField] public float deceleration;
     [Header("Dash paramenters:")]
     [SerializeField] public float dash_Speed;
     [SerializeField] public float dash_Time;
@@ -76,7 +82,9 @@ public class PlayerData
         HP = player_SO.HP;
         max_HP = player_SO.max_HP;
         base_Hit_Clip = player_SO.base_Hit_Clip;
-        move_Speed = player_SO.move_Speed;
+        move_Max_Speed = player_SO.move_Max_Speed;
+        acceleration = player_SO.acceleration;
+        deceleration = player_SO.deceleration;
         dash_Speed = player_SO.dash_Speed;
         dash_Time = player_SO.dash_Time;
         dash_Cooldown = player_SO.dash_Cooldown;
@@ -93,7 +101,9 @@ public class PlayerData
         HP = player.Healt;
         max_HP = player.MaxHealth;
         base_Hit_Clip = player.Hit_Clip;
-        move_Speed = player_Mov_Script.Move_Speed;
+        move_Max_Speed = player_Mov_Script.Move_Speed;
+        acceleration = player_Mov_Script.Acceleration;
+        deceleration = player_Mov_Script.Deceleration;
         dash_Speed = player_Mov_Script.Dash_Speed;
         dash_Time = player_Mov_Script.Dash_Time;
         dash_Cooldown = player_Mov_Script.Dash_Cooldown;

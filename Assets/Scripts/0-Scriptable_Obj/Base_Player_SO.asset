@@ -15,7 +15,9 @@ MonoBehaviour:
   HP: 6
   max_HP: 6
   base_Hit_Clip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
-  move_Speed: 800
+  move_Max_Speed: 800
+  acceleration: 15
+  deceleration: 15
   dash_Speed: 15
   dash_Time: 0.15
   dash_Cooldown: 1
