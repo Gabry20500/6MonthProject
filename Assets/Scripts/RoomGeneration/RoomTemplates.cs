@@ -30,7 +30,7 @@ public class RoomTemplates : MonoBehaviour
     {
         if (rooms.Count >= maxRoom && !allFinish)
         {
-            FinishLevel();
+            Invoke(nameof(FinishLevel), .5f);
             allFinish = true;
         }
     }
@@ -49,23 +49,21 @@ public class RoomTemplates : MonoBehaviour
                 {
                     room.GetComponent<RoomData>().InitRoomDetector();
                 }
-                    
+                
+                foreach (var garden in gardens)
+                {
+                    garden.GetComponent<GardenData>().InitGarden();
+                }
+
+
                 for (int j = 1; j < rooms.Count; j++)
                 {
                     rooms[j].SetActive(false);
                 }
 
-                for (int j = 0; j < gardens.Count; j++)
+                foreach (var t in gardens)
                 {
-                    if (gardens[j] == null)
-                    {
-                        gardens.Remove(gardens[j]);
-                    }
-                    else
-                    {
-                        gardens[j].SetActive(false);
-                    }
-                        
+                    t.SetActive(false);
                 }
             }
         }

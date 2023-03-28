@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2966370477855580635}
   m_Layer: 0
   m_Name: DoorN
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,4 +59,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  enemyspawned: 0
+  enemySpawned: 0

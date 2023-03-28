@@ -242,6 +242,7 @@ MonoBehaviour:
   - {fileID: 5077954759939424755}
   - {fileID: 1367255653696063153}
   - {fileID: 5705249752043043019}
+  enemys: 0
   enemyParent: {fileID: 5849421823439598457}
 --- !u!1 &3983808865078156333
 GameObject:
@@ -1389,6 +1390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7989704607186851353, guid: ae07a04ff3e6c6c44b3406445a998bad, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 13616ad409a5ed54a8a3e144b10748ef, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae07a04ff3e6c6c44b3406445a998bad, type: 3}
 --- !u!4 &1459163216692595648 stripped
