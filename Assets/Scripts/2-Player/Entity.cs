@@ -31,7 +31,6 @@ public class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         entity_Audio = GetComponent<AudioSource>();
-        InitHealthBar();
     }
 
     protected virtual void InitHealthBar()

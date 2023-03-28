@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordDamage: 1
   attackRate: 1.25
-  knockSpeed: 15
-  knockDuration: 0.3
+  knockSpeed: 10
+  knockDuration: 0.25
   sightDistance: 100
-  attackReach: 4
-  freeze_Intensity: 0
-  freeze_Duration: 0
+  attackReach: 7
+  freeze_Intensity: 0.5
+  freeze_Duration: 1
