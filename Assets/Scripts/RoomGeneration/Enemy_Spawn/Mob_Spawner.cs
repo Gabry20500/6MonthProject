@@ -33,11 +33,6 @@ public class Mob_Spawner : MonoBehaviour
         Invoke(nameof(CountEnemy), 2f);
     }
 
-    private void Update()
-    {
-        Debug.Log(enemyNum);
-    }
-
     public void OpenDoors()
     {
         foreach (var door in _doors)

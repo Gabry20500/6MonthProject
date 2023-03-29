@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DoorManager : MonoBehaviour
+public class DoorManagerGarden : MonoBehaviour
 {
     [SerializeField]private int direction;
-    private RoomData roomData;
+    private GardenData gardenData;
     private GameObject currentRoom;
     private GameObject player;
     private Vector3 playerPos;
@@ -21,7 +21,7 @@ public class DoorManager : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         currentRoom = gameObject.transform.parent.gameObject.transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
-        roomData = currentRoom.GetComponent<RoomData>();
+        gardenData = currentRoom.GetComponent<GardenData>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,49 +32,49 @@ public class DoorManager : MonoBehaviour
             switch (direction) {
                 case 1:
                     
-                    cameraPosition = roomData.roomNord.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+                    cameraPosition = gardenData.roomNorth.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
                     player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 15f);
                     
-                    roomData.roomNord.SetActive(true);
+                    gardenData.roomNorth.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 
                 case 2:
                     
-                    cameraPosition = roomData.roomSouth.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+                    cameraPosition = gardenData.roomSouth.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
                     player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 15f);
                     
-                    roomData.roomSouth.SetActive(true);
+                    gardenData.roomSouth.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 
                 case 3:
                     
-                    cameraPosition = roomData.roomEst.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+                    cameraPosition = gardenData.roomEst.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
                     player.transform.position = new Vector3(playerPos.x + 15f,playerPos.y,playerPos.z);
                     
-                    roomData.roomEst.SetActive(true);
+                    gardenData.roomEst.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 
                 case 4:
                     
-                    cameraPosition = roomData.roomWest.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
+                    cameraPosition = gardenData.roomWest.GetComponentInChildren<SetCameraPos>().gameObject.transform.position;
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
                     player.transform.position = new Vector3(playerPos.x - 15f,playerPos.y,playerPos.z);
                     
-                    roomData.roomWest.SetActive(true);
+                    gardenData.roomWest.SetActive(true);
                     currentRoom.SetActive(false);
                     break;
                 
