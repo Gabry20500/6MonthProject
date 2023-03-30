@@ -43,11 +43,12 @@ public class EAnimator : MonoBehaviour
     ///Detect if player is moving and detect the direction, then call the animation
     /// </summary>
     /// <param name="direction">Direction of the entity to animate</param>
-    public void SetDirection( Vector2 direction )
+    public void SetDirection( Vector2 direction, bool idle = false )
     {
-        if(direction.magnitude < 0.01f)
+        if(direction.magnitude < 0.01f || idle == true)
         {
             prefix = "Idle_";
+            lastDir = DirectionIndex(direction);
         }
         else
         {

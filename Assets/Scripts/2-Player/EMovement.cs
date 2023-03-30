@@ -6,25 +6,20 @@ using DG.Tweening;
 /// </summary>
 public class EMovement : MonoBehaviour, IHittable, IClashable
 {
+    public PlayerData self;
+
     [Header("Movement variables")]
     [SerializeField] private bool canMove = true;
-    private float move_Max_Speed;
-    private float acceleration;
-    private float deceleration;
     private Vector2 move_Dir;
     private Vector3 move_Dir3D;
     private Vector3 move_Vel;
+    private Vector3 temp_Acc;
+    private Vector3 temp_Dec;
 
     [Header("Dash variables")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing = false;
-    private float dash_Speed;
-    private float dash_Time;
-    private float dash_Cooldown;
     private Vector3 dash_Dir;
-    private Ease dash_Ease;
-    private Ease knock_Ease;
-    private Ease clash_Ease;
     private RaycastHit hit;
     private Ray ray;
 
@@ -33,9 +28,6 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
      private bool isVulnerable = true;
 
     [Header("Dameged frames variables")]
-    private float inv_Time;
-    private float inv_Flash_Tick;
-    private Color inv_Color;
     private Color color_Buff;
     private Color color_To;
     private Color init_Color;
@@ -88,39 +80,39 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
 
     public float Move_Speed
     {
-        get { return acceleration; }
+        get { return self.acceleration; }
     }
     public float Acceleration
     {
-        get { return move_Max_Speed; }
+        get { return self.move_Max_Speed; }
     }
     public float Deceleration
     {
-        get { return deceleration; }
+        get { return self.deceleration; }
     }
     public float Dash_Speed
     {
-        get { return dash_Speed; }
+        get { return self.dash_Speed; }
     }
     public float Dash_Time
     {
-        get { return dash_Time; }
+        get { return self.dash_Time; }
     }
     public float Dash_Cooldown
     {
-        get { return dash_Cooldown; }
+        get { return self.dash_Cooldown; }
     }
     public float Inv_Time
     {
-        get { return inv_Time; }
+        get { return self.inv_Time; }
     }
     public float Inv_Flash_Tick
     {
-        get { return inv_Flash_Tick; }
+        get { return self.inv_Flash_Tick; }
     }
     public Color Inv_Color
     {
-        get { return inv_Color; }
+        get { return self.inv_Color; }
     }
     #endregion
 
@@ -132,21 +124,7 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         player_Sword = GetComponentInChildren<Sword>();
         player = GetComponent<Player>();
     }
-    public void InitParameters(PlayerData data)
-    {
-        move_Max_Speed = data.move_Max_Speed;
-        acceleration = data.acceleration;
-        deceleration = data.deceleration;
-        dash_Speed = data.dash_Speed;
-        dash_Time = data.dash_Time;
-        dash_Cooldown = data.dash_Cooldown;
-        dash_Ease = data.dash_Ease;
-        knock_Ease = data.knock_Ease;
-        clash_Ease = data.clash_Ease;
-        inv_Time = data.inv_Time;
-        inv_Flash_Tick = data.inv_Flash_Tick;
-        inv_Color = data.inv_Color;
-    }
+
     private void Start()
     {
         InputController.instance.SpaceDown += Dash;
@@ -172,7 +150,10 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
             if (move_Dir == Vector2.zero)
             {
                 Decelerate();
-                mov_Animator.SetDirection(move_Dir);
+
+                move_Dir3D = player_Sword.transform.position - transform.position;
+                move_Dir = new Vector2(move_Dir3D.x, move_Dir3D.z).normalized;
+                mov_Animator.SetDirection(move_Dir, true);
             }
             else
             {
@@ -190,29 +171,37 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         }
     }
 
+
     private void Accelerate()
     {
         //Generate 3D Vector from a 2D Vector
         move_Dir3D = new Vector3(InputController.instance.LeftStickDir.normalized.x, 0, InputController.instance.LeftStickDir.normalized.y);
-        if( (mov_RigidB.velocity + (move_Dir3D * (acceleration * Time.fixedDeltaTime))).magnitude > move_Max_Speed)
+        if( (mov_RigidB.velocity + (move_Dir3D * (self.acceleration * Time.fixedDeltaTime))).magnitude > self.move_Max_Speed)
         {
-            Vector3 a = mov_RigidB.velocity + (move_Dir3D * (acceleration * Time.fixedDeltaTime));
-            a.Normalize();
-            a = a * move_Max_Speed;
-            mov_RigidB.velocity = a;
+            temp_Acc = (mov_RigidB.velocity + (move_Dir3D * (self.acceleration * Time.fixedDeltaTime))).normalized;
+            temp_Acc *= self.move_Max_Speed;
+            mov_RigidB.velocity = temp_Acc;
         }
         else
         {
-            mov_RigidB.velocity += (move_Dir3D * (acceleration * Time.fixedDeltaTime));
+            mov_RigidB.velocity += (move_Dir3D * (self.acceleration * Time.fixedDeltaTime));
         }
     }
 
     private void Decelerate()
     {
-        mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (deceleration * Time.fixedDeltaTime));
-        if (mov_RigidB.velocity.magnitude <= 0.0f)
+        if (mov_RigidB.velocity != Vector3.zero)
         {
-            mov_RigidB.velocity = Vector3.zero;
+            if ( Mathf.Abs((mov_RigidB.velocity - (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime))).magnitude) > 0.5 )
+            {
+                Debug.Log("FERMING");
+                mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime));
+            }
+           else
+            {
+                Debug.Log("FERMATO");
+                mov_RigidB.velocity = Vector3.zero;
+            }
         }
     }
 
@@ -226,14 +215,14 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         {
             dash_Dir = new Vector3(InputController.instance.LeftStickDir.x, 0.0f, InputController.instance.LeftStickDir.y).normalized;
            
-            ray = new Ray(transform.position, dash_Dir * dash_Speed);
+            ray = new Ray(transform.position, dash_Dir * self.dash_Speed);
             if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))
             {
                 StartCoroutine(DashCoroutine(new Vector3(hit.point.x, transform.position.y, hit.point.z)));
             }
             else
             {
-                StartCoroutine(DashCoroutine(transform.position + dash_Dir * dash_Speed));
+                StartCoroutine(DashCoroutine(transform.position + dash_Dir * self.dash_Speed));
             }
         }
     }
@@ -250,11 +239,11 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         canDash = false; 
         isDashing = true;
         
-        yield return transform.DOMove(destination, dash_Time).SetEase(dash_Ease).WaitForCompletion();
-        isDashing = false;
+        yield return transform.DOMove(destination, self.dash_Time).SetEase(self.dash_Ease).WaitForCompletion();
         canMove = true;
+        isDashing = false;
 
-        yield return new WaitForSeconds(dash_Cooldown);
+        yield return new WaitForSeconds(self.dash_Cooldown);
         canDash = true;
     }
 
@@ -265,7 +254,15 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         isDashing = false;
         isAttacking = false;
 
-        yield return transform.DOMove(transform.position + knock_Dir * enemy.knockSpeed, dash_Time).SetEase(ease).WaitForCompletion();
+        ray = new Ray(transform.position, knock_Dir * enemy.knockSpeed);
+        if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))
+        {
+            yield return transform.DOMove(new Vector3(hit.point.x, transform.position.y, hit.point.z), self.dash_Time).SetEase(ease).WaitForCompletion();
+        }
+        else
+        {
+            yield return transform.DOMove(transform.position + knock_Dir * enemy.knockSpeed, self.dash_Time).SetEase(ease).WaitForCompletion();
+        }
 
         canMove = true;
         canDash = true;
@@ -288,11 +285,11 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
             {
                 player.TakeDamage(damage);
                 StartCoroutine(InvincibilityCoroutine());
-                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, knock_Ease));
+                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, self.knock_Ease));
             }
             else
             {
-                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, clash_Ease));
+                StartCoroutine(KnockBackCoroutine(knockBackDir, enemy, self.clash_Ease));
             } 
         }
     }
@@ -301,18 +298,18 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     {
         isVulnerable = false;
 
-        color_To = inv_Color;
+        color_To = self.inv_Color;
         init_Color = body_Renderer.color;
         int i = 1;
         float buff = 0.0f;
-        while (buff < inv_Time)
+        while (buff < self.inv_Time)
         {
-            if (buff > inv_Flash_Tick * i)
+            if (buff > self.inv_Flash_Tick * i)
             {
                 color_Buff = body_Renderer.material.color;
                 body_Renderer.material.color = color_To;
                 color_To = color_Buff;
-                i = i + 1;
+                i++;
             }
             yield return null;
             buff += Time.deltaTime;

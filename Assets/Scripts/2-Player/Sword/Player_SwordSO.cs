@@ -24,6 +24,9 @@ public class Player_SwordData
     [Header("Other:")]
     public Vector3 swordScale;
     public bool isBlockable = true;
+    [Header("Sounds:")]
+    public AudioClip baseSwing;
+    public AudioClip baseClash;
 
     public float DashDistance { get => dashSpeed * dashDuration; }
     public float Damage { get => physicDamage; }
@@ -45,6 +48,8 @@ public class Player_SwordData
         freeze_Duration = swordSO.freeze_Duration;
         swordScale = swordSO.swordScale;
         isBlockable = swordSO.isBlockable;
+        baseSwing = swordSO.baseSwing;
+        baseClash = swordSO.baseClash;
     }
 }
 
@@ -70,6 +75,9 @@ public class Player_SwordSO : ScriptableObject
     [Header("Other:")]
     public Vector3 swordScale;
     public bool isBlockable = true;
+    [Header("Sounds:")]
+    public AudioClip baseSwing;
+    public AudioClip baseClash;
     public float DashDistance { get => dashSpeed * dashDuration; }
 
     public void SetData(Player_SwordData data)
@@ -88,5 +96,7 @@ public class Player_SwordSO : ScriptableObject
         freeze_Duration = data.freeze_Duration;
         swordScale = data.swordScale;
         isBlockable = data.isBlockable;
+        baseSwing = data.baseSwing;
+        baseClash = data.baseClash;
     }
 }

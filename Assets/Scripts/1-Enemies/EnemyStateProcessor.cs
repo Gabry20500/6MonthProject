@@ -6,6 +6,7 @@ public class EnemyStateProcessor
     public SeekState seekState;
     public AttackState attackState;
     public KnockState knockBackState;
+    public StunState stunState;
 
     public EnemyState currentState;
 
@@ -18,6 +19,7 @@ public class EnemyStateProcessor
         seekState = new SeekState(this, enemy, sword);
         attackState = new AttackState(this, enemy, sword);
         knockBackState = new KnockState(this, enemy);
+        stunState = new StunState(this, enemy);
     }
 
     public void Init()

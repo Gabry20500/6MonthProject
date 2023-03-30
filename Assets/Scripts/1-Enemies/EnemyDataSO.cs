@@ -18,6 +18,10 @@ public class EnemyData
     [Header("Freeeze frames:")]
     public float freeze_Intensity;
     public float freeze_Duration;
+    [Header("Stun:")]
+    public float stun_Time;
+
+
     public EnemyData() { }
     public EnemyData(EnemyDataSO enemySO)
     {
@@ -31,6 +35,7 @@ public class EnemyData
         attackReach = enemySO.attackReach;
         freeze_Intensity = enemySO.freeze_Intensity;
         freeze_Duration = enemySO.freeze_Duration;
+        stun_Time = enemySO.stun_Time;
     }
 }
 
@@ -52,6 +57,9 @@ public class EnemyDataSO : ScriptableObject
     [Header("Freeeze frames:")]
     public float freeze_Intensity;
     public float freeze_Duration;
+    [Header("Stun:")]
+    public float stun_Time;
+
 
     public void SetData(EnemyData data)
     {
@@ -65,5 +73,6 @@ public class EnemyDataSO : ScriptableObject
         attackReach = data.attackReach;
         freeze_Intensity = data.freeze_Intensity;
         freeze_Duration = data.freeze_Duration;
+        stun_Time = data.stun_Time;
     }
 }

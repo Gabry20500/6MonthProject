@@ -31,10 +31,8 @@ public class Sword : MonoBehaviour
     private Quaternion targetRot;
     #endregion
 
-    [SerializeField] private TrailRenderer trail;
-    [SerializeField] private AudioClip baseSwing;
-    [SerializeField] private AudioClip baseClash;
-    [SerializeField] private AudioSource sword_Audio;
+    private TrailRenderer trail;
+    private AudioSource sword_Audio;
     private Vector3 knockDir;
 
     public float Damage
@@ -47,12 +45,13 @@ public class Sword : MonoBehaviour
 
     private void Awake()
     {
+        swordData = new Player_SwordData(swordSO);
         trail = GetComponentInChildren<TrailRenderer>();
         trail.enabled = false;
         sword_Audio = GetComponentInParent<AudioSource>();
-        sword_Audio.clip = baseSwing;
+        sword_Audio.clip = swordData.baseSwing;
         player_Movement = gameObject.GetComponentInParent<EMovement>();
-        swordData = new Player_SwordData(swordSO);
+        
     }
 
     /// <summary>
