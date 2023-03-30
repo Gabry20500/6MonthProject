@@ -6,8 +6,10 @@ public class EnemySword : MonoBehaviour
     [Header("Sword data:")] 
     [SerializeField] public EnemyData owner_En;
 
-    private bool isAttacking = false;
+    [SerializeField] private bool isAttacking = false;
+    public bool canDamage = true;
     public bool IsAttacking { set => isAttacking = value; }
+
 
     [SerializeField] AudioClip baseSwing;
     [SerializeField] AudioClip baseClash;
@@ -25,8 +27,7 @@ public class EnemySword : MonoBehaviour
         owner_En = enemyData;
         my_En_AI = gameObject.GetComponentInParent<EnemyAI>();
     }
-
-    bool canDamage = true;
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Sword") && collision.gameObject.GetComponent<Sword>().canRotate == false)

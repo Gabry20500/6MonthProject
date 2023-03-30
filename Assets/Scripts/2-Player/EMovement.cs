@@ -25,6 +25,8 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     private Ease dash_Ease;
     private Ease knock_Ease;
     private Ease clash_Ease;
+    private RaycastHit hit;
+    private Ray ray;
 
     [Header("Attack variables")]
     [SerializeField] private bool isAttacking = false;
@@ -223,7 +225,16 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         if (canDash)
         {
             dash_Dir = new Vector3(InputController.instance.LeftStickDir.x, 0.0f, InputController.instance.LeftStickDir.y).normalized;
-            StartCoroutine(DashCoroutine());
+           
+            ray = new Ray(transform.position, dash_Dir * dash_Speed);
+            if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))
+            {
+                StartCoroutine(DashCoroutine(new Vector3(hit.point.x, transform.position.y, hit.point.z)));
+            }
+            else
+            {
+                StartCoroutine(DashCoroutine(transform.position + dash_Dir * dash_Speed));
+            }
         }
     }
 
@@ -232,14 +243,14 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     /// the second is for the coolDown of the action
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DashCoroutine()
+    private IEnumerator DashCoroutine(Vector3 destination)
     {
         mov_Animator.SetDirection(dash_Dir);
         canMove = false;
         canDash = false; 
         isDashing = true;
-
-        yield return transform.DOMove(transform.position + dash_Dir * dash_Speed, dash_Time).SetEase(dash_Ease).WaitForCompletion();
+        
+        yield return transform.DOMove(destination, dash_Time).SetEase(dash_Ease).WaitForCompletion();
         isDashing = false;
         canMove = true;
 

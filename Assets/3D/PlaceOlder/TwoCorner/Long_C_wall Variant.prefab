@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 84c3178ec9c750d449a63e053e6683ce, type: 3}
       propertyPath: m_Name
-      value: Long_C_wall
+      value: Long_C_wall Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84c3178ec9c750d449a63e053e6683ce, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84c3178ec9c750d449a63e053e6683ce, type: 3}
@@ -75,19 +79,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3, z: 14}
   m_Center: {x: -0.5, y: 1.5, z: 0}
---- !u!65 &8011555516817843741
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569735947141631610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 1}
-  m_Center: {x: 2, y: 1.5, z: 6.5}
 --- !u!65 &1573441793256644820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -101,3 +92,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 3, z: 1}
   m_Center: {x: 2, y: 1.5, z: -6.5}
+--- !u!65 &8011555516817843741
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569735947141631610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3, z: 1}
+  m_Center: {x: 2, y: 1.5, z: 6.5}

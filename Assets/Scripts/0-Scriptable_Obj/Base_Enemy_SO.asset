@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83ced2ed56413941a20799766c8e9fb, type: 3}
   m_Name: Base_Enemy_SO
   m_EditorClassIdentifier: 
+  HP: 45
+  max_HP: 45
   swordDamage: 1
   attackRate: 1.25
   knockSpeed: 10

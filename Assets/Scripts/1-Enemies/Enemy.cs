@@ -14,4 +14,11 @@ public class Enemy : Entity
         my_Room.EnemyDeath();
         Destroy(gameObject);
     }
+
+    public void InitParameters(EnemyData data)
+    {
+        HP = data.HP;
+        max_HP = data.max_HP;
+        InitHealthBar();
+    }
 }
