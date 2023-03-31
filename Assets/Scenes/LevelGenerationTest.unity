@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: clash_VFX
       value: 
       objectReference: {fileID: 4531770044224194509, guid: 48b17fc016435a24cadeef6dc6970d30, type: 3}
+    - target: {fileID: 5693687256000527901, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: deadOffSet
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972826, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_Name
       value: Player

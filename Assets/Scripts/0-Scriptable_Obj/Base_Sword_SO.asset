@@ -25,3 +25,5 @@ MonoBehaviour:
   freeze_Duration: 0.05
   swordScale: {x: 1, y: 1, z: 1}
   isBlockable: 1
+  baseSwing: {fileID: 8300000, guid: 635dfd2d31c344946b36413a773b65cd, type: 3}
+  baseClash: {fileID: 8300000, guid: 18aeebb729774014c843583a768acc55, type: 3}

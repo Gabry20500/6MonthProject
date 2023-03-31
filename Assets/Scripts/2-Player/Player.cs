@@ -19,7 +19,7 @@ public class Player : Entity
         max_HP = player_Data.max_HP;
         InitHealthBar();
         hit_Clip = player_Data.base_Hit_Clip;
-        GetComponent<EMovement>().InitParameters(player_Data);
+        GetComponent<EMovement>().self = player_Data;
     }
 
     protected override void Death()

@@ -182,9 +182,39 @@ public class KnockState : EnemyState
         }
         else
         {
-            processor.currentState = processor.idleState;
+            processor.currentState = processor.stunState;
             enemy.nav_Agent.isStopped = false;
         }
         buffer += Time.deltaTime;
+    }
+}
+
+
+public class StunState : EnemyState
+{
+    float buffer = 0.0f;
+    public StunState(EnemyStateProcessor context, EnemyAI enemy) : base(context, enemy) { }
+
+
+    public override void OnStateEnter()
+    {
+        enemy.nav_Agent.isStopped = true;
+    }
+
+    bool flag = false;
+    public override void Update()
+    {
+        if (flag == false) { OnStateEnter(); flag = true; }
+        if (buffer < enemy.enemy_Data.stun_Time)
+        {
+            buffer += Time.deltaTime;
+        }
+        else
+        {
+            buffer = 0.0f;
+            processor.currentState = processor.idleState;
+            enemy.nav_Agent.isStopped = false;
+        }
+
     }
 }
