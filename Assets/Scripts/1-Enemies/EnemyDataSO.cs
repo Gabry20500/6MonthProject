@@ -3,6 +3,9 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyData
 {
+    [Header("Health parameters:")]
+    public float HP;
+    public float max_HP;
     [Header("Attack parameters:")]
     public float swordDamage;
     public float attackRate;
@@ -18,6 +21,8 @@ public class EnemyData
     public EnemyData() { }
     public EnemyData(EnemyDataSO enemySO)
     {
+        HP = enemySO.HP;
+        max_HP = enemySO.max_HP;
         swordDamage = enemySO.swordDamage;
         attackRate = enemySO.attackRate;
         knockSpeed = enemySO.knockSpeed;
@@ -32,6 +37,9 @@ public class EnemyData
 [CreateAssetMenu(menuName = "EnemyData", fileName = "New EnemyData")]
 public class EnemyDataSO : ScriptableObject
 {
+    [Header("Health parameters:")]
+    public float HP;
+    public float max_HP;
     [Header("Attack parameters:")]
     public float swordDamage;
     public float attackRate;
@@ -47,6 +55,8 @@ public class EnemyDataSO : ScriptableObject
 
     public void SetData(EnemyData data)
     {
+        HP = data.HP;
+        max_HP = data.max_HP;
         swordDamage = data.swordDamage;
         attackRate = data.attackRate;
         knockSpeed = data.knockSpeed;

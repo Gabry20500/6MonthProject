@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
         enemy_Sword = GetComponentInChildren<EnemySword>();
         enemy_Sword.Init(enemy_Data);
         enemy = GetComponent<Enemy>();
+        enemy.InitParameters(enemy_Data);
 
         //Find player in the world and get self NavMeshAgent and animator
         target = GameObject.FindWithTag("Player").transform;     

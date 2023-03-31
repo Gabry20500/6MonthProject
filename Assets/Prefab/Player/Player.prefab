@@ -390,15 +390,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP_Bar: {fileID: 311475283383735221}
-  HP: 30
-  max_HP: 30
+  HP: 6
+  max_HP: 6
   hit_Clip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
   player_SO: {fileID: 11400000, guid: 52204242367c4894ba91d1a0fd2bac7c, type: 2}
   player_Data:
-    HP: 0
-    max_HP: 0
+    HP: 6
+    max_HP: 6
     base_Hit_Clip: {fileID: 0}
-    move_Speed: 0
+    move_Max_Speed: 0
+    acceleration: 0
+    deceleration: 0
     dash_Speed: 0
     dash_Time: 0
     dash_Cooldown: 0
