@@ -194,12 +194,10 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         {
             if ( Mathf.Abs((mov_RigidB.velocity - (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime))).magnitude) > 0.5 )
             {
-                Debug.Log("FERMING");
                 mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime));
             }
            else
             {
-                Debug.Log("FERMATO");
                 mov_RigidB.velocity = Vector3.zero;
             }
         }

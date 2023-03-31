@@ -16,9 +16,13 @@ public class Sword : MonoBehaviour
 
     #region MouseTracing
     private Vector2 mousePos;
+    private Vector2 lastMousePos;
     private Ray ray; //Ray to detect the world poin hitted by the mouse position
     private RaycastHit hit;
     private Vector3 currentDir; //Real world 3D direction elaborated from the mouse-world hit position
+    private Vector3 currentStickDir;
+    private Vector3 lastStickDir;
+    [SerializeField] private float deadOffSet = 5f;
     #endregion
 
     private EMovement player_Movement; //Link to the entity movement class to sto his movement and to perform other actions
@@ -87,18 +91,27 @@ public class Sword : MonoBehaviour
             //Rotate directly using the axis value from the right stick in gameoad
             if (InputController.instance.usingMouse == false)
             {
-                currentDir = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
-                rot_Pivot.forward = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
+                currentStickDir = InputController.instance.RT_Stick_Dir;
+                if (Mathf.Abs((currentStickDir - lastStickDir).magnitude) > deadOffSet)
+                {
+                    lastStickDir = currentStickDir;
+                    currentDir = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
+                    rot_Pivot.forward = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
+                }
             }
             //More elaborations needed to obtain direction from mouse pointing the world
             else if (InputController.instance.usingMouse)
             {
                 mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //Vector2 of the mouse position in the screen
-                ray = Camera.main.ScreenPointToRay(mousePos);//Generate a ray from the mouse pos in the direction of the world from the camera
-                Physics.Raycast(ray, out hit);//Detect collision
-                currentDir = (hit.point - rot_Pivot.position).normalized; //Calculate direction from the entity and the hitted world point
-                currentDir = new Vector3(currentDir.x, 0.0f, currentDir.z); //Generate a new 3D vector
-                rot_Pivot.forward = currentDir;//Set sword direction
+                if (Mathf.Abs((mousePos - lastMousePos).magnitude) > deadOffSet)
+                {
+                    lastMousePos = mousePos;
+                    ray = Camera.main.ScreenPointToRay(mousePos);//Generate a ray from the mouse pos in the direction of the world from the camera
+                    Physics.Raycast(ray, out hit);//Detect collision
+                    currentDir = (hit.point - rot_Pivot.position).normalized; //Calculate direction from the entity and the hitted world point
+                    currentDir = new Vector3(currentDir.x, 0.0f, currentDir.z); //Generate a new 3D vector
+                    rot_Pivot.forward = currentDir;//Set sword direction
+                }
             }
         }
     }
@@ -141,9 +154,11 @@ public class Sword : MonoBehaviour
     {
         trail.enabled = true;
 
-         initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
+        //initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
+        initialDir = rot_Pivot.forward;
          rot_Pivot.forward = initialDir;                                                                     //Set forward to the initial position of the animation
-         targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
+         //targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
+         targetDir = Quaternion.AngleAxis(swordData.swingWidth * i, Vector3.up) * rot_Pivot.forward;
          targetRot = Quaternion.LookRotation(targetDir);
 
 
@@ -205,6 +220,8 @@ public class Sword : MonoBehaviour
             return;
         }
     }
+
+    //Controllare la funzione ed implementarla meglio
     public IEnumerator SwordClash()
     {
         targetDir = initialDir;
