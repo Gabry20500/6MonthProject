@@ -31,13 +31,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694917649108951221}
   m_LocalRotation: {x: -0.12177223, y: 0.41956633, z: -0.25072435, w: 0.8638709}
-  m_LocalPosition: {x: 1.07, y: 0.928, z: -1.04}
-  m_LocalScale: {x: 20, y: 20, z: 20}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.87, y: 0.668, z: -0.786}
+  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 694917649305571636}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 51.81, z: -32.369}
+  m_LocalEulerAnglesHint: {x: -70.2, y: 0, z: 0}
 --- !u!33 &694917649108951225
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694917649108951221}
-  m_Mesh: {fileID: -5597002278806442958, guid: 580800462f0379c458ae1f56a44f6bbe, type: 3}
+  m_Mesh: {fileID: -3758573805739257388, guid: b8670d5639d716b4b9450f8c3b74504c, type: 3}
 --- !u!23 &694917649108951224
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31f68dba4741042468210bbeca964266, type: 2}
+  - {fileID: 2100000, guid: a407eb531380ae244be5439d54302513, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,8 +115,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03, y: 0.1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 52.07373, y: 86.70977, z: 8.372744}
+  m_Center: {x: -2.9941013, y: 7.7613935, z: -5.1705523}
 --- !u!114 &694917649108951230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner_En:
+    HP: 0
+    max_HP: 0
     swordDamage: 0
     attackRate: 0
     knockSpeed: 0
@@ -138,6 +140,9 @@ MonoBehaviour:
     attackReach: 0
     freeze_Intensity: 0
     freeze_Duration: 0
+    stun_Time: 0
+  isAttacking: 0
+  canDamage: 1
   baseSwing: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
   baseClash: {fileID: 8300000, guid: 18aeebb729774014c843583a768acc55, type: 3}
 --- !u!82 &694917649108951228
@@ -364,6 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_SO: {fileID: 11400000, guid: f0466a9e083e8fe409ac19e6f20d7f3d, type: 2}
   enemy_Data:
+    HP: 0
+    max_HP: 0
     swordDamage: 0
     attackRate: 0
     knockSpeed: 0
@@ -372,6 +379,7 @@ MonoBehaviour:
     attackReach: 0
     freeze_Intensity: 0
     freeze_Duration: 0
+    stun_Time: 0
   nav_Agent: {fileID: 0}
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917649108951229}
