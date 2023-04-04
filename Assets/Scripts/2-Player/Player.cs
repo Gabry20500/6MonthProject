@@ -25,6 +25,6 @@ public class Player : Entity
     protected override void Death()
     {
         Debug.Log("Morendo");
-        SceneManager.LoadScene("LevelGenerationTest");
+        SceneManager.LoadScene("MainMenu");
     }
 }

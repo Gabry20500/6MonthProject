@@ -28,6 +28,7 @@ public class RoomTemplates : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(allFinish);
         if (rooms.Count >= maxRoom && !allFinish)
         {
             Invoke(nameof(FinishLevel), .5f);
@@ -49,12 +50,22 @@ public class RoomTemplates : MonoBehaviour
                 {
                     room.GetComponent<RoomData>().InitRoomDetector();
                 }
-                
-                foreach (var garden in gardens)
-                {
-                    garden.GetComponent<GardenData>().InitGarden();
-                }
 
+                if (gardens.Count > 0)
+                {
+                    for(var j = gardens.Count - 1; j > -1; j--)
+                    {
+                        if (gardens[j] == null)
+                        {
+                            gardens.RemoveAt(j);
+                        }
+                        else
+                        {
+                            gardens[j].GetComponent<GardenData>().InitGarden();
+                        }
+                            
+                    }
+                }
 
                 for (int j = 1; j < rooms.Count; j++)
                 {
