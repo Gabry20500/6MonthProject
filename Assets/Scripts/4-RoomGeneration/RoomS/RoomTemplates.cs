@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class RoomTemplates : MonoBehaviour
+public class RoomTemplates : Singleton<RoomTemplates>
 {
     [Header("Rooms prefab")]
     public GameObject[] downRooms;
@@ -24,7 +24,10 @@ public class RoomTemplates : MonoBehaviour
     private bool allFinish = false;
     
     bool spawnedBoss;
-    public GameObject boos;
+    
+    [Header("Boss room")] 
+    public GameObject boss;
+    public GameObject ladder;
 
     private void Update()
     {
@@ -42,7 +45,7 @@ public class RoomTemplates : MonoBehaviour
         {
             if (i == rooms.Count -1)
             {
-                Instantiate(boos, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
+                Instantiate(boss, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
 
 
