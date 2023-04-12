@@ -31,7 +31,6 @@ public class RoomTemplates : Singleton<RoomTemplates>
 
     private void Update()
     {
-        Debug.Log(allFinish);
         if (rooms.Count >= maxRoom && !allFinish)
         {
             Invoke(nameof(FinishLevel), .5f);

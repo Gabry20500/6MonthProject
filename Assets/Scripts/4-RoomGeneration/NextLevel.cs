@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    private void OnEnable()
+    private void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene("LevelGenerationTest");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("LevelGenerationTest");
+        }
     }
 }
