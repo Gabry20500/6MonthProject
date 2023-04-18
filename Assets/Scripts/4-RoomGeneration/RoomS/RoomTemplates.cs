@@ -44,7 +44,7 @@ public class RoomTemplates : Singleton<RoomTemplates>
         {
             if (i == rooms.Count -1)
             {
-                Instantiate(boss, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
+                Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
 
 

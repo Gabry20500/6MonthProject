@@ -75,13 +75,12 @@ public class RoomSpawner : MonoBehaviour
                     newRoom = Instantiate(RoomTemplates.instance.leftRooms[0], transform.position, RoomTemplates.instance.leftRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
-                    
+
                 }else if (openingDirection == 4)
                 {
                     newRoom = Instantiate(RoomTemplates.instance.rightRooms[0], transform.position, RoomTemplates.instance.rightRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
-                    
                 }
                 spawned = true;
                 RoomTemplates.instance.currentRooms++;
