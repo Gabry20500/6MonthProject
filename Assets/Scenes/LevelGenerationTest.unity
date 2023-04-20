@@ -608,7 +608,7 @@ Camera:
   far clip plane: 486.9
   field of view: 43.754135
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -631,14 +631,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675322422}
-  m_LocalRotation: {x: 0.39233714, y: 0, z: 0, w: 0.9198215}
-  m_LocalPosition: {x: 0, y: 30.79, z: -33.65}
+  m_LocalRotation: {x: 0.49644578, y: -0, z: -0, w: 0.8680678}
+  m_LocalPosition: {x: -0.53, y: 49.2, z: -32.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 46.2, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.53, y: 0, z: 0}
 --- !u!4 &1741205967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5300979511925332935, guid: 30370ae4eb94b3549a67d12ed5975493, type: 3}
@@ -816,6 +816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TDLR
       objectReference: {fileID: 0}
+    - target: {fileID: 3158045266169369667, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 90967d16fe03b7f42a9839c8eeeea1cb, type: 2}
     - target: {fileID: 6763833835944952385, guid: d60ca6114ea65394095a5f0be58c0da4, type: 3}
       propertyPath: m_RootOrder
       value: 0
