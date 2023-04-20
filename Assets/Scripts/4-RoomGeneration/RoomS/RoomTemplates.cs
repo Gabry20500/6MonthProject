@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class RoomTemplates : MonoBehaviour
+public class RoomTemplates : Singleton<RoomTemplates>
 {
     [Header("Rooms prefab")]
     public GameObject[] downRooms;
@@ -24,7 +24,10 @@ public class RoomTemplates : MonoBehaviour
     private bool allFinish = false;
     
     bool spawnedBoss;
-    public GameObject boos;
+    
+    [Header("Boss room")] 
+    public GameObject boss;
+    public GameObject ladder;
 
     private void Update()
     {
@@ -41,7 +44,7 @@ public class RoomTemplates : MonoBehaviour
         {
             if (i == rooms.Count -1)
             {
-                Instantiate(boos, rooms[i].transform.position, Quaternion.identity, rooms[i].transform);
+                Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
 
 
@@ -49,12 +52,22 @@ public class RoomTemplates : MonoBehaviour
                 {
                     room.GetComponent<RoomData>().InitRoomDetector();
                 }
-                
-                foreach (var garden in gardens)
-                {
-                    garden.GetComponent<GardenData>().InitGarden();
-                }
 
+                if (gardens.Count > 0)
+                {
+                    for(var j = gardens.Count - 1; j > -1; j--)
+                    {
+                        if (gardens[j] == null)
+                        {
+                            gardens.RemoveAt(j);
+                        }
+                        else
+                        {
+                            gardens[j].GetComponent<GardenData>().InitGarden();
+                        }
+                            
+                    }
+                }
 
                 for (int j = 1; j < rooms.Count; j++)
                 {

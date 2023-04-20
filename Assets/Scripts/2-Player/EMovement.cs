@@ -190,17 +190,17 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
 
     private void Decelerate()
     {
-        if (mov_RigidB.velocity != Vector3.zero)
-        {
-            if ( Mathf.Abs((mov_RigidB.velocity - (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime))).magnitude) > 0.5 )
-            {
-                mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime));
-            }
-           else
-            {
+        //if (mov_RigidB.velocity != Vector3.zero)
+        //{
+        //    if ( Mathf.Abs((mov_RigidB.velocity - (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime))).magnitude) > 0.5 )
+        //    {
+        //        mov_RigidB.velocity -= (mov_RigidB.velocity.normalized * (self.deceleration * Time.fixedDeltaTime));
+        //    }
+        //   else
+        //    {
                 mov_RigidB.velocity = Vector3.zero;
-            }
-        }
+        //    }
+        //}
     }
 
 

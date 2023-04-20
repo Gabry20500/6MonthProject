@@ -101,8 +101,8 @@ public class SeekState : EnemyState
         {
             enemy.nav_Agent.isStopped = false;
             enemy.nav_Agent.SetDestination(enemy.target.position);
-            Debug.DrawRay(enemy.target.position, enemy.nav_Agent.velocity, Color.red, 1.0f);
-            Debug.DrawRay(enemy.target.position, Vector3.up, Color.red, 1.0f);
+            // Debug.DrawRay(enemy.target.position, enemy.nav_Agent.velocity, Color.red, 1.0f);
+            // Debug.DrawRay(enemy.target.position, Vector3.up, Color.red, 1.0f);
         }
         else if (enemy.Distance > enemy.enemy_Data.sightDistance)
         {

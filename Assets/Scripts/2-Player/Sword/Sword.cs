@@ -154,11 +154,11 @@ public class Sword : MonoBehaviour
     {
         trail.enabled = true;
 
-        //initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
-        initialDir = rot_Pivot.forward;
+        initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
+        //initialDir = rot_Pivot.forward;
          rot_Pivot.forward = initialDir;                                                                     //Set forward to the initial position of the animation
-         //targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
-         targetDir = Quaternion.AngleAxis(swordData.swingWidth * i, Vector3.up) * rot_Pivot.forward;
+         targetDir = Quaternion.AngleAxis((swordData.swingWidth * 1.2f) * i, Vector3.up) * rot_Pivot.forward;//Calculcate the desired final direction 
+         //targetDir = Quaternion.AngleAxis(swordData.swingWidth * i, Vector3.up) * rot_Pivot.forward;
          targetRot = Quaternion.LookRotation(targetDir);
 
 

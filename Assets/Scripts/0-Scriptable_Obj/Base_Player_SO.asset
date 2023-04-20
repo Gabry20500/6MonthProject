@@ -16,14 +16,14 @@ MonoBehaviour:
   max_HP: 6
   base_Hit_Clip: {fileID: 8300000, guid: 1ada9bc5c819ef24e91aa7bcd5b1ac40, type: 3}
   move_Max_Speed: 20
-  acceleration: 60
+  acceleration: 99
   deceleration: 150
   dash_Speed: 10
   dash_Time: 0.5
   dash_Cooldown: 1
   dash_Ease: 12
-  knock_Ease: 31
-  clash_Ease: 31
+  knock_Ease: 11
+  clash_Ease: 11
   inv_Time: 1
   inv_Flash_Tick: 0.25
   inv_Color: {r: 0, g: 0, b: 0, a: 0}
