@@ -7,7 +7,13 @@ public class MenuManage : MonoBehaviour
 {
     public void StartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelGenerationTest");
+    }
+    
+    public void ShowCase()
+    {
+        SceneManager.LoadScene("Showcase 3d");
     }
 
     public void Exit()
