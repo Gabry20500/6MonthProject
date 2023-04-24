@@ -126,6 +126,7 @@ MonoBehaviour:
   _doors:
   - {fileID: 8930416770185307909}
   - {fileID: 4674605620795526889}
+  enemys: 0
   enemyParent: {fileID: 380232806817041407}
 --- !u!1 &1985685560866344435
 GameObject:
@@ -910,11 +911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.64
+      value: 16.92
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.48
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalRotation.w
