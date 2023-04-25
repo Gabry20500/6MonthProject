@@ -518,6 +518,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 561560918653415209, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
+      propertyPath: ch_enemy_SO
+      value: 
+      objectReference: {fileID: 11400000, guid: 8dafd30fb311b4f4daed9d3388e2d2bb, type: 2}
     - target: {fileID: 694917650093578212, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
       propertyPath: m_Name
       value: Charger
@@ -565,22 +569,6 @@ PrefabInstance:
     - target: {fileID: 694917650093578213, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650804065485, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650804065485, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650804065485, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 694917650804065485, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1307206526741873933, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
       propertyPath: m_AnchorMax.x

@@ -5,16 +5,16 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
 {
     [Header("EnemyData:")]
     [SerializeField] private EnemyDataSO enemy_SO;
-    [SerializeField] public EnemyData enemy_Data;
-    private Enemy enemy;
+    private EnemyData enemy_Data;
+    protected Enemy enemy;
 
     public NavMeshAgent nav_Agent;
-    public Transform target;
+    public Transform target = null;
     public Animator enemy_Animator;
-    private EnemySword enemy_Sword;
+    protected EnemySword enemy_Sword;
 
     [Header("Movement parameters:")]
-    private float target_Distance;
+    protected float target_Distance;
     public float Distance 
     {
         get
@@ -31,8 +31,11 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
     //State processor to handle states flow
     private EnemyStateProcessor stateProcessor;
 
-
-    private void Awake()
+    public EnemyData Enemy_Data
+    {
+       get { return enemy_Data; }
+    }
+    protected void Awake()
     {
         //Enemy data init and sowrd init
         enemy_Data = new EnemyData(enemy_SO);
@@ -66,15 +69,15 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
     {
         enemy.TakeDamage(damage);
         //Logic to init anche change state in state processor
-        stateProcessor.knockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
+        stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
-        stateProcessor.currentState = stateProcessor.knockBackState;   
+        stateProcessor.currentState = stateProcessor.KnockBackState;   
     }
 
     public void OnClash(Vector3 knockBackDir, Player_SwordData sword)
     {
-        stateProcessor.knockBackState.Init(knockBackDir, sword.knockSpeed, sword.knockDuration);
+        stateProcessor.KnockBackState.Init(knockBackDir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
-        stateProcessor.currentState = stateProcessor.knockBackState;
+        stateProcessor.currentState = stateProcessor.KnockBackState;
     }
 }

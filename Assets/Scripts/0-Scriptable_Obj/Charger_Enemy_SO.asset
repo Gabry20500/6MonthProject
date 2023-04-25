@@ -9,17 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83ced2ed56413941a20799766c8e9fb, type: 3}
-  m_Name: Charge_SO
+  m_Script: {fileID: 11500000, guid: 57727bba783471d44ad09216a7d0e444, type: 3}
+  m_Name: Charger_Enemy_SO
   m_EditorClassIdentifier: 
   HP: 60
   max_HP: 60
   swordDamage: 2
-  attackRate: 1.25
+  attackRate: 0
   knockSpeed: 15
-  knockDuration: 0.25
-  sightDistance: 25
-  attackReach: 7
+  knockDuration: 0.3
+  sightDistance: 15
+  attackReach: 0
   freeze_Intensity: 0.4
-  freeze_Duration: 1
-  stun_Time: 3
+  freeze_Duration: 0.2
+  stun_Time: 2
+  chargeTime: 3
+  dashSpeed: 40
+  dashTime: 0.5
