@@ -20,7 +20,6 @@ public class Charger_Idle_State : ChargerState
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.Enemy_Data.sightDistance)
         {
-            //enemy.nav_Agent.isStopped = false;
             processor.DashState.destination = enemy.target.position;
             processor.ChargingState.OnStateEnter();
             processor.currentState = processor.ChargingState;
@@ -59,6 +58,7 @@ public class Charger_Charging_State : ChargerState
 public class Dash_State : ChargerState
 {
     public Vector3 destination;
+    public Vector3 dir;
     public Dash_State(ChargerStateProcessor context, ChargerAI enemy) : base(context, enemy){}
 
     float dash_Speed;
@@ -71,14 +71,14 @@ public class Dash_State : ChargerState
         enemy.nav_Agent.isStopped = true;
         dash_Speed = enemy.chenemy_Data.dashSpeed;
         dash_Time = enemy.chenemy_Data.dashTime;
+        dir = (destination - enemy.transform.position).normalized;
     }
 
     public override void Update()
     {
-        Debug.Log("Dash");
-        if (buffer < enemy.chenemy_Data.dashTime && Mathf.Abs((destination-enemy.transform.position).magnitude) > 0.1f)
+        if (Mathf.Abs((destination - enemy.transform.position).magnitude) > 1f)
         {
-            enemy.transform.position += dash_Speed * Time.deltaTime * (destination - enemy.transform.position).normalized;
+            enemy.transform.position += dash_Speed * Time.deltaTime * dir;
         }
         else
         {
