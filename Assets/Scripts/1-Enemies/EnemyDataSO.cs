@@ -61,7 +61,7 @@ public class EnemyDataSO : ScriptableObject
     public float stun_Time;
 
 
-    public void SetData(EnemyData data)
+    public virtual void SetData(EnemyData data)
     {
         HP = data.HP;
         max_HP = data.max_HP;

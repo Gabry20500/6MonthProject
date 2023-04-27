@@ -2,15 +2,35 @@ public class EnemyStateProcessor
 {
     public EnemyAI enemy;
 
-    public IdleState idleState;
-    public SeekState seekState;
-    public AttackState attackState;
-    public KnockState knockBackState;
-    public StunState stunState;
+    private IdleState idleState;
+    private SeekState seekState;
+    private AttackState attackState;
+    protected KnockState knockBackState;
+    protected StunState stunState;
+    public State currentState;
 
-    public EnemyState currentState;
-
-    
+    #region Getter
+    public IdleState IdleState
+    {
+        get { return idleState; }
+    }
+    public SeekState SeekState
+    {
+        get { return seekState; }
+    }
+    public AttackState AttackState
+    {
+        get { return attackState; }
+    }
+    public KnockState KnockBackState
+    {
+        get { return knockBackState; }
+    }
+    public StunState StunState
+    {
+        get { return stunState; }
+    }
+    #endregion
 
     public EnemyStateProcessor(EnemyAI context, EnemySword sword)
     {
@@ -21,13 +41,62 @@ public class EnemyStateProcessor
         knockBackState = new KnockState(this, enemy);
         stunState = new StunState(this, enemy);
     }
-
-    public void Init()
+    public virtual void Init()
     {
-        currentState = idleState;
+        currentState = idleState;       
+    }
+    public virtual void Update()
+    {
+        currentState.Update();
+    }
+}
+public class ChargerStateProcessor : EnemyStateProcessor
+{
+    public new ChargerAI enemy;
+
+    private Charger_Idle_State idleState;
+    private Charger_Charging_State chargingState;
+    private Dash_State dashState;
+    private CoolDown_State coolDownState;
+
+
+    #region Getter
+    public new Charger_Idle_State IdleState
+    {
+        get { return idleState; }
     }
 
-    public void Update()
+    public Charger_Charging_State ChargingState
+    {
+        get { return chargingState; }
+    }
+    public Dash_State DashState
+    {
+        get { return dashState; }
+    }
+
+    public CoolDown_State CoolDownState
+    {
+        get { return coolDownState; }
+    }
+    #endregion
+
+    public ChargerStateProcessor(ChargerAI context, EnemySword sword) : base(context, sword)
+    {
+        enemy = context;
+        idleState = new Charger_Idle_State(this, enemy);
+        chargingState = new Charger_Charging_State(this, enemy);
+        knockBackState = new KnockState(this, enemy);
+        stunState = new StunState(this, enemy);
+        dashState = new Dash_State(this, enemy);
+        coolDownState = new CoolDown_State(this, enemy);
+    }
+    public override void Init()
+    {
+        currentState = idleState;
+        currentState.OnStateEnter();
+    }
+    public override void Update()
     {
         currentState.Update();
     }
