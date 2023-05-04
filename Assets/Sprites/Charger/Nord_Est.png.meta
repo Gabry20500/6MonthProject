@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d57f47f6d7191c643a12d0baa4a2847e
+guid: f49c40ed2a276004089861abd0a241fd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 135
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -153,190 +153,74 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_Nord_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2683771b21ee920468b13179fa5c9882
-      internalID: 2142395993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_1
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2aff671c400cf9f4e9e552fad909f530
-      internalID: -28576315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_2
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58d57846bc9514247a275476d454884e
-      internalID: 854610092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9125c86ccd75ee4b9b221925fa5046e
-      internalID: -603656948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 754a985351e5f254a8b5dd6ec3e225b6
-      internalID: 952892224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_5
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04ac322878e8564458ae3dbb04204f47
-      internalID: 1781342662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Nord_6
+      name: Nord_Est_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 999107016866a364fbc275502d3708d9
-      internalID: 739960618
+      spriteID: 49a5b6e2ceff8d342bdc8009388778e8
+      internalID: -1940680911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_Nord_7
+      name: Nord_Est_1
       rect:
         serializedVersion: 2
-        x: 512
+        x: 682
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 243, y: -512}
+        - {x: 279, y: -167}
+        - {x: 341, y: -23}
+        - {x: 341, y: 512}
+        - {x: -341, y: 512}
+        - {x: -341, y: -512}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a306b63a60113144592fc33a7d3fb28f
-      internalID: 1244059242
+      spriteID: 017492e90b2eabc4aa813ba5e750d3e4
+      internalID: -907705668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_Nord_8
+      name: Nord_Est_2
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1362
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -341, y: 512}
+        - {x: -341, y: -512}
+        - {x: 341, y: -512}
+        - {x: 341, y: 512}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82b15cda4758b4442bb0d236cd2d781d
-      internalID: 1437020730
+      spriteID: 7505e48f3b786d24ea580958965bd434
+      internalID: -1187930441
       vertices: []
       indices: 
       edges: []
@@ -344,7 +228,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2ea0f3a9aa6d5e04e96dea1842705ced
+    spriteID: b6bf4d9a9515ea34e8b3e77c9f4b8279
     internalID: 0
     vertices: []
     indices: 
@@ -352,15 +236,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walk_Nord_1: -28576315
-      Walk_Nord_2: 854610092
-      Walk_Nord_8: 1437020730
-      Walk_Nord_0: 2142395993
-      Walk_Nord_3: -603656948
-      Walk_Nord_4: 952892224
-      Walk_Nord_5: 1781342662
-      Walk_Nord_7: 1244059242
-      Walk_Nord_6: 739960618
+      Nord_Est_2: -1940680911
+      Nord_Est_1: -907705668
+      Nord_Est_0: -1187930441
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -6,6 +6,8 @@ public class ChargerAI : EnemyAI
     [SerializeField] private ChargerDataSO ch_enemy_SO;
     [SerializeField] public  ChargerData chenemy_Data;
     protected ChargerStateProcessor stateProcessor;
+    public AIAnimator ai_Animator;
+    private bool isAttacking = false;
 
     public new float Distance
     {
@@ -22,6 +24,11 @@ public class ChargerAI : EnemyAI
     {
         get { return chenemy_Data; }
     }
+    public bool IsAttacking
+    {
+        get { return isAttacking; }
+        set { isAttacking = value; }
+    }
 
     protected new void Awake()
     {
@@ -37,6 +44,8 @@ public class ChargerAI : EnemyAI
         enemy_Sword.Init(chenemy_Data);
         enemy = GetComponent<Enemy>();
         enemy.InitParameters(chenemy_Data);
+
+        ai_Animator = GetComponentInChildren<AIAnimator>();
     }
     private void Start()
     {
@@ -50,6 +59,13 @@ public class ChargerAI : EnemyAI
         if (canMove == true)
         {
             stateProcessor.Update();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && isAttacking == true)
+        {
+            collision.gameObject.GetComponent<Player>().TakeDamage(3.0f);
         }
     }
 }

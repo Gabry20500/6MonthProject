@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ab47ec1bc4129e84aa4ef750c3df89a2
+guid: d80af336bb447b944ad375161a0c9a74
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 135
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -153,139 +153,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_Sud_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e727e00a373038043826471106b439a8
-      internalID: -921176950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_1
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b3b2685267e99245987c91b6a282bc7
-      internalID: 557621205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_2
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 375a5201601f23542b346ed944dfb785
-      internalID: 320737703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1784330b4db2f348b1e99cb38bed8e3
-      internalID: -256076258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91244a0ee916d7a40896e9cc40f452ef
-      internalID: 1902715543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_5
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a437fa06f7fe14249a5356d19dd5f4a0
-      internalID: 1242800937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_Sud_6
+      name: Ovest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0079bf76322062049ad8c897c1b1db60
-      internalID: -912333814
+      spriteID: 6f0481efc467a104683712d81335a2a1
+      internalID: -1650563411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_Sud_7
+      name: Ovest_1
       rect:
         serializedVersion: 2
-        x: 512
+        x: 682
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -314,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcb1db1abdb0635489f14d650e45cff1
-      internalID: -380544244
+      spriteID: d7b3c4918657fdc45bb6e3381cf5bc8a
+      internalID: 1944347113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_Sud_8
+      name: Ovest_2
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1364
         y: 0
-        width: 512
-        height: 512
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 278942e1c4d234543a103db3f6e4b367
-      internalID: 355108966
+      spriteID: 1fe76df2a95e61047921569a2946d0de
+      internalID: -1181648530
       vertices: []
       indices: 
       edges: []
@@ -344,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 04476dc9c3009d04fb993fb4d0605931
+    spriteID: 52207d0c7c39b60469109b352678f63b
     internalID: 0
     vertices: []
     indices: 
@@ -352,15 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walk_Sud_0: -921176950
-      Walk_Sud_4: 1902715543
-      Walk_Sud_8: 355108966
-      Walk_Sud_6: -912333814
-      Walk_Sud_3: -256076258
-      Walk_Sud_1: 557621205
-      Walk_Sud_5: 1242800937
-      Walk_Sud_2: 320737703
-      Walk_Sud_7: -380544244
+      Ovest_0: -1650563411
+      Ovest_1: 1944347113
+      Ovest_2: -1181648530
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

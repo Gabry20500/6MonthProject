@@ -368,18 +368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_SO: {fileID: 11400000, guid: 6f7be084e44d65f4aa664379afe2b75d, type: 2}
-  enemy_Data:
-    HP: 0
-    max_HP: 0
-    swordDamage: 0
-    attackRate: 0
-    knockSpeed: 0
-    knockDuration: 0
-    sightDistance: 0
-    attackReach: 0
-    freeze_Intensity: 0
-    freeze_Duration: 0
-    stun_Time: 0
   nav_Agent: {fileID: 0}
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917649108951229}
@@ -412,7 +400,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.847
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -55,6 +55,7 @@ public class ChargerStateProcessor : EnemyStateProcessor
     public new ChargerAI enemy;
 
     private Charger_Idle_State idleState;
+    private Charger_SeekState chseekState;
     private Charger_Charging_State chargingState;
     private Dash_State dashState;
     private CoolDown_State coolDownState;
@@ -64,6 +65,10 @@ public class ChargerStateProcessor : EnemyStateProcessor
     public new Charger_Idle_State IdleState
     {
         get { return idleState; }
+    }
+    public Charger_SeekState ChseekState
+    {
+        get { return chseekState; }
     }
 
     public Charger_Charging_State ChargingState
@@ -85,6 +90,7 @@ public class ChargerStateProcessor : EnemyStateProcessor
     {
         enemy = context;
         idleState = new Charger_Idle_State(this, enemy);
+        chseekState = new Charger_SeekState(this, enemy, sword);
         chargingState = new Charger_Charging_State(this, enemy);
         knockBackState = new KnockState(this, enemy);
         stunState = new StunState(this, enemy);
