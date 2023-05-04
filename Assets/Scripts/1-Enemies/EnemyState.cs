@@ -1,24 +1,38 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class EnemyState
+public class State
 {
-    protected EnemyStateProcessor processor;
-    protected EnemyAI enemy;
-
     protected EnemySword sword;
 
     protected Vector3 targetDir;
     protected Quaternion targetRot;
+
+    public virtual void OnStateEnter() { }
+    virtual public void Update() { }
+    public virtual void OnStateExit() { }
+}
+public class EnemyState : State
+{
+    protected EnemyStateProcessor processor;
+    protected EnemyAI enemy;
 
     public EnemyState(EnemyStateProcessor context, EnemyAI enemy)
     {
         this.processor = context;
         this.enemy = enemy;
     }
-    public virtual void OnStateEnter() { }
-    virtual public void Update() { }
-    public virtual void OnStateExit() { }
+}
+
+public class ChargerState : State
+{
+    protected ChargerAI enemy;
+    protected ChargerStateProcessor processor;
+    public ChargerState(ChargerStateProcessor context, ChargerAI enemy)
+    {
+        this.processor = context;
+        this.enemy = enemy;
+    }
 }
 
 
@@ -29,11 +43,11 @@ public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, ene
     public override void Update()
     {
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
-        if (enemy.Distance < enemy.enemy_Data.sightDistance )
+        if (enemy.Distance < enemy.Enemy_Data.sightDistance )
         {
-            processor.currentState = processor.seekState;
+            processor.currentState = processor.SeekState;
         }
-        else if (enemy.Distance > enemy.enemy_Data.sightDistance)
+        else if (enemy.Distance > enemy.Enemy_Data.sightDistance)
         {
             return;
         }
@@ -79,8 +93,6 @@ public IdleState(EnemyStateProcessor context, EnemyAI enemy) : base(context, ene
 //        }
 //    }
 //}
-
-
 public class SeekState : EnemyState
 {
     public SeekState(EnemyStateProcessor context, EnemyAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
@@ -92,22 +104,22 @@ public class SeekState : EnemyState
         targetRot = Quaternion.LookRotation(-targetDir);
         sword.transform.parent.transform.DOLocalRotateQuaternion(targetRot, 0.01f);
 
-        if (enemy.Distance < enemy.enemy_Data.attackReach)
+        if (enemy.Distance < enemy.Enemy_Data.attackReach)
         {
             enemy.nav_Agent.isStopped = true;
-            processor.currentState = processor.attackState;
+            processor.currentState = processor.AttackState;
         }
-        else if (enemy.Distance < enemy.enemy_Data.sightDistance)
+        else if (enemy.Distance < enemy.Enemy_Data.sightDistance)
         {
             enemy.nav_Agent.isStopped = false;
             enemy.nav_Agent.SetDestination(enemy.target.position);
             // Debug.DrawRay(enemy.target.position, enemy.nav_Agent.velocity, Color.red, 1.0f);
             // Debug.DrawRay(enemy.target.position, Vector3.up, Color.red, 1.0f);
         }
-        else if (enemy.Distance > enemy.enemy_Data.sightDistance)
+        else if (enemy.Distance > enemy.Enemy_Data.sightDistance)
         {
             enemy.nav_Agent.SetDestination(enemy.transform.position);
-            processor.currentState = processor.idleState;
+            processor.currentState = processor.IdleState;
         }
     }
 }
@@ -120,24 +132,24 @@ public class AttackState : EnemyState
     public override void Update()
     {
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
-        if (enemy.Distance < enemy.enemy_Data.attackReach && attacking == false)
+        if (enemy.Distance < enemy.Enemy_Data.attackReach && attacking == false)
         {
             enemy.enemy_Animator.SetBool("Attack", true);
             sword.IsAttacking = true;
             attacking = true;
         }
-        if (enemy.Distance < enemy.enemy_Data.attackReach && attacking == true)
+        if (enemy.Distance < enemy.Enemy_Data.attackReach && attacking == true)
         {
             targetDir = (enemy.target.position - enemy.transform.position).normalized;
             targetRot = Quaternion.LookRotation(-targetDir);
             sword.transform.parent.transform.DOLocalRotateQuaternion(targetRot, 0.1f).SetEase(Ease.InSine);          
         }
-        else if (enemy.Distance > enemy.enemy_Data.attackReach)
+        else if (enemy.Distance > enemy.Enemy_Data.attackReach)
         {
             enemy.enemy_Animator.SetBool("Attack", false);
             sword.IsAttacking = false;
             attacking = false;
-            processor.currentState = processor.idleState;
+            processor.currentState = processor.IdleState;
         }
     }
 
@@ -182,7 +194,7 @@ public class KnockState : EnemyState
         }
         else
         {
-            processor.currentState = processor.stunState;
+            processor.currentState = processor.StunState;
             enemy.nav_Agent.isStopped = false;
         }
         buffer += Time.deltaTime;
@@ -205,14 +217,14 @@ public class StunState : EnemyState
     public override void Update()
     {
         if (flag == false) { OnStateEnter(); flag = true; }
-        if (buffer < enemy.enemy_Data.stun_Time)
+        if (buffer < enemy.Enemy_Data.stun_Time)
         {
             buffer += Time.deltaTime;
         }
         else
         {
             buffer = 0.0f;
-            processor.currentState = processor.idleState;
+            processor.currentState = processor.IdleState;
             enemy.nav_Agent.isStopped = false;
         }
 
