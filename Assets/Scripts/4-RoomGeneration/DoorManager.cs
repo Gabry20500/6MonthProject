@@ -36,7 +36,7 @@ public class DoorManager : MonoBehaviour
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 15f);
+                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z + 25f);
                     
                     roomData.roomNord.SetActive(true);
                     currentRoom.SetActive(false);
@@ -48,7 +48,7 @@ public class DoorManager : MonoBehaviour
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 15f);
+                    player.transform.position = new Vector3(playerPos.x,playerPos.y,playerPos.z - 25f);
                     
                     roomData.roomSouth.SetActive(true);
                     currentRoom.SetActive(false);
@@ -60,7 +60,7 @@ public class DoorManager : MonoBehaviour
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x + 15f,playerPos.y,playerPos.z);
+                    player.transform.position = new Vector3(playerPos.x + 25f,playerPos.y,playerPos.z);
                     
                     roomData.roomEst.SetActive(true);
                     currentRoom.SetActive(false);
@@ -72,7 +72,7 @@ public class DoorManager : MonoBehaviour
                     mainCamera.transform.position = cameraPosition;
                     
                     playerPos = player.transform.position;
-                    player.transform.position = new Vector3(playerPos.x - 15f,playerPos.y,playerPos.z);
+                    player.transform.position = new Vector3(playerPos.x - 25f,playerPos.y,playerPos.z);
                     
                     roomData.roomWest.SetActive(true);
                     currentRoom.SetActive(false);
