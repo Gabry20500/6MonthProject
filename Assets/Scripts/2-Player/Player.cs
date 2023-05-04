@@ -1,10 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
     [SerializeField] Player_Data_SO player_SO;
     [SerializeField] PlayerData player_Data;
+    [SerializeField] private List<Sprite> healthBar_playerIcon;
+    [SerializeField] private Image currentImage;
 
     protected override void Awake()
     {
@@ -12,6 +16,8 @@ public class Player : Entity
         player_Data = new PlayerData(player_SO);
         InitParameters();  
     }
+    
+    
 
     private void InitParameters()
     {
@@ -22,9 +28,21 @@ public class Player : Entity
         GetComponent<EMovement>().self = player_Data;
     }
 
+    public override void TakeDamage(float value)
+    {
+        base.TakeDamage(value);
+        if (HP/max_HP <= 0.5f)
+        {
+            currentImage.sprite = healthBar_playerIcon[1];
+        }
+        else
+        {
+            currentImage.sprite = healthBar_playerIcon[0];
+        }
+    }
+
     protected override void Death()
     {
-        Debug.Log("Morendo");
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
