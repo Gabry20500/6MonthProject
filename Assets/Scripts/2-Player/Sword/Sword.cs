@@ -209,6 +209,13 @@ public class Sword : MonoBehaviour
             collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
             return;
         }
+        else if(collision.gameObject.CompareTag("Charger") && player_Movement.IsAttacking == true)
+        {
+            //knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
+            StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
+            collision.gameObject.GetComponent<ChargerAI>().OnHit(Damage, knockDir, swordData);
+            return;
+        }
         if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().enemy_Animator.GetBool("Attack") == true)
         {
             //Passing knock back direction to applicate to te hitted entity

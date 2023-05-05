@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
         }
     }
 
-    public void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
+    public virtual void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
         enemy.TakeDamage(damage);
         //Logic to init anche change state in state processor

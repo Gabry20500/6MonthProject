@@ -6,6 +6,8 @@ public class ChargerAI : EnemyAI
     [SerializeField] private ChargerDataSO ch_enemy_SO;
     [SerializeField] public  ChargerData chenemy_Data;
     protected ChargerStateProcessor stateProcessor;
+    public AIAnimator ai_Animator;
+    private bool isAttacking = false;
 
     public new float Distance
     {
@@ -22,6 +24,11 @@ public class ChargerAI : EnemyAI
     {
         get { return chenemy_Data; }
     }
+    public bool IsAttacking
+    {
+        get { return isAttacking; }
+        set { isAttacking = value; }
+    }
 
     protected new void Awake()
     {
@@ -37,6 +44,8 @@ public class ChargerAI : EnemyAI
         enemy_Sword.Init(chenemy_Data);
         enemy = GetComponent<Enemy>();
         enemy.InitParameters(chenemy_Data);
+
+        ai_Animator = GetComponentInChildren<AIAnimator>();
     }
     private void Start()
     {
@@ -51,5 +60,21 @@ public class ChargerAI : EnemyAI
         {
             stateProcessor.Update();
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && isAttacking == true)
+        {
+            collision.gameObject.GetComponent<Player>().TakeDamage(3.0f);
+        }
+    }
+
+    public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
+    {
+        enemy.TakeDamage(damage);
+        //Logic to init anche change state in state processor
+        //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
+        //stateProcessor.currentState.OnStateExit();
+        //stateProcessor.currentState = stateProcessor.KnockBackState;
     }
 }
