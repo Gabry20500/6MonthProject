@@ -17,7 +17,8 @@ public class Mob_Spawner : MonoBehaviour
         int rand = Random.Range(0, enemiesSpawnPoint.Count);
         for (int i = 0; i <= enemyNum; i++)
         {
-            GameObject enemy = Instantiate(EnemyPool.instance.baseEnemy, enemiesSpawnPoint[rand].transform.position,Quaternion.identity,enemyParent.transform);
+            int randEnemy = Random.Range(0, EnemyPool.instance.enemyType.Count);
+            GameObject enemy = Instantiate(EnemyPool.instance.enemyType[randEnemy], enemiesSpawnPoint[rand].transform.position,Quaternion.identity,enemyParent.transform);
             enemy.GetComponent<Enemy>().MyRoom = this;
             enemiesSpawnPoint[rand].isOccupied = true;
             occupiedSpawnPoint.Add(enemiesSpawnPoint[rand]);
