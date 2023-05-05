@@ -68,4 +68,13 @@ public class ChargerAI : EnemyAI
             collision.gameObject.GetComponent<Player>().TakeDamage(3.0f);
         }
     }
+
+    public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
+    {
+        enemy.TakeDamage(damage);
+        //Logic to init anche change state in state processor
+        //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
+        //stateProcessor.currentState.OnStateExit();
+        //stateProcessor.currentState = stateProcessor.KnockBackState;
+    }
 }
