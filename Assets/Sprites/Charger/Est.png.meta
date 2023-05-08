@@ -158,7 +158,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b8333ca4c1ebaa4c90589afbdd5a19b
-      internalID: -2088659886
+      spriteID: 3b7dd4643dd3a8444a1f1d8291199a30
+      internalID: -1971386231
       vertices: []
       indices: 
       edges: []
@@ -177,25 +177,19 @@ TextureImporter:
       name: Est_1
       rect:
         serializedVersion: 2
-        x: 682
+        x: 672
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 294, y: -210}
-        - {x: 341, y: -512}
-        - {x: -341, y: -512}
-        - {x: -341, y: 512}
-        - {x: 341, y: 512}
-        - {x: 279, y: -126}
+      border: {x: 0, y: 0, z: 10, w: 0}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19d25577b819a184092bc49972158e1b
-      internalID: -903367855
+      spriteID: 2ad7ce541c79f344bb36702de635ff48
+      internalID: 346709210
       vertices: []
       indices: 
       edges: []
@@ -204,9 +198,9 @@ TextureImporter:
       name: Est_2
       rect:
         serializedVersion: 2
-        x: 1364
+        x: 1344
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -215,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee9eefc8aeea40a47af195e39cfb9635
-      internalID: 152993062
+      spriteID: f1e85f7c6be014e45ad1213ee0f9a089
+      internalID: 1011704954
       vertices: []
       indices: 
       edges: []
@@ -224,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cbc6dc021c90fe342b11668e7f2f170d
+    spriteID: 4d4d666c8c20ff944bd1f2565090d3d0
     internalID: 0
     vertices: []
     indices: 
@@ -232,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Est_1: -903367855
-      Est_0: -2088659886
-      Est_2: 152993062
+      Est_1: 346709210
+      Est_0: -1971386231
+      Est_2: 1011704954
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

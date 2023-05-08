@@ -158,7 +158,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 682
+        width: 704
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df7604c0c819f9341ab7d197638b1db6
-      internalID: -1014132986
+      spriteID: 69b84f07d9aa94f4cb5c700f2c59c090
+      internalID: 360109085
       vertices: []
       indices: 
       edges: []
@@ -177,27 +177,19 @@ TextureImporter:
       name: Nord_Ovest_1
       rect:
         serializedVersion: 2
-        x: 682
+        x: 672
         y: 0
-        width: 662
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -331, y: -55}
-        - {x: -331, y: 512}
-        - {x: 331, y: 512}
-        - {x: 331, y: -512}
-        - {x: -331, y: -512}
-        - {x: -331, y: -302}
-        - {x: -255, y: -225}
-        - {x: -282, y: -132}
+      border: {x: 33, y: 0, z: 0, w: 0}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 268921cce6f45f0408f4903dfa73f8cf
-      internalID: -831348837
+      spriteID: b39a3b299e321c64db3c697d6dede23b
+      internalID: 1470315665
       vertices: []
       indices: 
       edges: []
@@ -206,9 +198,9 @@ TextureImporter:
       name: Nord_Ovest_2
       rect:
         serializedVersion: 2
-        x: 1343
+        x: 1354
         y: 0
-        width: 702
+        width: 662
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -217,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c441efa45f31ddb48b7ab23fed7c2f0d
-      internalID: 1881560087
+      spriteID: ed4c289ba4308d74b87789893d0a02e8
+      internalID: -216842888
       vertices: []
       indices: 
       edges: []
@@ -226,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a0928974396e48d4a8ce2b67b85885b0
+    spriteID: c750b6fd4aa3c2f4ea85e30c35de7f04
     internalID: 0
     vertices: []
     indices: 
@@ -234,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nord_Ovest_2: 1881560087
-      Nord_Ovest_1: -831348837
-      Nord_Ovest_0: -1014132986
+      Nord_Ovest_2: -216842888
+      Nord_Ovest_1: 1470315665
+      Nord_Ovest_0: 360109085
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -366,6 +366,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Height
+      value: 2.2400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Radius
+      value: 1.0478461
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Center.y
+      value: 0.67000026
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Center.z
+      value: -0.17784643
+      objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972826, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -380,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.36
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972831, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -464,6 +480,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 186725209, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 694917650093578212, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
       propertyPath: m_Name
       value: Charger

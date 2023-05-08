@@ -161,14 +161,14 @@ TextureImporter:
         width: 682
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f0481efc467a104683712d81335a2a1
-      internalID: -1650563411
+      spriteID: 644d9f91ff899d84ba523fccda09336b
+      internalID: 1884308019
       vertices: []
       indices: 
       edges: []
@@ -177,19 +177,19 @@ TextureImporter:
       name: Ovest_1
       rect:
         serializedVersion: 2
-        x: 682
+        x: 686
         y: 0
-        width: 682
+        width: 658
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7b3c4918657fdc45bb6e3381cf5bc8a
-      internalID: 1944347113
+      spriteID: d4ec92bd4e3ce3e4bb9d702c3e379b30
+      internalID: 1250624265
       vertices: []
       indices: 
       edges: []
@@ -198,19 +198,19 @@ TextureImporter:
       name: Ovest_2
       rect:
         serializedVersion: 2
-        x: 1364
+        x: 1344
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fe76df2a95e61047921569a2946d0de
-      internalID: -1181648530
+      spriteID: 9c03a9a538252284fa41db1c1880a2d8
+      internalID: -355720484
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 52207d0c7c39b60469109b352678f63b
+    spriteID: 19214bee93a4ecc47a2bd4ac36fb51bf
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ovest_0: -1650563411
-      Ovest_1: 1944347113
-      Ovest_2: -1181648530
+      Ovest_0: 1884308019
+      Ovest_1: 1250624265
+      Ovest_2: -355720484
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
