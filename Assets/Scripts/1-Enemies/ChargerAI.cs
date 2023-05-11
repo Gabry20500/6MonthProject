@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class ChargerAI : EnemyAI
 {
+    [SerializeField] public GameObject pointer;
+    [SerializeField] public AudioClip dashSound;
+
     [SerializeField] private ChargerDataSO ch_enemy_SO;
     [SerializeField] public  ChargerData chenemy_Data;
     protected ChargerStateProcessor stateProcessor;

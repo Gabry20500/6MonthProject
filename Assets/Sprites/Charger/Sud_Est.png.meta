@@ -158,58 +158,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 682
-        height: 1024
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 31, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1c84017614b99e47a4676facbf856db
-      internalID: 342446738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sud_Est_1
-      rect:
-        serializedVersion: 2
-        x: 682
-        y: 0
-        width: 682
-        height: 1024
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 19, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 260, y: -72}
-        - {x: 233, y: -203}
-        - {x: 281, y: -253}
-        - {x: 296, y: -316}
-        - {x: 341, y: -512}
-        - {x: -341, y: -512}
-        - {x: -341, y: 512}
-        - {x: 341, y: 512}
-        - {x: 341, y: 83}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27956413f42a6874eaacf75c1e8d2fec
-      internalID: -1927622334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sud_Est_2
-      rect:
-        serializedVersion: 2
-        x: 1364
-        y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,8 +167,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad0989e2f3754b84bbd210c95a33ee06
-      internalID: 1591852143
+      spriteID: d0560572833897f40ba43d3d89e57f26
+      internalID: -1801877743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sud_Est_1
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 666
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea24306a25b172f42b8a80e03708343a
+      internalID: 1335195965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sud_Est_2
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 0
+        width: 672
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a98705834d21a643b4cca5bbdd2e09a
+      internalID: -1561124969
       vertices: []
       indices: 
       edges: []
@@ -227,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 385acf807b62854419fdebe4c17cf470
+    spriteID: 0e53b2b2210eed749acd63004ead0669
     internalID: 0
     vertices: []
     indices: 
@@ -235,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sud_Est_1: -1927622334
-      Sud_Est_0: 342446738
-      Sud_Est_2: 1591852143
+      Sud_Est_1: 1335195965
+      Sud_Est_0: -1801877743
+      Sud_Est_2: -1561124969
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
