@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_lava
+  m_Name: Ground_lava 2
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -35,9 +35,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: b3c805274e232d0489a6c06abf686501, type: 3}
-        m_Scale: {x: 4.42, y: 4.55}
-        m_Offset: {x: 0.29, y: -0.22}
+        m_Texture: {fileID: 2800000, guid: 1444795f8a7de744299944d1a2e01465, type: 3}
+        m_Scale: {x: 4.76, y: 4.91}
+        m_Offset: {x: 0.13, y: -0.34}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,9 +59,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b3c805274e232d0489a6c06abf686501, type: 3}
-        m_Scale: {x: 4.42, y: 4.55}
-        m_Offset: {x: 0.29, y: -0.22}
+        m_Texture: {fileID: 2800000, guid: 1444795f8a7de744299944d1a2e01465, type: 3}
+        m_Scale: {x: 4.76, y: 4.91}
+        m_Offset: {x: 0.13, y: -0.34}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
