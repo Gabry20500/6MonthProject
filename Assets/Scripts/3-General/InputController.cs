@@ -86,7 +86,7 @@ public class InputController : Singleton<InputController>
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0)
         {
             if (SpaceDown != null)
             {
@@ -114,6 +114,8 @@ public class InputController : Singleton<InputController>
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
+
+        
         //Prioritizing the joypad controller then check the board for right analog input
         if (rightVerticalInput != 0 || rightHorizontalInput != 0)
         {
