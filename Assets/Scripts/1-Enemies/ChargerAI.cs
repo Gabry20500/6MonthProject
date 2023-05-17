@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
 public class ChargerAI : EnemyAI
 {
+    private bool canHit = true;
+
     [SerializeField] public GameObject pointer;
     [SerializeField] public AudioClip dashSound;
 
@@ -66,9 +69,14 @@ public class ChargerAI : EnemyAI
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player") && isAttacking == true)
+        if (canHit == true)
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(3.0f);
+            canHit = false;
+            if (collision.gameObject.CompareTag("Player") && isAttacking == true)
+            {
+                collision.gameObject.GetComponent<Player>().TakeDamage(2.0f);
+            }
+            StartCoroutine(Charger_Hit_Cooldown(1.0f));
         }
     }
 
@@ -79,5 +87,16 @@ public class ChargerAI : EnemyAI
         //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
         //stateProcessor.currentState.OnStateExit();
         //stateProcessor.currentState = stateProcessor.KnockBackState;
+    }
+
+    private IEnumerator Charger_Hit_Cooldown(float coolTime)
+    {
+        float buffer = 0.0f;
+        while(buffer < coolTime)
+        {
+            buffer += Time.deltaTime;
+            yield return null;
+        }
+        canHit = true;
     }
 }
