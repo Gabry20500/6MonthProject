@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e989fdbcfa8f6d5478e36b19c4373f64
+guid: 728e9aa0290bf5a44866bc9c7161e6aa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 270
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,6 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -141,13 +153,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: West_0
+      name: Ovest_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bb59d54d2bc57c489b49af2c425db02
-      internalID: -1268974353
+      spriteID: 07a4f8313f6aecd4889f609159477249
+      internalID: -110708298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: West_1
+      name: Ovest_1
       rect:
         serializedVersion: 2
-        x: 480
+        x: 682
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ff22e8ca5e04fd4bbba44e823603d0c
-      internalID: -81584680
+      spriteID: 235498eec26db4849869523dd9a4181c
+      internalID: 1257309094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: West_2
+      name: Ovest_2
       rect:
         serializedVersion: 2
-        x: 959
+        x: 1364
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cd032160c66b2e4099eca92783e824a
-      internalID: 373896894
+      spriteID: 3819d7fd9db384d47af44ee96f6e159c
+      internalID: -1690205893
       vertices: []
       indices: 
       edges: []
@@ -206,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e382f488e9ca5cb44b82fefd2178203a
+    spriteID: d2c83379408f9464fa879cfd9bb49609
     internalID: 0
     vertices: []
     indices: 
@@ -214,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      West_1: -81584680
-      West_2: 373896894
-      West_0: -1268974353
+      Ovest_0: -110708298
+      Ovest_1: 1257309094
+      Ovest_2: -1690205893
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

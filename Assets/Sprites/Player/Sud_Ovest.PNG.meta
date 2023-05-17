@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 270
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,6 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -144,10 +156,10 @@ TextureImporter:
       name: Sud_Ovest_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ed982dc383ad994e9c9b608aa091718
-      internalID: 873444516
+      spriteID: 0fb379e1637bb7b45b8dfbb2ac74ce1c
+      internalID: 1643061749
       vertices: []
       indices: 
       edges: []
@@ -165,10 +177,10 @@ TextureImporter:
       name: Sud_Ovest_1
       rect:
         serializedVersion: 2
-        x: 480
+        x: 682
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c59e8cd5fea346f45bfcd0519a6f5f4a
-      internalID: 1944531075
+      spriteID: d1260edab71364943aeeb8b8953c83da
+      internalID: -1803228868
       vertices: []
       indices: 
       edges: []
@@ -186,10 +198,10 @@ TextureImporter:
       name: Sud_Ovest_2
       rect:
         serializedVersion: 2
-        x: 959
+        x: 1364
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d503dc26ccba3b54aa18954db89cc23a
-      internalID: -211552876
+      spriteID: 77a2fba941616ab488694ac3a3e01987
+      internalID: -1534716955
       vertices: []
       indices: 
       edges: []
@@ -206,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d26e1f2b4f85c194787e49a7b4858e2f
+    spriteID: d702278adb6e89d46a30271ca1ebb32e
     internalID: 0
     vertices: []
     indices: 
@@ -214,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sud_Ovest_1: 1944531075
-      Sud_Ovest_0: 873444516
-      Sud_Ovest_2: -211552876
+      Sud_Ovest_1: -1803228868
+      Sud_Ovest_0: 1643061749
+      Sud_Ovest_2: -1534716955
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
