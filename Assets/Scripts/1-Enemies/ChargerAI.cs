@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class ChargerAI : EnemyAI
 {
     private bool canHit = true;
+    private bool canBeDamaged = true;
 
     [SerializeField] public GameObject pointer;
     [SerializeField] public AudioClip dashSound;
@@ -69,24 +70,28 @@ public class ChargerAI : EnemyAI
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (canHit == true)
-        {
-            canHit = false;
+        //if (canHit == true)
+        //{
+            
             if (collision.gameObject.CompareTag("Player") && isAttacking == true)
             {
                 collision.gameObject.GetComponent<Player>().TakeDamage(2.0f);
             }
-            StartCoroutine(Charger_Hit_Cooldown(1.0f));
-        }
+            //canHit = false;
+            //StartCoroutine(Charger_Hit_Cooldown(1.0f));
+        //}
     }
 
     public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
-        enemy.TakeDamage(damage);
-        //Logic to init anche change state in state processor
-        //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
-        //stateProcessor.currentState.OnStateExit();
-        //stateProcessor.currentState = stateProcessor.KnockBackState;
+        if (canBeDamaged == true)
+        {
+            enemy.TakeDamage(damage);
+            //Logic to init anche change state in state processor
+            //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
+            //stateProcessor.currentState.OnStateExit();
+            //stateProcessor.currentState = stateProcessor.KnockBackState;
+        }
     }
 
     private IEnumerator Charger_Hit_Cooldown(float coolTime)
