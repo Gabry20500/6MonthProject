@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class Player : Entity
     [SerializeField] PlayerData player_Data;
     [SerializeField] private List<Sprite> healthBar_playerIcon;
     [SerializeField] private Image currentImage;
+    [SerializeField] public Slider dashBar;
 
     protected override void Awake()
     {
@@ -45,5 +47,18 @@ public class Player : Entity
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+
+    public IEnumerator Dash_Bar_Cooldown(float coolTime)
+    {
+        float buff = 0.0f;
+        while(buff < coolTime)
+        {
+            dashBar.value += Time.deltaTime / coolTime;
+            buff += Time.deltaTime;
+            yield return null;
+        }
+        dashBar.value = 1.0f;
     }
 }

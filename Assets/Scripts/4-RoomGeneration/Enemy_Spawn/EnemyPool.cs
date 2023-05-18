@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemyPool : Singleton<EnemyPool>
 {
     public GameObject baseEnemy;
+    public List<GameObject> enemyType;
 }

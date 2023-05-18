@@ -41,7 +41,7 @@ public class Charger_SeekState : ChargerState
         if (enemy.Distance < enemy.chenemy_Data.attackReach)
         {
             enemy.nav_Agent.isStopped = true;
-            processor.DashState.destination = enemy.target.position;
+            
             processor.ChargingState.OnStateEnter();
             processor.currentState = processor.ChargingState;
         }
@@ -67,18 +67,22 @@ public class Charger_Charging_State : ChargerState
     public override void OnStateEnter()
     {
         buffer = 0.0f;
+        enemy.pointer.SetActive(true);
         enemy.nav_Agent.isStopped = true;
         enemy.ai_Animator.ChargingAnimation();
     }
     public override void Update()
     {
+        Vector3 dir = -(enemy.target.position - enemy.transform.position).normalized;
+        enemy.pointer.transform.forward = new Vector3(dir.x, dir.y, dir.z);
         if (buffer < enemy.chenemy_Data.chargeTime)
         {
             buffer += Time.deltaTime;
         }
         else
         {
-            processor.DashState.OnStateEnter();
+            processor.DashState.destination = enemy.target.position;
+            processor.DashState.OnStateEnter();         
             processor.currentState = processor.DashState;
         }
     }
@@ -88,6 +92,8 @@ public class Dash_State : ChargerState
 {
     public Vector3 destination;
     public Vector3 dir;
+    private Ray ray;
+    private RaycastHit hit;
     public Dash_State(ChargerStateProcessor context, ChargerAI enemy) : base(context, enemy){}
 
     float dash_Speed;
@@ -97,11 +103,20 @@ public class Dash_State : ChargerState
     public override void OnStateEnter()
     {
         buffer = 0.0f;
+        enemy.pointer.SetActive(false);
         enemy.nav_Agent.isStopped = true;
         enemy.IsAttacking = true;
         dash_Speed = enemy.chenemy_Data.dashSpeed;
         dash_Time = enemy.chenemy_Data.dashTime;
         dir = (destination - enemy.transform.position).normalized;
+
+        ray = new Ray(enemy.transform.position, dir * dash_Speed);
+        if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))
+        {
+            destination = new Vector3(hit.point.x, enemy.transform.position.y, hit.point.z);
+        }
+        enemy.GetComponent<AudioSource>().clip = enemy.dashSound;
+        enemy.GetComponent<AudioSource>().Play();
     }
 
     public override void Update()
@@ -128,7 +143,6 @@ public class CoolDown_State : ChargerState
     }
     public override void Update()
     {
-        Debug.Log("CoolDown");
         if (buffer < enemy.chenemy_Data.stun_Time)
         {
             buffer += Time.deltaTime;

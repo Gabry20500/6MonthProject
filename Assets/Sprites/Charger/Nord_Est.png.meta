@@ -158,7 +158,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49a5b6e2ceff8d342bdc8009388778e8
-      internalID: -1940680911
+      spriteID: a5d9a63f034eca6429f43a3454655f60
+      internalID: -1231266099
       vertices: []
       indices: 
       edges: []
@@ -177,25 +177,19 @@ TextureImporter:
       name: Nord_Est_1
       rect:
         serializedVersion: 2
-        x: 682
+        x: 672
         y: 0
-        width: 682
+        width: 672
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 243, y: -512}
-        - {x: 279, y: -167}
-        - {x: 341, y: -23}
-        - {x: 341, y: 512}
-        - {x: -341, y: 512}
-        - {x: -341, y: -512}
+      border: {x: 0, y: 0, z: 15, w: 0}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017492e90b2eabc4aa813ba5e750d3e4
-      internalID: -907705668
+      spriteID: 6c80bb26bbae51945a0d0b5442a618f8
+      internalID: -993129952
       vertices: []
       indices: 
       edges: []
@@ -204,23 +198,19 @@ TextureImporter:
       name: Nord_Est_2
       rect:
         serializedVersion: 2
-        x: 1362
+        x: 1332
         y: 0
-        width: 682
+        width: 684
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -341, y: 512}
-        - {x: -341, y: -512}
-        - {x: 341, y: -512}
-        - {x: 341, y: 512}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7505e48f3b786d24ea580958965bd434
-      internalID: -1187930441
+      spriteID: c58c11a07ba924841afd036f0ea36192
+      internalID: 749211526
       vertices: []
       indices: 
       edges: []
@@ -228,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b6bf4d9a9515ea34e8b3e77c9f4b8279
+    spriteID: a3590a01750a3034e83ee13e036b1ba1
     internalID: 0
     vertices: []
     indices: 
@@ -236,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nord_Est_2: -1940680911
-      Nord_Est_1: -907705668
-      Nord_Est_0: -1187930441
+      Nord_Est_2: 749211526
+      Nord_Est_1: -993129952
+      Nord_Est_0: -1231266099
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

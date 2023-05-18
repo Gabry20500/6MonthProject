@@ -236,11 +236,12 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         canMove = false;
         canDash = false; 
         isDashing = true;
-        
+        player.dashBar.value = 0.0f;
         yield return transform.DOMove(destination, self.dash_Time).SetEase(self.dash_Ease).WaitForCompletion();
         canMove = true;
         isDashing = false;
 
+        StartCoroutine(player.Dash_Bar_Cooldown(self.dash_Cooldown));
         yield return new WaitForSeconds(self.dash_Cooldown);
         canDash = true;
     }

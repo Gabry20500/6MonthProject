@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 270
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,6 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -137,18 +149,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -156,10 +156,10 @@ TextureImporter:
       name: Sud_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e2f7bcd5e052e64e8868aa62b502350
-      internalID: 1062213760
+      spriteID: fbc637a91fee49243b54aac34de7bcb0
+      internalID: 351973121
       vertices: []
       indices: 
       edges: []
@@ -177,10 +177,10 @@ TextureImporter:
       name: Sud_1
       rect:
         serializedVersion: 2
-        x: 480
+        x: 682
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ef73d6745c24b34b8f7038873f41e43
-      internalID: -1261508978
+      spriteID: f9b8f8f37861a144f88fa684bbb2ca79
+      internalID: 427607604
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
       name: Sud_2
       rect:
         serializedVersion: 2
-        x: 959
+        x: 1364
         y: 0
-        width: 479
-        height: 702
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6a264dcb378a064a9ec81aafc3e8973
-      internalID: -1303339787
+      spriteID: 8bc965f72078ed54f9fff3b4907a60f1
+      internalID: -1165583072
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f3f50b44ab9d0124ca656535b32b6186
+    spriteID: 4068df362d9257843bce4776c23f6379
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sud_2: -1303339787
-      Sud_1: -1261508978
-      Sud_0: 1062213760
+      Sud_2: -1165583072
+      Sud_1: 427607604
+      Sud_0: 351973121
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

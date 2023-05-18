@@ -22,7 +22,7 @@ public class Sword : MonoBehaviour
     private Vector3 currentDir; //Real world 3D direction elaborated from the mouse-world hit position
     private Vector3 currentStickDir;
     private Vector3 lastStickDir;
-    [SerializeField] private float deadOffSet = 5f;
+    [SerializeField] private float deadOffSet = 0.2f;
     #endregion
 
     private EMovement player_Movement; //Link to the entity movement class to sto his movement and to perform other actions
@@ -92,12 +92,9 @@ public class Sword : MonoBehaviour
             if (InputController.instance.usingMouse == false)
             {
                 currentStickDir = InputController.instance.RT_Stick_Dir;
-                if (Mathf.Abs((currentStickDir - lastStickDir).magnitude) > deadOffSet)
-                {
-                    lastStickDir = currentStickDir;
-                    currentDir = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
-                    rot_Pivot.forward = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
-                }
+                lastStickDir = currentStickDir;
+                currentDir = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
+                rot_Pivot.forward = new Vector3(InputController.instance.RT_Stick_Dir.x, 0.0f, InputController.instance.RT_Stick_Dir.y);
             }
             //More elaborations needed to obtain direction from mouse pointing the world
             else if (InputController.instance.usingMouse)
@@ -178,6 +175,7 @@ public class Sword : MonoBehaviour
         InputController.instance.LeftMouseDown += LR_Swing;//Re-inscribe swing to InputController
         InputController.instance.RightMouseDown += RL_Swing;
         swinging = false;
+        rot_Pivot.forward = swingDir;
     }
 
     private Vector3 velocity;
