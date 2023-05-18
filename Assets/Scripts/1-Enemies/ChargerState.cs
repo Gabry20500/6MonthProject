@@ -143,7 +143,6 @@ public class CoolDown_State : ChargerState
     }
     public override void Update()
     {
-        Debug.Log("CoolDown");
         if (buffer < enemy.chenemy_Data.stun_Time)
         {
             buffer += Time.deltaTime;
