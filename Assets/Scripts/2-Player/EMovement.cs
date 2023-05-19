@@ -114,6 +114,11 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     {
         get { return self.inv_Color; }
     }
+
+    public Player Player
+    {
+        get { return player; }
+    }
     #endregion
 
     private void Awake()

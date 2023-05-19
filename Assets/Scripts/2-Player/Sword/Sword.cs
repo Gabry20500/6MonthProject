@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +10,8 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] private Player_SwordSO swordSO;
     [SerializeField] public Player_SwordData swordData;
+    [SerializeField] public List<Stone> stones;
+    [SerializeField] public Stone currentStone;
 
 
     [SerializeField] public bool canRotate = true;
@@ -242,4 +245,41 @@ public class Sword : MonoBehaviour
         InputController.instance.RightMouseDown += RL_Swing;
         swinging = false;
     }
+
+
+    public bool PickUp_Stone(Stone stone)
+    {
+        if(stones.Count < 5)
+        {
+            stones.Add(stone);
+            stone.OnPickedUp(player_Movement.Player);
+            //Prendi l'indice e dopo iscrivi la funzione corrispondente all'evento dell'input manager
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool Discard_Stone(StoneElement element)
+    {
+        foreach (Stone stone in stones)
+        {
+            if (stone.Element == element)
+            {
+                stones.Remove(stone);
+                stone.OnDiscarded(player_Movement.Player);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //4 functions to inscribe to the 4 button events in the input manager
+    private void Activate_First_Stone() { }
+    private void Activate_Second_Stone() { }
+    private void Activate_Third_Stone() { }
+    private void Activate_Fourth_Stone() { }
+
 }

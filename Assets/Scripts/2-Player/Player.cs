@@ -11,6 +11,7 @@ public class Player : Entity
     [SerializeField] private List<Sprite> healthBar_playerIcon;
     [SerializeField] private Image currentImage;
     [SerializeField] public Slider dashBar;
+    [SerializeField] public List<Stone_UI> stone_UIs;
 
     protected override void Awake()
     {
@@ -19,8 +20,7 @@ public class Player : Entity
         InitParameters();  
     }
     
-    
-
+  
     private void InitParameters()
     {
         HP = player_Data.HP;
@@ -29,7 +29,6 @@ public class Player : Entity
         hit_Clip = player_Data.base_Hit_Clip;
         GetComponent<EMovement>().self = player_Data;
     }
-
     public override void TakeDamage(float value)
     {
         base.TakeDamage(value);
@@ -42,14 +41,11 @@ public class Player : Entity
             currentImage.sprite = healthBar_playerIcon[0];
         }
     }
-
     protected override void Death()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
-
-
     public IEnumerator Dash_Bar_Cooldown(float coolTime)
     {
         float buff = 0.0f;
@@ -60,5 +56,24 @@ public class Player : Entity
             yield return null;
         }
         dashBar.value = 1.0f;
+    }
+
+    public void PickUp_Stone(Stone stone)
+    {
+
+    }
+    public void Discard_Stone(Stone stone)
+    {
+
+    }
+
+    public void Activate_Stone(Stone stone)
+    {
+
+    }
+
+    public void Disable_Stone(Stone stone)
+    {
+
     }
 }
