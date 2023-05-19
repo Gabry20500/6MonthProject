@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84165344b1254a0dafe080af10f2bafc, type: 3}
-  m_Name: MagicStoneTest
+  m_Script: {fileID: 11500000, guid: fe540363fe6169d4496fe156152d0404, type: 3}
+  m_Name: WaterStone
   m_EditorClassIdentifier: 
-  stoneElement: 1
+  element: 2
   uiImage: {fileID: 0}
-  gameImage: {fileID: -1226817584057097758, guid: 898bf915eb0cc614e96ced0b2e058cd0, type: 3}
-  damageInTime: 1
-  slowDown: 0
-  speedUp: 0
+  swMesh: {fileID: 0}
+  swMaterial: {fileID: 0}
+  trailMaterial: {fileID: 0}
