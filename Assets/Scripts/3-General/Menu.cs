@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,7 @@ public class Menu : MonoBehaviour
 {
 
     public List<GameObject> disabled;
-    public List<GameObject> enabled;
+    public new List<GameObject> enabled;
     
     
     public void Play()

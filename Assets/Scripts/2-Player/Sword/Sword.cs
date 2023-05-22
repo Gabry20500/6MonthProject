@@ -49,6 +49,10 @@ public class Sword : MonoBehaviour
             return swordData.Damage;
         }
     }
+    public EMovement Player_Movement
+    {
+        get { return player_Movement; }
+    }
 
     private void Awake()
     {
@@ -68,6 +72,10 @@ public class Sword : MonoBehaviour
     {
         InputController.instance.LeftMouseDown += LR_Swing;
         InputController.instance.RightMouseDown += RL_Swing;
+        InputController.instance.Button2_Down += Activate_First_Stone;
+        InputController.instance.Button3_Down += Activate_Second_Stone;
+        InputController.instance.Button1_Down += Activate_Third_Stone;
+        InputController.instance.Button0_Down += Activate_Fourth_Stone;
     }
     /// <summary>
     /// Unscribe Swing function to desired event in InputController
@@ -78,6 +86,10 @@ public class Sword : MonoBehaviour
         {
             InputController.instance.LeftMouseDown -= LR_Swing;
             InputController.instance.RightMouseDown -= RL_Swing;
+            InputController.instance.Button0_Down -= Activate_First_Stone;
+            InputController.instance.Button1_Down -= Activate_Second_Stone;
+            InputController.instance.Button2_Down -= Activate_Third_Stone;
+            InputController.instance.Button3_Down -= Activate_Fourth_Stone;
         }
     }
     void Update()
@@ -207,14 +219,20 @@ public class Sword : MonoBehaviour
         {
             knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
             StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
-            collision.gameObject.GetComponent<EnemyAI>().OnHit(Damage, knockDir, swordData);
+            EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
+            enemy.OnHit(Damage, knockDir, swordData);
+
+            currentStone.OnEnemyHitted(this, enemy);
             return;
         }
         else if(collision.gameObject.CompareTag("Charger") && player_Movement.IsAttacking == true)
         {
             //knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
             StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
-            collision.gameObject.GetComponent<ChargerAI>().OnHit(Damage, knockDir, swordData);
+            EnemyAI enemy = collision.gameObject.GetComponent<ChargerAI>();
+            enemy.OnHit(Damage, knockDir, swordData);
+
+            currentStone.OnEnemyHitted(this, enemy);
             return;
         }
         if (collision.gameObject.CompareTag("EnemySword") && canRotate == false && collision.gameObject.GetComponentInParent<EnemyAI>().enemy_Animator.GetBool("Attack") == true)
@@ -253,7 +271,6 @@ public class Sword : MonoBehaviour
         {
             stones.Add(stone);
             stone.OnPickedUp(player_Movement.Player);
-            //Prendi l'indice e dopo iscrivi la funzione corrispondente all'evento dell'input manager
             return true;
         }
         else
@@ -277,9 +294,76 @@ public class Sword : MonoBehaviour
     }
 
     //4 functions to inscribe to the 4 button events in the input manager
-    private void Activate_First_Stone() { }
-    private void Activate_Second_Stone() { }
-    private void Activate_Third_Stone() { }
-    private void Activate_Fourth_Stone() { }
+
+    private void Activate_Stone(int i)
+    {
+        currentStone.OnDeselected(this);
+        currentStone = stones[i];
+        currentStone.OnSelected(this);
+        player_Movement.Player.Activate_Stone(stones[i]);
+    }
+    private void Disable_Stone(int i)
+    {
+        currentStone.OnDeselected(this);
+        currentStone = stones[0];
+        currentStone.OnSelected(this);
+        player_Movement.Player.Disable_Stone(stones[i]);
+    }
+    private void Activate_First_Stone() 
+    { 
+        if(stones.Count > 1)
+        {
+            if(stones[1] != currentStone)
+            {
+                Activate_Stone(1);
+            }
+            else
+            {
+                Disable_Stone(1);
+            }
+        }
+    }
+    private void Activate_Second_Stone() 
+    {
+        if (stones.Count > 2)
+        {
+            if (stones[2] != currentStone)
+            {
+                Activate_Stone(2);
+            }
+            else
+            {
+                Disable_Stone(2);
+            }
+        }
+    }
+    private void Activate_Third_Stone() 
+    {
+        if (stones.Count > 3)
+        {
+            if (stones[3] != currentStone)
+            {
+                Activate_Stone(3);
+            }
+            else
+            {
+                Disable_Stone(3);
+            }
+        }
+    }
+    private void Activate_Fourth_Stone() 
+    {
+        if (stones.Count > 4)
+        {
+            if (stones[4] != currentStone)
+            {
+                Activate_Stone(4);
+            }
+            else
+            {
+                Disable_Stone(4);
+            }
+        }
+    }
 
 }

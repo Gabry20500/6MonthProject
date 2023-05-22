@@ -18,7 +18,25 @@ public class InputController : Singleton<InputController>
     /// Event for Space key down on computer.
     /// </summary>
     public event OnButtonDown SpaceDown;
-    
+    /// <summary>
+    /// Event for X/Square button down on joypad.
+    /// </summary>
+    public event OnButtonDown Button2_Down;
+    /// <summary>
+    /// Event for Y/Triangle button down on joypad.
+    /// </summary>
+    public event OnButtonDown Button3_Down;
+    /// <summary>
+    /// Event for B/Circle button down on joypad.
+    /// </summary>
+    public event OnButtonDown Button1_Down;
+    /// <summary>
+    /// Event for A/Cross button down on joypad.
+    /// </summary>
+    public event OnButtonDown Button0_Down;
+
+
+
 
     #region AnalogueVariables
     //Parameters for analogs
@@ -92,7 +110,11 @@ public class InputController : Singleton<InputController>
             {
                 SpaceDown();
             }
-        }
+        } 
+        if     (Input.GetKeyDown(KeyCode.Alpha1)) { Button2_Down(); }     //Input.GetButtonDown("joystick button 2") ||
+        else if(Input.GetKeyDown(KeyCode.Alpha2)) { Button3_Down(); }     //Input.GetButtonDown("joystick button 3") ||
+        else if(Input.GetKeyDown(KeyCode.Alpha3)) { Button1_Down(); }     //Input.GetButtonDown("joystick button 1") ||
+        else if(Input.GetKeyDown(KeyCode.Alpha4)) { Button0_Down(); }     //Input.GetButtonDown("joystick button 0") ||
     }
 
     /// <summary>

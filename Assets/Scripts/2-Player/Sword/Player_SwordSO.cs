@@ -29,7 +29,7 @@ public class Player_SwordData
     public AudioClip baseClash;
 
     public float DashDistance { get => dashSpeed * dashDuration; }
-    public float Damage { get => physicDamage; }
+    public float Damage { get => physicDamage; set { physicDamage = value; } }
 
     public Player_SwordData() { }
     public Player_SwordData(Player_SwordSO swordSO)

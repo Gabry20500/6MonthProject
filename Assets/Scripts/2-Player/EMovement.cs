@@ -119,6 +119,8 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     {
         get { return player; }
     }
+
+    public Sword Sword { get => player_Sword; } 
     #endregion
 
     private void Awake()
