@@ -63,17 +63,19 @@ public class Charger_SeekState : ChargerState
 public class Charger_Charging_State : ChargerState
 {
     float buffer = 0.0f;
+    Vector3 dir;
     public Charger_Charging_State(ChargerStateProcessor context, ChargerAI enemy) : base(context, enemy) {}
     public override void OnStateEnter()
     {
         buffer = 0.0f;
         enemy.pointer.SetActive(true);
         enemy.nav_Agent.isStopped = true;
-        enemy.ai_Animator.ChargingAnimation();
+        enemy.ai_Animator.charging = true;
+        enemy.ai_Animator.StartCoroutine(enemy.ai_Animator.Charging_Color(enemy.chenemy_Data.chargeTime));
     }
     public override void Update()
     {
-        Vector3 dir = -(enemy.target.position - enemy.transform.position).normalized;
+        dir = -(enemy.target.position - enemy.transform.position).normalized;
         enemy.pointer.transform.forward = new Vector3(dir.x, dir.y, dir.z);
         if (buffer < enemy.chenemy_Data.chargeTime)
         {
@@ -82,6 +84,7 @@ public class Charger_Charging_State : ChargerState
         else
         {
             processor.DashState.destination = enemy.target.position;
+            enemy.ai_Animator.charging = false;
             processor.DashState.OnStateEnter();         
             processor.currentState = processor.DashState;
         }
@@ -117,6 +120,7 @@ public class Dash_State : ChargerState
         }
         enemy.GetComponent<AudioSource>().clip = enemy.dashSound;
         enemy.GetComponent<AudioSource>().Play();
+        enemy.ai_Animator.dashing = true;
     }
 
     public override void Update()
@@ -129,6 +133,7 @@ public class Dash_State : ChargerState
         {
             processor.CoolDownState.OnStateEnter();
             processor.currentState = processor.CoolDownState;
+            enemy.ai_Animator.dashing = false;
         }
         buffer += Time.deltaTime;
     }
