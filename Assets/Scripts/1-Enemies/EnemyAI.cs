@@ -56,6 +56,11 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
         stateProcessor.Init();
     }
 
+    public Enemy Enemy
+    {
+        get { return enemy; }
+    }
+
     //Every frame update current state in stateprocessor
     void Update()
     {

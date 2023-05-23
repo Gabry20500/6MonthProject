@@ -11,6 +11,7 @@ public class Player : Entity
     [SerializeField] private List<Sprite> healthBar_playerIcon;
     [SerializeField] private Image currentImage;
     [SerializeField] public Slider dashBar;
+
     [SerializeField] public List<Stone_UI> stone_UIs;
 
     protected override void Awake()
@@ -60,20 +61,32 @@ public class Player : Entity
 
     public void PickUp_Stone(Stone stone)
     {
-
+        foreach(Stone_UI ui in stone_UIs)
+        {
+            if(ui.Element == stone.Element && ui.IsPickedUp == false)
+            {
+                ui.OnStone_PickedUp(stone);
+            }
+        }
     }
     public void Discard_Stone(Stone stone)
     {
-
+        foreach (Stone_UI ui in stone_UIs)
+        {
+            if (ui.Element == stone.Element && ui.IsPickedUp == true)
+            {
+                ui.OnStone_Discarded(stone);
+            }
+        }
     }
 
     public void Activate_Stone(Stone stone)
     {
-
+        if(stone.Element == StoneElement.NONE) { return; }
     }
 
     public void Disable_Stone(Stone stone)
     {
-
+        if (stone.Element == StoneElement.NONE) { return; }
     }
 }
