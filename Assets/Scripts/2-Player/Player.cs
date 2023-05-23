@@ -83,10 +83,27 @@ public class Player : Entity
     public void Activate_Stone(Stone stone)
     {
         if(stone.Element == StoneElement.NONE) { return; }
+        else
+        {
+            foreach(Stone_UI stone_UI in stone_UIs)
+            {
+                if(stone_UI.Element == stone.Element)
+                { stone_UI.Activate(); }
+                else { stone_UI.Disable(); }
+            }
+        }
+
     }
 
     public void Disable_Stone(Stone stone)
     {
         if (stone.Element == StoneElement.NONE) { return; }
+        else
+        {
+            foreach (Stone_UI stone_UI in stone_UIs)
+            {
+                stone_UI.Disable();
+            }
+        }
     }
 }

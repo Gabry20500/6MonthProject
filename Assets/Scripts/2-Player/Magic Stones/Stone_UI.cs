@@ -47,12 +47,14 @@ public class Stone_UI : MonoBehaviour
         isPickedUp = false;
     }
     public void Activate() 
-    { 
-    
+    {
+        isActivated = true;
+        stoneImage.rectTransform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
     }
     public void Disable()
     {
-        
+        isActivated = false;
+        stoneImage.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
 }
