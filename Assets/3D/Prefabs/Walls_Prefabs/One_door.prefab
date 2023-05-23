@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2875660073506117099}
   - component: {fileID: 945325765465634609}
   - component: {fileID: 6064557425930942172}
-  - component: {fileID: 7552646809086866422}
   - component: {fileID: 800297820159226579}
   m_Layer: 0
   m_Name: One_door
@@ -128,19 +127,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.16, y: 10.59, z: 15.735394}
   m_Center: {x: -6.52, y: 0, z: 0}
---- !u!65 &7552646809086866422
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2169847566201485254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.54, y: 3.11, z: 1}
-  m_Center: {x: 4.29, y: -4.47, z: 6.23}
 --- !u!65 &800297820159226579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -152,5 +138,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.38, y: 2.46, z: 0.89}
-  m_Center: {x: -1.64, y: -4.19, z: 6.17}
+  m_Size: {x: 12.69, y: 2.46, z: 0.89}
+  m_Center: {x: -0.12, y: -4.19, z: 6.17}
