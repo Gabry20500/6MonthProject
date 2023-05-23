@@ -110,11 +110,28 @@ public class InputController : Singleton<InputController>
             {
                 SpaceDown();
             }
-        } 
-        if     (Input.GetKeyDown(KeyCode.Alpha1)) { Button2_Down(); }     //Input.GetButtonDown("joystick button 2") ||
-        else if(Input.GetKeyDown(KeyCode.Alpha2)) { Button3_Down(); }     //Input.GetButtonDown("joystick button 3") ||
-        else if(Input.GetKeyDown(KeyCode.Alpha3)) { Button1_Down(); }     //Input.GetButtonDown("joystick button 1") ||
-        else if(Input.GetKeyDown(KeyCode.Alpha4)) { Button0_Down(); }     //Input.GetButtonDown("joystick button 0") ||
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetButtonDown("Button3"))
+        {
+            Debug.Log("Y");
+            Button3_Down();
+        }//Input.GetButtonDown("joystick button 3") ||
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetButtonDown("Button2"))
+        {
+            Debug.Log("X");
+            Button1_Down();
+        }//Input.GetButtonDown("joystick button 1") ||
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("Button0"))
+        {
+            Debug.Log("A");
+            Button0_Down();
+        }//Input.GetButtonDown("joystick button 0") ||
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetButtonDown("Button1"))
+        {
+            Debug.Log("B");
+            Button2_Down();
+        }//Input.GetButtonDown("joystick button 2") ||
     }
 
     /// <summary>

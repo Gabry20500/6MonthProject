@@ -2279,7 +2279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPersistent: 0
   baseEnemy: {fileID: 694917650093578212, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
-  enemyType: []
+  enemyType:
+  - {fileID: 694917650093578212, guid: 4dbe33d216ba2b5468202c074da31114, type: 3}
+  - {fileID: 694917650093578212, guid: 6eff79baba138a34a8424afd0e100af8, type: 3}
 --- !u!1 &1849865194
 GameObject:
   m_ObjectHideFlags: 0
