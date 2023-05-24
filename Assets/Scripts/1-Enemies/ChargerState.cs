@@ -7,11 +7,13 @@ public class Charger_Idle_State : ChargerState
 
     public override void OnStateEnter()
     {
-        enemy.nav_Agent.isStopped = true;
+        
     }
 
     public override void Update()
     {
+        if(enemy.nav_Agent.isStopped == false) { enemy.nav_Agent.isStopped = true; }
+
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
         if (enemy.Distance < enemy.chenemy_Data.sightDistance)
         {
@@ -145,7 +147,6 @@ public class CoolDown_State : ChargerState
     }
     public override void Update()
     {
-        Debug.Log("CoolDown");
         if (buffer < enemy.chenemy_Data.stun_Time)
         {
             buffer += Time.deltaTime;

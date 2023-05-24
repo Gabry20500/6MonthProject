@@ -51,7 +51,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             instance = instances[0];
         }
         if (IsPersistent)
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject.transform.parent.gameObject);
     }
 
 }

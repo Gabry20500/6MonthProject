@@ -13,7 +13,8 @@ public class ChargerAI : EnemyAI
     [SerializeField] private ChargerDataSO ch_enemy_SO;
     [SerializeField] public  ChargerData chenemy_Data;
     protected ChargerStateProcessor stateProcessor;
-    public AIAnimator ai_Animator;
+
+    public ChargerAnimator ai_Animator;
     private bool isAttacking = false;
 
     public new float Distance
@@ -52,7 +53,7 @@ public class ChargerAI : EnemyAI
         enemy = GetComponent<Enemy>();
         enemy.InitParameters(chenemy_Data);
 
-        ai_Animator = GetComponentInChildren<AIAnimator>();
+        ai_Animator = GetComponentInChildren<ChargerAnimator>();
     }
     private void Start()
     {
