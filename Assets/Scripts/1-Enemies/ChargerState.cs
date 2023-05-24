@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -26,7 +24,6 @@ public class Charger_Idle_State : ChargerState
         }
     }
 }
-
 public class Charger_SeekState : ChargerState
 {
     public Charger_SeekState(ChargerStateProcessor context, ChargerAI enemy, EnemySword sword) : base(context, enemy) { this.sword = sword; }
@@ -62,8 +59,8 @@ public class Charger_SeekState : ChargerState
 
 public class Charger_Charging_State : ChargerState
 {
-    float buffer = 0.0f;
-    Vector3 dir;
+    private float buffer = 0.0f;
+    private Vector3 dir;
     public Charger_Charging_State(ChargerStateProcessor context, ChargerAI enemy) : base(context, enemy) {}
     public override void OnStateEnter()
     {
