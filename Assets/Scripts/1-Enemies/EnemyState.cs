@@ -101,7 +101,14 @@ public class SeekState : EnemyState
         enemy.Distance = Vector3.Distance(enemy.target.position, enemy.transform.position);
 
         targetDir = new Vector3(enemy.nav_Agent.velocity.x, 0.0f, enemy.nav_Agent.velocity.z).normalized; 
-        targetRot = Quaternion.LookRotation(-targetDir);
+        if(targetDir == Vector3.zero)
+        {
+            targetRot = Quaternion.LookRotation(Vector3.up);
+        }
+        else
+        {
+            targetRot = Quaternion.LookRotation(-targetDir);
+        }
         sword.transform.parent.transform.DOLocalRotateQuaternion(targetRot, 0.01f);
 
         if (enemy.Distance < enemy.Enemy_Data.attackReach)
