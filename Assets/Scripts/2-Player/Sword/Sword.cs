@@ -86,10 +86,10 @@ public class Sword : MonoBehaviour
         {
             InputController.instance.LeftMouseDown -= LR_Swing;
             InputController.instance.RightMouseDown -= RL_Swing;
-            InputController.instance.Button0_Down -= Activate_First_Stone;
-            InputController.instance.Button1_Down -= Activate_Second_Stone;
-            InputController.instance.Button2_Down -= Activate_Third_Stone;
-            InputController.instance.Button3_Down -= Activate_Fourth_Stone;
+            InputController.instance.Button2_Down -= Activate_First_Stone;
+            InputController.instance.Button3_Down -= Activate_Second_Stone;
+            InputController.instance.Button1_Down -= Activate_Third_Stone;
+            InputController.instance.Button0_Down -= Activate_Fourth_Stone;
         }
     }
     void Update()

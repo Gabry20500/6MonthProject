@@ -83,7 +83,6 @@ public class ChargerAnimator : AIAnimator
     protected ChargeDirection DirectionChargeIndex(Vector2 direction)
     {
         Vector2 norDir = -direction.normalized;
-        Debug.Log(norDir);
         float step = 360 / 4;  //Decide the 8 step of an isometic movement
         //float offset = step / 2; //An offset to be sure never to go under 0
         float angle = Vector2.SignedAngle(Vector2.up, norDir); //Using Vector2.up as reference calculate the angle between him and entity movement dir

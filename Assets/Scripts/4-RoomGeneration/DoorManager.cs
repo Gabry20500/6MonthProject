@@ -130,7 +130,6 @@ public class DoorManager : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            Debug.Log(elapsedTime);
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
             doorSlider.value = Mathf.Lerp(startValue, targetValue, t);
