@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: -7412446111666499884}
   - component: {fileID: 2245395464123665509}
   m_Layer: 0
-  m_Name: BossRoom_prova
+  m_Name: BossRoom_prova_Sud
   m_TagString: Rooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18635,7 +18635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5410995781842230217, guid: f347c25d2c8306345b44695fec3cbd52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.199997
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 5410995781842230217, guid: f347c25d2c8306345b44695fec3cbd52, type: 3}
       propertyPath: m_LocalPosition.y
