@@ -32,7 +32,7 @@ TagManager:
   - Spawn Point
   - Ignore Collision
   - Wall
-  - Post Processing
+  - PostProcessing
   - 
   - 
   - 
@@ -54,11 +54,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 2739508991
-    locked: 0
   - name: Entity
     uniqueID: 1369245807
+    locked: 0
+  - name: BackGround
+    uniqueID: 2739508991
     locked: 0
   - name: Ground
     uniqueID: 4257174655

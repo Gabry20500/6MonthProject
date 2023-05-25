@@ -7,6 +7,7 @@ public class Stone_UI : MonoBehaviour
 {
     [SerializeField] private StoneElement element = StoneElement.NONE;
     private Image stoneImage;
+    private Sprite oldSprite;
     [SerializeField] private bool isActivated = false;
     [SerializeField] private bool isPickedUp = false;
 
@@ -35,16 +36,25 @@ public class Stone_UI : MonoBehaviour
     }
 
     public void OnStone_PickedUp(Stone stone) 
-    { 
-
+    {
+        oldSprite = stoneImage.sprite;
+        stoneImage.sprite = stone.Image;
+        isPickedUp = true;
+    }
+    public void OnStone_Discarded(Stone stone)
+    {
+        stoneImage.sprite = oldSprite;
+        isPickedUp = false;
     }
     public void Activate() 
-    { 
-    
+    {
+        isActivated = true;
+        stoneImage.rectTransform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
     }
     public void Disable()
     {
-        
+        isActivated = false;
+        stoneImage.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
 }

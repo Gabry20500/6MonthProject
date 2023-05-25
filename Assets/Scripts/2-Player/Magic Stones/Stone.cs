@@ -51,7 +51,12 @@ public class Stone : ScriptableObject
     {
         player.Discard_Stone(this);
     }
-    public virtual void OnSelected(Sword sword) { }
+    public virtual void OnSelected(Sword sword) 
+    {
+        sword.gameObject.GetComponent<MeshFilter>().mesh = swMesh;
+        sword.gameObject.GetComponent<MeshRenderer>().materials[0] = swMaterial;
+        sword.gameObject.GetComponentInChildren<TrailRenderer>().materials[0] = trailMaterial;
+    }
     public virtual void OnDeselected(Sword sword) { }
-    public virtual void OnEnemyHitted(EnemyAI enemy) { }
+    public virtual void OnEnemyHitted(Sword sword, EnemyAI enemy) { }
 }
