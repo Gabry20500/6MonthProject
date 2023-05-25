@@ -124,7 +124,7 @@ public class Dash_State : ChargerState
 
     public override void Update()
     {
-        if (Mathf.Abs((destination - enemy.transform.position).magnitude) > 1f)
+        if (Mathf.Abs((destination - enemy.transform.position).magnitude) > 4f)
         {
             enemy.transform.position += dash_Speed * Time.deltaTime * dir;
         }
@@ -144,6 +144,7 @@ public class CoolDown_State : ChargerState
     public override void OnStateEnter()
     {
         enemy.IsAttacking = false;
+        buffer = 0.0f;
     }
     public override void Update()
     {
