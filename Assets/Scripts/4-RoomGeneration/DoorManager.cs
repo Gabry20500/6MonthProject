@@ -19,9 +19,9 @@ public class DoorManager : MonoBehaviour
 
     [Header("Slider")] 
     [SerializeField] private Slider doorSlider;
-    private float startValue;
+    private float startValue = 0f;
     private float targetValue = 1f;
-    private bool canGo = false;
+    [SerializeField]private bool canGo = false;
 
     private void Start()
     {
@@ -39,7 +39,6 @@ public class DoorManager : MonoBehaviour
         
             doorSlider.maxValue = 1f;
             doorSlider.value = 0f;
-            startValue = doorSlider.value;
             StartCoroutine(GoInOtherRoom());
         }
     }
@@ -111,8 +110,17 @@ public class DoorManager : MonoBehaviour
         {
             doorSlider.value = 0f;
             startValue = doorSlider.value;
+            canGo = false;
             doorSlider.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        doorSlider.value = 0f;
+        startValue = doorSlider.value;
+        canGo = false;
+        doorSlider.gameObject.SetActive(false);
     }
 
     private IEnumerator GoInOtherRoom()
@@ -120,10 +128,9 @@ public class DoorManager : MonoBehaviour
         float duration = 1f;
         float elapsedTime = 0f;
 
-        
-        
         while (elapsedTime < duration)
         {
+            Debug.Log(elapsedTime);
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
             doorSlider.value = Mathf.Lerp(startValue, targetValue, t);

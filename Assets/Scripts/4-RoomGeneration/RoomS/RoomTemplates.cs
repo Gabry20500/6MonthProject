@@ -28,6 +28,7 @@ public class RoomTemplates : Singleton<RoomTemplates>
     [Header("Boss room")] 
     public GameObject boss;
     public GameObject ladder;
+    private DoorManager bossDoor;
 
     private void Update()
     {
@@ -46,6 +47,9 @@ public class RoomTemplates : Singleton<RoomTemplates>
             {
                 Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
+                var bossRoom = rooms[i];
+                bossDoor = bossRoom.GetComponentInChildren<DoorManager>();
+                bossDoor.enemySpawned = true;
 
 
                 foreach (var room in rooms)
