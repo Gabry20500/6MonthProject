@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5738186412315562422}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_IsActive
@@ -598,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788932744340109496, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6788932744340109496, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_LocalPosition.z
@@ -635,6 +635,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1522325818981256278, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
+--- !u!114 &580361224411117875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 631109755275489955, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
+  m_PrefabInstance: {fileID: 58544114678221712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2065846208170674680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
@@ -654,6 +665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 3
   enemySpawned: 0
+  doorSlider: {fileID: 0}
+  canGo: 0
 --- !u!4 &6843465733024592680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6788932744340109496, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
@@ -684,7 +697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.8
+      value: -7.24
       objectReference: {fileID: 0}
     - target: {fileID: 6924263541074527351, guid: de0d4eb9c5221ff4d8b04706a1712ca3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -734,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456048140834860744, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2456048140834860744, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_IsActive
@@ -750,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161410234031252268, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 9161410234031252268, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -806,6 +819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   enemySpawned: 0
+  doorSlider: {fileID: 580361224411117875}
+  canGo: 0
 --- !u!4 &5644264216720199565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9161410234031252268, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
@@ -894,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 315164272631747472, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 315164272631747472, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_IsActive
@@ -910,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2883776695371307015, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: -0.030000001
       objectReference: {fileID: 0}
     - target: {fileID: 2883776695371307015, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_LocalPosition.z
@@ -966,6 +981,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 1
   enemySpawned: 0
+  doorSlider: {fileID: 8652524237980401131}
+  canGo: 0
+--- !u!114 &8652524237980401131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3254533769144704742, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
+  m_PrefabInstance: {fileID: 6141113065525306125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9024270735845980938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2883776695371307015, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
@@ -988,7 +1016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 228124141845225243, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 228124141845225243, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1028,7 +1056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889385940067168875, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1889385940067168875, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
       propertyPath: m_IsActive
@@ -1037,6 +1065,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9108872072356185687, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
+--- !u!114 &3569066501329810431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6501577206518325210, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
+  m_PrefabInstance: {fileID: 7763608823667846181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7536655940950389566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 228124141845225243, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
@@ -1061,3 +1100,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 4
   enemySpawned: 0
+  doorSlider: {fileID: 3569066501329810431}
+  canGo: 0

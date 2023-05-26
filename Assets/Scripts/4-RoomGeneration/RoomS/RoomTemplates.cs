@@ -28,6 +28,7 @@ public class RoomTemplates : Singleton<RoomTemplates>
     [Header("Boss room")] 
     public GameObject boss;
     public GameObject ladder;
+    public GameObject[] bossRooms;
     private DoorManager bossDoor;
 
     private void Update()
