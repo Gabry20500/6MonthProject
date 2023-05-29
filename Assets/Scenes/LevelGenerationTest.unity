@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1778546, g: 0.22267884, b: 0.30482385, a: 1}
+  m_IndirectSpecularColor: {r: 0.17785463, g: 0.22267868, b: 0.3048237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -474,6 +474,22 @@ PrefabInstance:
       propertyPath: stones.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: aa6e076e114ec624588c9c1d9dc34adc, type: 2}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Height
+      value: 2.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Radius
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Center.y
+      value: 0.67000026
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693687256937972816, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
+      propertyPath: m_Center.z
+      value: -0.091648094
+      objectReference: {fileID: 0}
     - target: {fileID: 5693687256937972826, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_Name
       value: Player

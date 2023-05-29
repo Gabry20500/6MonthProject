@@ -156,13 +156,13 @@ TextureImporter:
       name: Sud_Ovest_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 4
         y: 0
-        width: 706
+        width: 716
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 10, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -183,7 +183,7 @@ TextureImporter:
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 13, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -198,13 +198,13 @@ TextureImporter:
       name: Sud_Ovest_2
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 1370
         y: 0
-        width: 672
+        width: 648
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 27, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
