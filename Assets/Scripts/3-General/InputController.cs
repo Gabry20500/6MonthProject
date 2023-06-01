@@ -119,13 +119,13 @@ public class InputController : Singleton<InputController>
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetButtonDown("Button2"))
         {
-            Button2_Down();
+            Button3_Down();
         }else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("Button3"))
         {
-            Button3_Down();
+            Button1_Down();
         }else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetButtonDown("Button1"))
         {
-            Button1_Down();
+            Button2_Down();
         }
     }
 
