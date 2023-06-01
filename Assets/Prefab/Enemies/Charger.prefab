@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 694917650804065485}
   - component: {fileID: 694917650804065495}
   - component: {fileID: 694917650804065492}
-  - component: {fileID: 694917650804065493}
+  - component: {fileID: 123561526024488734}
   m_Layer: 7
   m_Name: Body
   m_TagString: Enemy
@@ -844,7 +844,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e4c48fcc587ef704fb42b33378ee6e40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -863,7 +863,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1369245807
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1651832161, guid: 92a1b4018e870c044b3daee6fc106f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -896,7 +896,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &694917650804065493
+--- !u!114 &123561526024488734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -905,9 +905,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 694917650804065484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7efa4388ece7a94894ea6fe95600154, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ef4e330293daf943a27fcd999ca63c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  charging: 0
+  dashing: 0
 --- !u!1 &694917650811450683
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +938,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694917650811450683}
   m_LocalRotation: {x: -0.0021694796, y: 0.92387354, z: 0.38267836, w: 0.0031896268}
-  m_LocalPosition: {x: 0, y: 0, z: 2.16}
+  m_LocalPosition: {x: 0, y: 0, z: 4.7}
   m_LocalScale: {x: 3.53, y: 3.53, z: 3.53}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -945,7 +948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -45, y: 179.657, z: -0.127}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.24, y: 8.16}
+  m_AnchoredPosition: {x: 0.6, y: 9.41}
   m_SizeDelta: {x: 3.5584, y: 2.6092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &694917650811450687

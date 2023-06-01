@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 228124141845225243}
   - component: {fileID: 7087082619060484088}
   - component: {fileID: 9108872072356185687}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DoorW
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -63,6 +63,7 @@ MonoBehaviour:
   direction: 4
   enemySpawned: 0
   doorSlider: {fileID: 6501577206518325210}
+  canGo: 0
 --- !u!1 &7851020908517269085
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ GameObject:
   - component: {fileID: 294159998546166492}
   - component: {fileID: 1610831776394446016}
   - component: {fileID: 8996261940044035700}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Props_Door
       objectReference: {fileID: 0}
+    - target: {fileID: 2895095461216581817, guid: 83109e56031efac4db3a68a3f82cf582, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83109e56031efac4db3a68a3f82cf582, type: 3}
 --- !u!4 &1210579856854477445 stripped
@@ -245,6 +250,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 70738544271927107}
     m_Modifications:
+    - target: {fileID: 43780333030544282, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 129467603218406624, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -353,13 +362,33 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6352798080993369547, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770106818413821002, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551831781689284589, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8332767800620533959, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
     - target: {fileID: 8332767800620533959, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332767800620533959, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875527129495237861, guid: 445132ae24b2cde4088eb944934d9699, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445132ae24b2cde4088eb944934d9699, type: 3}

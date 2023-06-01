@@ -13,7 +13,8 @@ public class ChargerAI : EnemyAI
     [SerializeField] private ChargerDataSO ch_enemy_SO;
     [SerializeField] public  ChargerData chenemy_Data;
     protected ChargerStateProcessor stateProcessor;
-    public AIAnimator ai_Animator;
+
+    public ChargerAnimator ai_Animator;
     private bool isAttacking = false;
 
     public new float Distance
@@ -52,7 +53,7 @@ public class ChargerAI : EnemyAI
         enemy = GetComponent<Enemy>();
         enemy.InitParameters(chenemy_Data);
 
-        ai_Animator = GetComponentInChildren<AIAnimator>();
+        ai_Animator = GetComponentInChildren<ChargerAnimator>();
     }
     private void Start()
     {
@@ -80,6 +81,13 @@ public class ChargerAI : EnemyAI
             //canHit = false;
             //StartCoroutine(Charger_Hit_Cooldown(1.0f));
         //}
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && isAttacking == true)
+        {
+            OnCollisionEnter(collision);
+        }
     }
 
     public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)

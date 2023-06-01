@@ -112,26 +112,21 @@ public class InputController : Singleton<InputController>
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetButtonDown("Button1"))
+        
+        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetButtonDown("Button0"))
         {
-            Debug.Log("A");
-            Button3_Down();
-        }//Input.GetButtonDown("joystick button 3") ||
+            Button0_Down();
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetButtonDown("Button2"))
         {
-            Debug.Log("X");
+            Button3_Down();
+        }else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("Button3"))
+        {
             Button1_Down();
-        }//Input.GetButtonDown("joystick button 1") ||
-        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("Button3"))
+        }else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetButtonDown("Button1"))
         {
-            Debug.Log("Y");
-            Button0_Down();
-        }//Input.GetButtonDown("joystick button 0") ||
-        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetButtonDown("Button0"))
-        {
-            Debug.Log("B");
             Button2_Down();
-        }//Input.GetButtonDown("joystick button 2") ||
+        }
     }
 
     /// <summary>

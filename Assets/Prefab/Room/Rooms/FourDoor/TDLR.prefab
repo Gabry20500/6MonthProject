@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7708649539193805014}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 315164272631747472, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2883776695371307015, guid: bd7496630973d184da6861f3a7b4f070, type: 3}
       propertyPath: m_RootOrder
@@ -16586,7 +16586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2045937846573597288, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6788932744340109496, guid: da8ac9598c0d69b4bb6ca9619e6c2304, type: 3}
       propertyPath: m_RootOrder
@@ -17001,7 +17001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456048140834860744, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9161410234031252268, guid: eef7696acd96a1941b3df4e028237bbd, type: 3}
       propertyPath: m_RootOrder
@@ -17336,7 +17336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889385940067168875, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d97b389608a150d48bb4cd76817f7ea0, type: 3}

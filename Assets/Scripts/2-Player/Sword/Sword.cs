@@ -86,10 +86,10 @@ public class Sword : MonoBehaviour
         {
             InputController.instance.LeftMouseDown -= LR_Swing;
             InputController.instance.RightMouseDown -= RL_Swing;
-            InputController.instance.Button0_Down -= Activate_First_Stone;
-            InputController.instance.Button1_Down -= Activate_Second_Stone;
-            InputController.instance.Button2_Down -= Activate_Third_Stone;
-            InputController.instance.Button3_Down -= Activate_Fourth_Stone;
+            InputController.instance.Button2_Down -= Activate_First_Stone;
+            InputController.instance.Button3_Down -= Activate_Second_Stone;
+            InputController.instance.Button1_Down -= Activate_Third_Stone;
+            InputController.instance.Button0_Down -= Activate_Fourth_Stone;
         }
     }
     void Update()
@@ -165,6 +165,8 @@ public class Sword : MonoBehaviour
     private IEnumerator SwingAnimation(Vector3 swingDir, int i)
     {
         trail.enabled = true;
+
+        e_Animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));
 
         initialDir = Quaternion.AngleAxis(-(swordData.swingWidth / 2) * i, Vector3.up) * rot_Pivot.forward; //Calculcate the initial direction of the swing animation
         //initialDir = rot_Pivot.forward;

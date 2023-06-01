@@ -239,8 +239,8 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     /// <returns></returns>
     private IEnumerator DashCoroutine(Vector3 destination)
     {
-        mov_Animator.SetDirection(dash_Dir);
         canMove = false;
+        //mov_Animator.SetDirection(dash_Dir);
         canDash = false; 
         isDashing = true;
         player.dashBar.value = 0.0f;
@@ -248,8 +248,8 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         canMove = true;
         isDashing = false;
 
-        StartCoroutine(player.Dash_Bar_Cooldown(self.dash_Cooldown));
-        yield return new WaitForSeconds(self.dash_Cooldown);
+        yield return StartCoroutine(player.Dash_Bar_Cooldown(self.dash_Cooldown));
+        //yield return new WaitForSeconds(self.dash_Cooldown);
         canDash = true;
     }
 
