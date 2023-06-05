@@ -646,6 +646,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917650804065492}
   canMove: 1
+  canHit: 1
   pointer: {fileID: 483583359}
   dashSound: {fileID: 8300000, guid: d710ccb0824f0fd43a6b17129b4cee69, type: 3}
   ch_enemy_SO: {fileID: 11400000, guid: 8dafd30fb311b4f4daed9d3388e2d2bb, type: 2}

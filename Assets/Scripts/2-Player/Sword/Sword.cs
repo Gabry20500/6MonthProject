@@ -30,7 +30,8 @@ public class Sword : MonoBehaviour
 
     private EMovement player_Movement; //Link to the entity movement class to sto his movement and to perform other actions
     [SerializeField] private EAnimator e_Animator; //Animation class of the entity to link in editor to call the swing animation on the sprite
-    [SerializeField] Transform rot_Pivot;
+    [SerializeField] private Transform rot_Pivot;
+    private BoxCollider _collider;
 
     #region SwingAnimation parameters
     private Vector3 initialDir;
@@ -62,6 +63,7 @@ public class Sword : MonoBehaviour
         sword_Audio = GetComponentInParent<AudioSource>();
         sword_Audio.clip = swordData.baseSwing;
         player_Movement = gameObject.GetComponentInParent<EMovement>();
+        _collider = GetComponent<BoxCollider>();
         
     }
 
@@ -76,7 +78,9 @@ public class Sword : MonoBehaviour
         InputController.instance.Button3_Down += Activate_Second_Stone;
         InputController.instance.Button1_Down += Activate_Third_Stone;
         InputController.instance.Button0_Down += Activate_Fourth_Stone;
+        _collider.enabled = false;
     }
+
     /// <summary>
     /// Unscribe Swing function to desired event in InputController
     /// </summary>
@@ -94,13 +98,6 @@ public class Sword : MonoBehaviour
     }
     void Update()
     {
-        /*Utilities to draw on editor the reach of the sword
-          Debug.DrawLine(pivot.position, transform.forward * 10, Color.green);
-          Vector3 rot = Quaternion.AngleAxis(-(swingWidth/2), Vector3.up) * pivot.forward;
-          Debug.DrawLine(pivot.position, rot * 10, Color.red);
-          rot = Quaternion.AngleAxis((swingWidth * 1.2f), Vector3.up) * pivot.forward;
-          Debug.DrawLine(pivot.position, rot * 10, Color.red);*/
-
         if (canRotate)
         {
             //Rotate directly using the axis value from the right stick in gameoad
@@ -127,7 +124,6 @@ public class Sword : MonoBehaviour
             }
         }
     }
-
 
     /// <summary>
     /// Swing public function to perform a swing
@@ -161,9 +157,9 @@ public class Sword : MonoBehaviour
 
 
 
-    
     private IEnumerator SwingAnimation(Vector3 swingDir, int i)
     {
+        _collider.enabled = true;
         trail.enabled = true;
 
         e_Animator.AttackAnimation(new Vector2(currentDir.x, currentDir.z));
@@ -193,6 +189,7 @@ public class Sword : MonoBehaviour
         InputController.instance.RightMouseDown += RL_Swing;
         swinging = false;
         rot_Pivot.forward = swingDir;
+        _collider.enabled = false;
     }
 
     private Vector3 velocity;
@@ -214,7 +211,7 @@ public class Sword : MonoBehaviour
         player_Movement.CanMove = true;
         player_Movement.CanDash = true;
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && player_Movement.IsAttacking == true)
@@ -248,6 +245,15 @@ public class Sword : MonoBehaviour
             return;
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if(player_Movement.IsAttacking == true)
+        {
+
+        }
+    }
+
+
 
     //Controllare la funzione ed implementarla meglio
     public IEnumerator SwordClash()
