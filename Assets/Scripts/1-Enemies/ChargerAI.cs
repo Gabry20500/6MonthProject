@@ -4,7 +4,6 @@ using UnityEngine.AI;
 
 public class ChargerAI : EnemyAI
 {
-    private bool canHit = true;
     private bool canBeDamaged = true;
 
     [SerializeField] public GameObject pointer;
@@ -71,38 +70,39 @@ public class ChargerAI : EnemyAI
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //if (canHit == true)
-        //{
-            
             if (collision.gameObject.CompareTag("Player") && isAttacking == true)
             {
                 collision.gameObject.GetComponent<Player>().TakeDamage(2.0f);
             }
-            //canHit = false;
-            //StartCoroutine(Charger_Hit_Cooldown(1.0f));
-        //}
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+
+            if (collision.gameObject.CompareTag("Player") && isAttacking == true)
+            {
+                OnCollisionEnter(collision);
+            }
     }
 
     public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
-        if (canBeDamaged == true)
+        if (canBeDamaged == true && stateProcessor.currentState != stateProcessor.ChargingState)
         {
             enemy.TakeDamage(damage);
-            //Logic to init anche change state in state processor
-            //stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
-            //stateProcessor.currentState.OnStateExit();
-            //stateProcessor.currentState = stateProcessor.KnockBackState;
+            StartCoroutine(Charger_Dmg_Cooldown(2.0f));
         }
     }
 
-    private IEnumerator Charger_Hit_Cooldown(float coolTime)
+    private IEnumerator Charger_Dmg_Cooldown(float coolTime)
     {
+        //Questo diventerà uno stato che è il defense state all'entrata mette la animazione giusta e poi la toglia ripassando al seek state
+        canBeDamaged = false;
         float buffer = 0.0f;
         while(buffer < coolTime)
         {
             buffer += Time.deltaTime;
             yield return null;
         }
-        canHit = true;
+        canBeDamaged = true;
     }
 }

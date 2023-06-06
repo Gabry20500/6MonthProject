@@ -10,6 +10,8 @@ public class Stone_UI : MonoBehaviour
     private Sprite oldSprite;
     [SerializeField] private bool isActivated = false;
     [SerializeField] private bool isPickedUp = false;
+    [SerializeField] private Vector3 selected_Scale;
+    private Vector3 originalScale;
 
     #region Getter
     public StoneElement Element
@@ -33,11 +35,13 @@ public class Stone_UI : MonoBehaviour
     private void Awake()
     {
         stoneImage = GetComponent<Image>();
+        originalScale = GetComponent<RectTransform>().localScale;
     }
 
     public void OnStone_PickedUp(Stone stone) 
     {
         oldSprite = stoneImage.sprite;
+        stoneImage.color = Color.white;
         stoneImage.sprite = stone.Image;
         isPickedUp = true;
     }
@@ -49,12 +53,12 @@ public class Stone_UI : MonoBehaviour
     public void Activate() 
     {
         isActivated = true;
-        stoneImage.rectTransform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+        stoneImage.rectTransform.localScale = selected_Scale;
     }
     public void Disable()
     {
         isActivated = false;
-        stoneImage.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        stoneImage.rectTransform.localScale = originalScale;
     }
 
 }

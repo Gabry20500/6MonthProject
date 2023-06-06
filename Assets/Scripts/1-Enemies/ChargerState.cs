@@ -111,6 +111,7 @@ public class Dash_State : ChargerState
         dash_Speed = enemy.chenemy_Data.dashSpeed;
         dash_Time = enemy.chenemy_Data.dashTime;
         dir = (destination - enemy.transform.position).normalized;
+        enemy.canHit = true;
 
         ray = new Ray(enemy.transform.position, dir * dash_Speed);
         if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))
@@ -143,6 +144,7 @@ public class CoolDown_State : ChargerState
     public CoolDown_State(ChargerStateProcessor context, ChargerAI enemy) : base(context, enemy){}
     public override void OnStateEnter()
     {
+        // animazione cooldown settata
         enemy.IsAttacking = false;
         buffer = 0.0f;
     }

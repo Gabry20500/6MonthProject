@@ -646,6 +646,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemy_Animator: {fileID: 694917650804065492}
   canMove: 1
+  canHit: 1
   pointer: {fileID: 483583359}
   dashSound: {fileID: 8300000, guid: d710ccb0824f0fd43a6b17129b4cee69, type: 3}
   ch_enemy_SO: {fileID: 11400000, guid: 8dafd30fb311b4f4daed9d3388e2d2bb, type: 2}
@@ -863,7 +864,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1369245807
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1651832161, guid: 92a1b4018e870c044b3daee6fc106f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -938,7 +939,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694917650811450683}
   m_LocalRotation: {x: -0.0021694796, y: 0.92387354, z: 0.38267836, w: 0.0031896268}
-  m_LocalPosition: {x: 0, y: 0, z: 2.16}
+  m_LocalPosition: {x: 0, y: 0, z: 4.7}
   m_LocalScale: {x: 3.53, y: 3.53, z: 3.53}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -948,7 +949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -45, y: 179.657, z: -0.127}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.24, y: 8.16}
+  m_AnchoredPosition: {x: 0.6, y: 9.41}
   m_SizeDelta: {x: 3.5584, y: 2.6092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &694917650811450687
