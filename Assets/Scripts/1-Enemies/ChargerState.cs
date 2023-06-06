@@ -111,7 +111,7 @@ public class Dash_State : ChargerState
         dash_Speed = enemy.chenemy_Data.dashSpeed;
         dash_Time = enemy.chenemy_Data.dashTime;
         dir = (destination - enemy.transform.position).normalized;
-        enemy.canHit = true;
+        //enemy.canHit = true;
 
         ray = new Ray(enemy.transform.position, dir * dash_Speed);
         if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))

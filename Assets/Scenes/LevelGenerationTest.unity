@@ -276,6 +276,11 @@ MonoBehaviour:
   maxRoom: 7
   boss: {fileID: 694917650093578212, guid: 7adb7b8416e63c4409069def2a741a87, type: 3}
   ladder: {fileID: 2777290204695710788, guid: f347c25d2c8306345b44695fec3cbd52, type: 3}
+  bossRooms:
+  - {fileID: 3730185531536128402, guid: 23d121457699d75478e899bc741cb738, type: 3}
+  - {fileID: 3730185531536128402, guid: b20be2f540149bd4c84efc7e56bf5f65, type: 3}
+  - {fileID: 3730185531536128402, guid: c1b0ce77f79011d479eed768061d6d8a, type: 3}
+  - {fileID: 3730185531536128402, guid: 6e2c6cecf5437e0489c6c070eba30f18, type: 3}
 --- !u!4 &108331627
 Transform:
   m_ObjectHideFlags: 0
@@ -569,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1412274262, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.9999084
+      value: -2.999878
       objectReference: {fileID: 0}
     - target: {fileID: 1412274262, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -609,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1756653839, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.9999695
+      value: -2.999939
       objectReference: {fileID: 0}
     - target: {fileID: 1756653839, guid: 9ad3e885c6c9a0747b53407ec18bdad7, type: 3}
       propertyPath: m_AnchoredPosition.y
