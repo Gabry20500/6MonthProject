@@ -32,7 +32,7 @@ public class Entity : MonoBehaviour
     {
         entity_Audio = GetComponent<AudioSource>();
     }
-
+    
     protected virtual void InitHealthBar()
     {
         HP_Bar.maxValue = max_HP;
