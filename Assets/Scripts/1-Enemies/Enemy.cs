@@ -10,8 +10,8 @@ public class Enemy : Entity
 
     protected override void Death()
     {
-        gameObject.SetActive(false);
         my_Room.EnemyDeath();
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 

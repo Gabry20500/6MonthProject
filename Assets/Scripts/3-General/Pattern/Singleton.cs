@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -50,8 +51,19 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             instance = instances[0];
         }
+        
         if (IsPersistent)
-            DontDestroyOnLoad(gameObject.transform.parent.gameObject);
+        {
+            try
+            {
+                DontDestroyOnLoad(gameObject.transform.parent.gameObject); 
+            }
+            catch (Exception e)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+               
+        }
     }
 
 }
