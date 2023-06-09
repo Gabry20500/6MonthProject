@@ -11,4 +11,9 @@
             ladder.Activate();
             base.Death();
         }
+
+        public void initBar()
+        {
+            InitHealthBar();
+        }
     }

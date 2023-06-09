@@ -22,6 +22,7 @@ public class DoorManager : MonoBehaviour
     private float startValue = 0f;
     private float targetValue = 1f;
     [SerializeField]private bool canGo = false;
+    private bool isInside = false;
 
     private void Start()
     {
@@ -35,6 +36,8 @@ public class DoorManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && enemySpawned == false)
         {
+            isInside = true;
+            Debug.Log("Enter");
             doorSlider.gameObject.SetActive(true);
         
             doorSlider.maxValue = 1f;
@@ -49,6 +52,7 @@ public class DoorManager : MonoBehaviour
         { 
             if (other.gameObject.CompareTag("Player") && enemySpawned == false)
             {
+                Debug.Log("Stay");
                 var cameraPosition = mainCamera.transform.position;
                 switch (direction) {
                     case 1:
@@ -108,18 +112,21 @@ public class DoorManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && enemySpawned == false)
         {
+            isInside = false;
+            canGo = false;
+            Debug.Log("exit");
             doorSlider.value = 0f;
             startValue = doorSlider.value;
-            canGo = false;
             doorSlider.gameObject.SetActive(false);
         }
     }
 
     private void OnDisable()
     {
+        isInside = false;
+        canGo = false;
         doorSlider.value = 0f;
         startValue = doorSlider.value;
-        canGo = false;
         doorSlider.gameObject.SetActive(false);
     }
 
@@ -128,7 +135,7 @@ public class DoorManager : MonoBehaviour
         float duration = 1f;
         float elapsedTime = 0f;
 
-        while (elapsedTime < duration)
+        while (elapsedTime < duration && isInside)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
@@ -137,8 +144,16 @@ public class DoorManager : MonoBehaviour
 
             yield return null;
         }
+
+        if (isInside)
+        {
+            canGo = true;
+            doorSlider.value = targetValue; 
+        }
+        else
+        {
+            doorSlider.value = 0f;
+        }
         
-        canGo = true;
-        doorSlider.value = targetValue;
     }
 }

@@ -28,7 +28,9 @@ public class RoomTemplates : Singleton<RoomTemplates>
     [Header("Boss room")] 
     public GameObject boss;
     public GameObject ladder;
+    public GameObject[] bossRooms;
     private DoorManager bossDoor;
+    
 
     private void Update()
     {
@@ -47,6 +49,13 @@ public class RoomTemplates : Singleton<RoomTemplates>
             {
                 Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
+
+                // var maxHp = boss.GetComponent<Boss>().MaxHealth;
+                // maxHp = LevelManager.instance.IncrementFloatStats(maxHp, LevelManager.instance.level);
+                // boss.GetComponent<Boss>().MaxHealth = maxHp;
+                // boss.GetComponent<Boss>().Healt = maxHp;
+                // boss.GetComponent<Boss>().initBar();
+
                 var bossRoom = rooms[i];
                 bossDoor = bossRoom.GetComponentInChildren<DoorManager>();
                 bossDoor.enemySpawned = true;

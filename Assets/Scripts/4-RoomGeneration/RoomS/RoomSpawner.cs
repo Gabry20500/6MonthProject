@@ -60,25 +60,25 @@ public class RoomSpawner : MonoBehaviour
             {
                 if (openingDirection == 1)
                 {
-                    newRoom = Instantiate(RoomTemplates.instance.downRooms[0], transform.position, RoomTemplates.instance.downRooms[0].transform.rotation, RoomTemplates.instance.transform);
+                    newRoom = Instantiate(RoomTemplates.instance.bossRooms[1], transform.position, RoomTemplates.instance.downRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
                     
                 }else if (openingDirection == 2)
                 {
-                    newRoom = Instantiate(RoomTemplates.instance.topRooms[0], transform.position, RoomTemplates.instance.topRooms[0].transform.rotation, RoomTemplates.instance.transform);
+                    newRoom = Instantiate(RoomTemplates.instance.bossRooms[0], transform.position, RoomTemplates.instance.topRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
                     
                 }else if (openingDirection == 3)
                 {
-                    newRoom = Instantiate(RoomTemplates.instance.leftRooms[0], transform.position, RoomTemplates.instance.leftRooms[0].transform.rotation, RoomTemplates.instance.transform);
+                    newRoom = Instantiate(RoomTemplates.instance.bossRooms[2], transform.position, RoomTemplates.instance.leftRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
 
                 }else if (openingDirection == 4)
                 {
-                    newRoom = Instantiate(RoomTemplates.instance.rightRooms[0], transform.position, RoomTemplates.instance.rightRooms[0].transform.rotation, RoomTemplates.instance.transform);
+                    newRoom = Instantiate(RoomTemplates.instance.bossRooms[3], transform.position, RoomTemplates.instance.rightRooms[0].transform.rotation, RoomTemplates.instance.transform);
                     StartCoroutine(RoomTemplates.instance.DeactiveRoom());
                     newRoom.GetComponent<Mob_Spawner>().enabled = false;
                 }
