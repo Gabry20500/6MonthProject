@@ -36,12 +36,12 @@ public class RoomTemplates : Singleton<RoomTemplates>
     {
         if (rooms.Count >= maxRoom && !allFinish)
         {
-            Invoke(nameof(FinishLevel), .5f);
+            Invoke(nameof(FinalLevelSetup), .5f);
             allFinish = true;
         }
     }
 
-    public void FinishLevel()
+    public void FinalLevelSetup()
     {
         for (int i = 0; i < rooms.Count; i++)
         {
@@ -50,11 +50,11 @@ public class RoomTemplates : Singleton<RoomTemplates>
                 Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
 
-                // var maxHp = boss.GetComponent<Boss>().MaxHealth;
-                // maxHp = LevelManager.instance.IncrementFloatStats(maxHp, LevelManager.instance.level);
-                // boss.GetComponent<Boss>().MaxHealth = maxHp;
-                // boss.GetComponent<Boss>().Healt = maxHp;
-                // boss.GetComponent<Boss>().initBar();
+                var maxHp = boss.GetComponent<Boss>().MaxHealth;
+                maxHp = LevelManager.instance.IncrementFloatStats(maxHp);
+                boss.GetComponent<Boss>().MaxHealth = maxHp;
+                boss.GetComponent<Boss>().Healt = maxHp;
+                boss.GetComponent<Boss>().initBar();
 
                 var bossRoom = rooms[i];
                 bossDoor = bossRoom.GetComponentInChildren<DoorManager>();

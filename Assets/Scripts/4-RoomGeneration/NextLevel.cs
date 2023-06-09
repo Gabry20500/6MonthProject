@@ -17,6 +17,7 @@ public class NextLevel : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Time.timeScale = 1;
+            LevelManager.instance.increaseLevel();
             SceneManager.LoadScene("LevelGenerationTest");
         }
     }

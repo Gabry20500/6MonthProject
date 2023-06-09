@@ -9,8 +9,7 @@ public class MenuManage : MonoBehaviour
     {
         Time.timeScale = 1;
         LevelManager.instance.increaseLevel();
-        LevelManager.instance.increaseLevel();
-        SceneManager.LoadScene("LevelGenerationTest");
+        SceneManager.LoadScene("TutorialLevel");
     }
     
     public void ShowCase()
