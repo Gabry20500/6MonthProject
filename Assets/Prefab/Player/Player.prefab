@@ -92,6 +92,7 @@ MonoBehaviour:
   element: 1
   isActivated: 0
   isPickedUp: 0
+  selected_Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &646633621
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +533,7 @@ MonoBehaviour:
   element: 2
   isActivated: 0
   isPickedUp: 0
+  selected_Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1884481932
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +626,7 @@ MonoBehaviour:
   element: 4
   isActivated: 0
   isPickedUp: 0
+  selected_Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1907724914
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +719,7 @@ MonoBehaviour:
   element: 3
   isActivated: 0
   isPickedUp: 0
+  selected_Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1091283177295001173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1222,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
