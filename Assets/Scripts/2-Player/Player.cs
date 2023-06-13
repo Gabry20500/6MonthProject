@@ -117,16 +117,18 @@ public class Player : Entity
             if(mana.IsPossessed == true)
             {
                 mana.Disable();
+                return;
             }
         }
     }
-    public void Gain_Mana()
+    public void Add_Mana()
     {
         foreach (Mana_UI mana in mana_UIs)
         {
             if (mana.IsPossessed == false)
             {
                 mana.Activate();
+                return;
             }
         }
     }
