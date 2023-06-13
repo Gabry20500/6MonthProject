@@ -10,6 +10,7 @@ public class FireStone : Stone
     public override void OnEnemyHitted(Sword sword,EnemyAI enemy) 
     {
         enemy.StartCoroutine(Burning_Routine(sword.swordData.Damage/(100/tickDamagePercentage), enemy));
+        sword.UseMana();
     }
 
     private IEnumerator Burning_Routine(float damage, EnemyAI enemy)

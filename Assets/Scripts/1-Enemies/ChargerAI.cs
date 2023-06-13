@@ -86,7 +86,7 @@ public class ChargerAI : EnemyAI
 
     public override void OnHit(float damage, Vector3 knock_Dir, Player_SwordData sword)
     {
-        if (canBeDamaged == true && stateProcessor.currentState != stateProcessor.ChargingState)
+        if (canBeDamaged == true)
         {
             enemy.TakeDamage(damage);
             StartCoroutine(Charger_Dmg_Cooldown(2.0f));

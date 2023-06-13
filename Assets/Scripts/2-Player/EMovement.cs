@@ -11,6 +11,7 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
     [Header("Movement variables")]
     [SerializeField] private bool canMove = true;
     private Vector2 move_Dir;
+    private Vector2 last_Dir;
     private Vector3 move_Dir3D;
     private Vector3 move_Vel;
     private Vector3 temp_Acc;
@@ -161,12 +162,14 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
                 move_Dir3D = player_Sword.transform.position - transform.position;
                 move_Dir = new Vector2(move_Dir3D.x, move_Dir3D.z).normalized;
                 mov_Animator.SetDirection(move_Dir, true);
+                last_Dir = move_Dir;
             }
             else
             {
                 Accelerate();
                 //Call Animation class to play animation
                 mov_Animator.SetDirection(move_Dir);
+                last_Dir = move_Dir;
             }
         }  
         //If no action is permitted to the entity made decay his RigidBody velocity quickly to 0
@@ -219,6 +222,10 @@ public class EMovement : MonoBehaviour, IHittable, IClashable
         if (canDash)
         {
             dash_Dir = new Vector3(InputController.instance.LeftStickDir.x, 0.0f, InputController.instance.LeftStickDir.y).normalized;
+            if(dash_Dir.magnitude == 0.0f)
+            {
+                dash_Dir = new Vector3(last_Dir.x, 0.0f, last_Dir.y);
+            }
            
             ray = new Ray(transform.position, dash_Dir * self.dash_Speed);
             if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Wall")))

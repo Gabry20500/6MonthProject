@@ -280,7 +280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052311696, y: 0.277798}
   m_AnchorMax: {x: 0.41200003, y: 0.6314353}
-  m_AnchoredPosition: {x: -2.9998474, y: 0}
+  m_AnchoredPosition: {x: -2.999817, y: 0}
   m_SizeDelta: {x: 55, y: 55.813995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1412274264
@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052311696, y: 0.277798}
   m_AnchorMax: {x: 0.41200003, y: 0.6314353}
-  m_AnchoredPosition: {x: -2.9999084, y: -6}
+  m_AnchoredPosition: {x: -2.999878, y: -6}
   m_SizeDelta: {x: 6, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1756653841
@@ -874,6 +874,7 @@ GameObject:
   - component: {fileID: 2649099670623826829}
   - component: {fileID: 2197594102709384464}
   - component: {fileID: 6012548581057901484}
+  - component: {fileID: 110253307797688675}
   m_Layer: 2
   m_Name: ManaCristal (3)
   m_TagString: Untagged
@@ -929,7 +930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -939,6 +940,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &110253307797688675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692344666972570501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08cc248c6af07542980d78375cf2838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disabled_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
+  enabled_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  isPossessed: 0
 --- !u!1 &2854257528151425150
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +966,7 @@ GameObject:
   - component: {fileID: 7099364480543241994}
   - component: {fileID: 5510099987644778494}
   - component: {fileID: 7688787622528418720}
+  - component: {fileID: 2906716909614167155}
   m_Layer: 2
   m_Name: ManaCristal (1)
   m_TagString: Untagged
@@ -1005,7 +1022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1015,6 +1032,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2906716909614167155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854257528151425150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08cc248c6af07542980d78375cf2838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disabled_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
+  enabled_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  isPossessed: 0
 --- !u!1 &5693687256000527909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1183,7 @@ MonoBehaviour:
   stones:
   - {fileID: 11400000, guid: aa6e076e114ec624588c9c1d9dc34adc, type: 2}
   currentStone: {fileID: 11400000, guid: aa6e076e114ec624588c9c1d9dc34adc, type: 2}
+  mana_Crystal: 0
   canRotate: 1
   swinging: 0
   deadOffSet: 5
@@ -1443,9 +1476,7 @@ MonoBehaviour:
     inv_Time: 0
     inv_Flash_Tick: 0
     inv_Color: {r: 0, g: 0, b: 0, a: 0}
-  healthBar_playerIcon:
-  - {fileID: 21300000, guid: 361e0aaad8cbef746a7808c9a389f163, type: 3}
-  - {fileID: 21300000, guid: 51c3b92efa73d02459ad66d6ff556cb9, type: 3}
+  health_Icons: []
   currentImage: {fileID: 3516947353827168055}
   dashBar: {fileID: 6293291160408746262}
   stone_UIs:
@@ -1453,6 +1484,11 @@ MonoBehaviour:
   - {fileID: 1884481936}
   - {fileID: 1756653842}
   - {fileID: 594696345}
+  mana_UIs:
+  - {fileID: 3851453263421620714}
+  - {fileID: 2906716909614167155}
+  - {fileID: 5841263326710038869}
+  - {fileID: 110253307797688675}
 --- !u!82 &5693687256937972819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2154,6 +2190,7 @@ GameObject:
   - component: {fileID: 1017845604774389832}
   - component: {fileID: 9031130890527624525}
   - component: {fileID: 2860740387546439663}
+  - component: {fileID: 5841263326710038869}
   m_Layer: 2
   m_Name: ManaCristal (2)
   m_TagString: Untagged
@@ -2209,7 +2246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2219,6 +2256,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5841263326710038869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974454488826518263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08cc248c6af07542980d78375cf2838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disabled_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
+  enabled_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  isPossessed: 0
 --- !u!1 &8106616567254203651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,6 +2282,7 @@ GameObject:
   - component: {fileID: 6061806730587526235}
   - component: {fileID: 4190704223934181034}
   - component: {fileID: 8651009127330779809}
+  - component: {fileID: 3851453263421620714}
   m_Layer: 2
   m_Name: ManaCristal
   m_TagString: Untagged
@@ -2285,7 +2338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2295,6 +2348,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3851453263421620714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106616567254203651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08cc248c6af07542980d78375cf2838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disabled_Sprite: {fileID: 21300000, guid: af6e51184f2201340b356d83881810f7, type: 3}
+  enabled_Sprite: {fileID: 21300000, guid: e9e981cc99aea364a97823412c8f2f26, type: 3}
+  isPossessed: 0
 --- !u!1001 &5693687255802316861
 PrefabInstance:
   m_ObjectHideFlags: 0

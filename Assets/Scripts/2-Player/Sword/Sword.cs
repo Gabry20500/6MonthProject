@@ -10,8 +10,12 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] private Player_SwordSO swordSO;
     [SerializeField] public Player_SwordData swordData;
+
     [SerializeField] public List<Stone> stones;
     [SerializeField] public Stone currentStone;
+
+    [Range(min: 0, max: 4)]
+    [SerializeField] public int mana_Crystal = 0; 
 
 
     [SerializeField] public bool canRotate = true;
@@ -245,14 +249,6 @@ public class Sword : MonoBehaviour
             return;
         }
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if(player_Movement.IsAttacking == true)
-        {
-
-        }
-    }
-
 
 
     //Controllare la funzione ed implementarla meglio
@@ -319,7 +315,7 @@ public class Sword : MonoBehaviour
     }
     private void Activate_First_Stone() 
     { 
-        if(stones.Count > 1)
+        if(stones.Count > 1 && mana_Crystal > 0)
         {
             if(stones[1] != currentStone)
             {
@@ -333,7 +329,7 @@ public class Sword : MonoBehaviour
     }
     private void Activate_Second_Stone() 
     {
-        if (stones.Count > 2)
+        if (stones.Count > 2 && mana_Crystal > 0)
         {
             if (stones[2] != currentStone)
             {
@@ -347,7 +343,7 @@ public class Sword : MonoBehaviour
     }
     private void Activate_Third_Stone() 
     {
-        if (stones.Count > 3)
+        if (stones.Count > 3 && mana_Crystal > 0)
         {
             if (stones[3] != currentStone)
             {
@@ -361,7 +357,7 @@ public class Sword : MonoBehaviour
     }
     private void Activate_Fourth_Stone() 
     {
-        if (stones.Count > 4)
+        if (stones.Count > 4 && mana_Crystal > 0)
         {
             if (stones[4] != currentStone)
             {
@@ -374,4 +370,29 @@ public class Sword : MonoBehaviour
         }
     }
 
+
+    public void AddMana()
+    {
+        if (mana_Crystal != 4)
+        {
+            mana_Crystal++;
+        }
+    }
+
+    public void UseMana()
+    {
+        mana_Crystal--;
+        if(mana_Crystal == 0)
+        {
+            Disable_All_Stones();
+        }
+    }
+
+    private void Disable_All_Stones()
+    {
+        currentStone.OnDeselected(this);
+        player_Movement.Player.Disable_Stone(currentStone);
+        currentStone = stones[0];
+        currentStone.OnSelected(this);
+    }
 }

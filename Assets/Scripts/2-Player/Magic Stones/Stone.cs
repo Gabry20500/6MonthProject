@@ -58,5 +58,8 @@ public class Stone : ScriptableObject
         sword.gameObject.GetComponentInChildren<TrailRenderer>().materials[0] = trailMaterial;
     }
     public virtual void OnDeselected(Sword sword) { }
-    public virtual void OnEnemyHitted(Sword sword, EnemyAI enemy) { }
+    public virtual void OnEnemyHitted(Sword sword, EnemyAI enemy) 
+    {
+        sword.AddMana();
+    }
 }
