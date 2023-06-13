@@ -9,6 +9,7 @@ public class WaterStone : Stone
     public override void OnEnemyHitted(Sword sword, EnemyAI enemy) 
     {
         enemy.StartCoroutine(Slowing_Routine(enemy));
+        sword.UseMana();
     }
 
     private IEnumerator Slowing_Routine(EnemyAI enemy)
