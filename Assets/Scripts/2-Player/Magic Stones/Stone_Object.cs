@@ -13,6 +13,15 @@ public class Stone_Object : MonoBehaviour
     [SerializeField] private float levitationSpeed = 1f;
     private Vector3 _originalPosition;
 
+
+    #region Getter
+
+    public Stone Stone
+    {
+        get { return stone; }
+    }
+
+    #endregion
     private void Start()
     {
         _originalPosition = transform.position; 
@@ -30,6 +39,7 @@ public class Stone_Object : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            LevelManager.instance.RemoveStone(gameObject);
             Sword sw = collision.gameObject.GetComponent<EMovement>().Sword;
             bool flag = sw.PickUp_Stone(stone);
             if(flag == true)

@@ -6,6 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
+
+    [Header("Stone")] public int randValue;
+    [SerializeField] private List<GameObject> usableStone;
+    [SerializeField] private List<Stone> ownedStone;
+    
+    [Header("Progression")]
+    public int level = -1;
+
+
+    #region Getter
+
+    public List<GameObject> UsableStone
+    {
+        get { return usableStone; }
+    }
+    
+    public List<Stone>OwnedStone
+    {
+        get { return ownedStone; }
+    }
+
+    #endregion
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -14,7 +36,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public int level = -1;
+    
 
     public void increaseLevel()
     {
@@ -30,5 +52,23 @@ public class LevelManager : Singleton<LevelManager>
         float newValue = value + finalIncrement; // New float value after the increment
 
         return newValue;
+    }
+
+
+    public void RemoveStone(GameObject stone)
+    {
+        Stone stoneObj = stone.GetComponent<Stone_Object>().Stone;
+        OwnedStone.Add(stoneObj);
+        foreach (GameObject UsableStone in usableStone)
+        {
+            if (stoneObj.Element ==
+                UsableStone.GetComponent<Stone_Object>().Stone.Element)
+            {
+                usableStone.Remove(UsableStone);
+                return;
+            }
+        }
+        
+        
     }
 }

@@ -369,6 +369,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPersistent: 1
+  randValue: 0
+  usableStone:
+  - {fileID: 5543563540435355757, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+  - {fileID: 4249262863370308527, guid: 0c144ac209cae7a439e43a43e4ca7b57, type: 3}
+  - {fileID: 5106383192572904013, guid: abad10caae152b44f982e888e9309340, type: 3}
+  - {fileID: 1049627733793988474, guid: 90ced672c40050c4ab322b4362af9460, type: 3}
+  ownedStone: []
   level: -1
 --- !u!1 &1218416229
 GameObject:
