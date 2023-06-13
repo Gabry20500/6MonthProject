@@ -68,6 +68,7 @@ public class Sword : MonoBehaviour
         sword_Audio.clip = swordData.baseSwing;
         player_Movement = gameObject.GetComponentInParent<EMovement>();
         _collider = GetComponent<BoxCollider>();
+        currentStone = stones[0];
         
     }
 
@@ -216,6 +217,8 @@ public class Sword : MonoBehaviour
         player_Movement.CanDash = true;
     }
     
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && player_Movement.IsAttacking == true)
@@ -223,8 +226,8 @@ public class Sword : MonoBehaviour
             knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
             StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
             EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
-            enemy.OnHit(Damage, knockDir, swordData);
 
+            enemy.OnHit(Damage, knockDir, swordData);
             currentStone.OnEnemyHitted(this, enemy);
             return;
         }
@@ -233,8 +236,8 @@ public class Sword : MonoBehaviour
             //knockDir = Utils.CalculateDir(collision.gameObject.transform.position, transform.parent.position);
             StartCoroutine(Utils.FreezeFrames(swordData.freeze_Intensity, swordData.freeze_Duration));
             EnemyAI enemy = collision.gameObject.GetComponent<ChargerAI>();
-            enemy.OnHit(Damage, knockDir, swordData);
 
+            enemy.OnHit(Damage, knockDir, swordData);
             currentStone.OnEnemyHitted(this, enemy);
             return;
         }
@@ -269,33 +272,9 @@ public class Sword : MonoBehaviour
     }
 
 
-    public bool PickUp_Stone(Stone stone)
-    {
-        if(stones.Count < 5)
-        {
-            stones.Add(stone);
-            stone.OnPickedUp(player_Movement.Player);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
-    public bool Discard_Stone(StoneElement element)
-    {
-        foreach (Stone stone in stones)
-        {
-            if (stone.Element == element)
-            {
-                stones.Remove(stone);
-                stone.OnDiscarded(player_Movement.Player);
-                return true;
-            }
-        }
-        return false;
-    }
+
+
 
     //4 functions to inscribe to the 4 button events in the input manager
 
@@ -313,6 +292,7 @@ public class Sword : MonoBehaviour
         currentStone.OnSelected(this);
         player_Movement.Player.Disable_Stone(stones[i]);
     }
+
     private void Activate_First_Stone() 
     { 
         if(stones.Count > 1 && mana_Crystal > 0)
@@ -370,24 +350,51 @@ public class Sword : MonoBehaviour
         }
     }
 
-
-    public void AddMana()
+    public bool PickUp_Stone(Stone stone)
     {
-        if (mana_Crystal != 4)
+        if (stones.Count < 5)
         {
-            mana_Crystal++;
+            stones.Add(stone);
+            stone.OnPickedUp(player_Movement.Player);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
+    public bool Discard_Stone(StoneElement element)
+    {
+        foreach (Stone stone in stones)
+        {
+            if (stone.Element == element)
+            {
+                stones.Remove(stone);
+                stone.OnDiscarded(player_Movement.Player);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    //Mana functions
+    public void AddMana()
+    {
+            if (mana_Crystal < 4)
+            {
+                mana_Crystal++;
+                Player_Movement.Player.Add_Mana();
+            }
+    }
     public void UseMana()
     {
         mana_Crystal--;
+        player_Movement.Player.Use_Mana();
         if(mana_Crystal == 0)
         {
             Disable_All_Stones();
         }
     }
-
     private void Disable_All_Stones()
     {
         currentStone.OnDeselected(this);

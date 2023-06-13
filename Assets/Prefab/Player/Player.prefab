@@ -1476,7 +1476,9 @@ MonoBehaviour:
     inv_Time: 0
     inv_Flash_Tick: 0
     inv_Color: {r: 0, g: 0, b: 0, a: 0}
-  health_Icons: []
+  health_Icons:
+  - {fileID: 21300000, guid: 361e0aaad8cbef746a7808c9a389f163, type: 3}
+  - {fileID: 21300000, guid: 51c3b92efa73d02459ad66d6ff556cb9, type: 3}
   currentImage: {fileID: 3516947353827168055}
   dashBar: {fileID: 6293291160408746262}
   stone_UIs:
