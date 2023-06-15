@@ -13,6 +13,7 @@ public class LevelManager : Singleton<LevelManager>
     
     [Header("Progression")]
     public int level = -1;
+    public bool isTutorialComplete;
 
 
     #region Getter
@@ -33,6 +34,7 @@ public class LevelManager : Singleton<LevelManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
+            level = -1;
         }
     }
 
@@ -55,20 +57,36 @@ public class LevelManager : Singleton<LevelManager>
     }
 
 
-    public void RemoveStone(GameObject stone)
+    public void AcquireStone(GameObject stone)
     {
         Stone stoneObj = stone.GetComponent<Stone_Object>().Stone;
-        OwnedStone.Add(stoneObj);
-        foreach (GameObject UsableStone in usableStone)
+        
+        if (level > 0 && IsStoneAcquired(stoneObj) == false)
         {
-            if (stoneObj.Element ==
-                UsableStone.GetComponent<Stone_Object>().Stone.Element)
+            OwnedStone.Add(stoneObj);
+            foreach (GameObject UsableStone in usableStone)
             {
-                usableStone.Remove(UsableStone);
-                return;
+                if (stoneObj.Element ==
+                    UsableStone.GetComponent<Stone_Object>().Stone.Element)
+                {
+                    usableStone.Remove(UsableStone);
+                    return;
+                }
             }
         }
-        
-        
+
+    }
+
+    private bool IsStoneAcquired(Stone stone)
+    {
+        foreach (Stone _ownedStone in ownedStone)
+        {
+            if (stone.Element == _ownedStone.Element)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

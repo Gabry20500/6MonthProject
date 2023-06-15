@@ -26,6 +26,7 @@ public class Mana_UI : MonoBehaviour
 
     public void Disable()
     {
+        isPossessed = false;
         UI_Image.sprite = disabled_Sprite;
     }
 }
