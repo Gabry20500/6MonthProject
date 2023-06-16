@@ -47,28 +47,32 @@ public class RoomTemplates : Singleton<RoomTemplates>
         {
             if (i == rooms.Count -1)
             {
-                Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
+                GameObject currentBoss = Instantiate(boss, rooms[i].transform.position + (Vector3.up *4), Quaternion.identity, rooms[i].transform);
                 spawnedBoss = true;
 
-                var maxHp = boss.GetComponent<Boss>().MaxHealth;
+                //Variable used for set Boos hp
+                EnemyAI bossAi = currentBoss.GetComponent<EnemyAI>();
+                float maxHp = bossAi.Enemy_Data.max_HP;
+                
                 maxHp = LevelManager.instance.IncrementFloatStats(maxHp);
-                boss.GetComponent<Boss>().MaxHealth = maxHp;
-                boss.GetComponent<Boss>().Healt = maxHp;
-                boss.GetComponent<Boss>().initBar();
+                bossAi.Enemy_Data.max_HP = maxHp;
+                bossAi.Enemy_Data.HP = maxHp;
+                currentBoss.GetComponent<Enemy>().InitParameters(bossAi.Enemy_Data);
 
-                var bossRoom = rooms[i];
+
+                GameObject bossRoom = rooms[i];
                 bossDoor = bossRoom.GetComponentInChildren<DoorManager>();
                 bossDoor.enemySpawned = true;
 
 
-                foreach (var room in rooms)
+                foreach (GameObject room in rooms)
                 {
                     room.GetComponent<RoomData>().InitRoomDetector();
                 }
 
                 if (gardens.Count > 0)
                 {
-                    for(var j = gardens.Count - 1; j > -1; j--)
+                    for(int j = gardens.Count - 1; j > -1; j--)
                     {
                         if (gardens[j] == null)
                         {
@@ -87,7 +91,7 @@ public class RoomTemplates : Singleton<RoomTemplates>
                     rooms[j].SetActive(false);
                 }
 
-                foreach (var t in gardens)
+                foreach (GameObject t in gardens)
                 {
                     t.SetActive(false);
                 }
@@ -95,11 +99,5 @@ public class RoomTemplates : Singleton<RoomTemplates>
         }
     }
 
-    public IEnumerator DeactiveRoom()
-    {
-        yield return new WaitForSeconds(3f);
-        
-            
-
-    }
+    
 }

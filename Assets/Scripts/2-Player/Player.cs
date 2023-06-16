@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class Player : Entity
 {
-    [SerializeField] Player_Data_SO player_SO;
-    [SerializeField] PlayerData player_Data;
-    [SerializeField] private List<Sprite> healthBar_playerIcon;
+    [SerializeField] private Player_Data_SO player_SO;
+    [SerializeField] private PlayerData player_Data;
+
+    [SerializeField] private List<Sprite> health_Icons;
     [SerializeField] private Image currentImage;
     [SerializeField] public Slider dashBar;
 
     [SerializeField] public List<Stone_UI> stone_UIs;
+    [SerializeField] public List<Mana_UI> mana_UIs;
 
     protected override void Awake()
     {
@@ -35,11 +37,11 @@ public class Player : Entity
         base.TakeDamage(value);
         if (HP/max_HP <= 0.5f)
         {
-            currentImage.sprite = healthBar_playerIcon[1];
+            currentImage.sprite = health_Icons[1];
         }
         else
         {
-            currentImage.sprite = healthBar_playerIcon[0];
+            currentImage.sprite = health_Icons[0];
         }
     }
     protected override void Death()
@@ -59,6 +61,8 @@ public class Player : Entity
         dashBar.value = 1.0f;
     }
 
+
+    // Stone functions with UI
     public void PickUp_Stone(Stone stone)
     {
         foreach(Stone_UI ui in stone_UIs)
@@ -79,7 +83,6 @@ public class Player : Entity
             }
         }
     }
-
     public void Activate_Stone(Stone stone)
     {
         if(stone.Element == StoneElement.NONE) { return; }
@@ -94,7 +97,6 @@ public class Player : Entity
         }
 
     }
-
     public void Disable_Stone(Stone stone)
     {
         if (stone.Element == StoneElement.NONE) { return; }
@@ -103,6 +105,31 @@ public class Player : Entity
             foreach (Stone_UI stone_UI in stone_UIs)
             {
                 stone_UI.Disable();
+            }
+        }
+    }
+
+    //Mana functions with UI
+    public void Use_Mana()
+    {
+
+        for (int i = (mana_UIs.Count - 1); i >= 0 ; i--)
+        {
+            if(mana_UIs[i].IsPossessed == true)
+            {
+                mana_UIs[i].Disable();
+                return;
+            }
+        }
+    }
+    public void Add_Mana()
+    {
+        foreach (Mana_UI mana in mana_UIs)
+        {
+            if (mana.IsPossessed == false)
+            {
+                mana.Activate();
+                return;
             }
         }
     }

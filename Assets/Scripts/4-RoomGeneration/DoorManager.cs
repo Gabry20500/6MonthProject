@@ -37,7 +37,6 @@ public class DoorManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && enemySpawned == false)
         {
             isInside = true;
-            Debug.Log("Enter");
             doorSlider.gameObject.SetActive(true);
         
             doorSlider.maxValue = 1f;
@@ -52,7 +51,6 @@ public class DoorManager : MonoBehaviour
         { 
             if (other.gameObject.CompareTag("Player") && enemySpawned == false)
             {
-                Debug.Log("Stay");
                 var cameraPosition = mainCamera.transform.position;
                 switch (direction) {
                     case 1:

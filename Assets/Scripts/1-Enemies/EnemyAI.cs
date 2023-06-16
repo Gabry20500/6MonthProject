@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour, IHittable, IClashable
         //Logic to init anche change state in state processor
         stateProcessor.KnockBackState.Init(knock_Dir, sword.knockSpeed, sword.knockDuration);
         stateProcessor.currentState.OnStateExit();
-        stateProcessor.currentState = stateProcessor.KnockBackState;   
+        stateProcessor.currentState = stateProcessor.KnockBackState;
     }
 
     public void OnClash(Vector3 knockBackDir, Player_SwordData sword)

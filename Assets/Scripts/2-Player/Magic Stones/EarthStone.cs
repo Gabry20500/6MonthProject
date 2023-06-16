@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EarthStone", menuName = "Stone/New EarthStone", order = 4)]
@@ -23,5 +21,10 @@ public class EarthStone : Stone
             (sword.swordData.swingWidth * 100) / (100 + swingRangeBoostPercentage);
         sword.swordData.swingSpeed =
             (sword.swordData.swingSpeed * 100) / (100 - swingSlowdownPercentage);
+    }
+
+    public override void OnEnemyHitted(Sword sword, EnemyAI enemy)
+    {
+        sword.UseMana();
     }
 }
