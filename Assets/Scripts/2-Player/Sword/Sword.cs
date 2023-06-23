@@ -84,6 +84,11 @@ public class Sword : MonoBehaviour
         InputController.instance.Button1_Down += Activate_Third_Stone;
         InputController.instance.Button0_Down += Activate_Fourth_Stone;
         _collider.enabled = false;
+
+        foreach (Stone stone in LevelManager.instance.OwnedStone)
+        {
+            PickUp_Stone(stone);
+        }
     }
 
     /// <summary>
@@ -352,16 +357,14 @@ public class Sword : MonoBehaviour
 
     public bool PickUp_Stone(Stone stone)
     {
-        if (stones.Count < 5)
+        if (stones.Count < 5  && IsStoneAcquired(stone) == false)
         {
             stones.Add(stone);
             stone.OnPickedUp(player_Movement.Player);
             return true;
         }
-        else
-        {
-            return false;
-        }
+        
+        return false;
     }
     public bool Discard_Stone(StoneElement element)
     {
@@ -401,5 +404,18 @@ public class Sword : MonoBehaviour
         player_Movement.Player.Disable_Stone(currentStone);
         currentStone = stones[0];
         currentStone.OnSelected(this);
+    }
+    
+    private bool IsStoneAcquired(Stone stone)
+    {
+        foreach (Stone _ownedStone in stones)
+        {
+            if (stone.Element == _ownedStone.Element)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

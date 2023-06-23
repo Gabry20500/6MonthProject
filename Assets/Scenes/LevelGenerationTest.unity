@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17785463, g: 0.22267868, b: 0.3048237, a: 1}
+  m_IndirectSpecularColor: {r: 0.1778546, g: 0.22267884, b: 0.30482385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -684,6 +684,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &697751859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.186356
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98609775
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.16616637
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 19.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193450014799365476, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543563540435355757, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
+      propertyPath: m_Name
+      value: AirStone Variant (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8991eda33663364cae8ceb0d1b9b600, type: 3}
 --- !u!1001 &749059587
 PrefabInstance:
   m_ObjectHideFlags: 0

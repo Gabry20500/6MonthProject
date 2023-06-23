@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4555631834797240780, guid: bf9d8e313ccf27f4cbbe282f3f8c675d, type: 3}
       propertyPath: m_Name
-      value: Sprite_barile (10)
+      value: Sprite_barile (10) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4555631834797240784, guid: bf9d8e313ccf27f4cbbe282f3f8c675d, type: 3}
       propertyPath: m_RootOrder
@@ -55,5 +55,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 99.445
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4046150736968076500, guid: bf9d8e313ccf27f4cbbe282f3f8c675d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf9d8e313ccf27f4cbbe282f3f8c675d, type: 3}

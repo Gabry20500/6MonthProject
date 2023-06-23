@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_lava 2
+  m_Name: Ground_lava 1
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _OCCLUSIONMAP
@@ -36,9 +36,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 47cbeeece15fd9f45a0f191d8d56f25f, type: 3}
-        m_Scale: {x: 4.76, y: 4.91}
-        m_Offset: {x: 0.12, y: -0.33}
+        m_Texture: {fileID: 2800000, guid: b3c805274e232d0489a6c06abf686501, type: 3}
+        m_Scale: {x: 4.42, y: 4.55}
+        m_Offset: {x: 0.29, y: -0.22}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -60,15 +60,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 47cbeeece15fd9f45a0f191d8d56f25f, type: 3}
-        m_Scale: {x: 4.76, y: 4.91}
-        m_Offset: {x: 0.12, y: -0.33}
+        m_Texture: {fileID: 2800000, guid: b3c805274e232d0489a6c06abf686501, type: 3}
+        m_Scale: {x: 4.42, y: 4.55}
+        m_Offset: {x: 0.29, y: -0.22}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: d895a3162935beb49970df3a2a6c8bcc, type: 3}
+        m_Texture: {fileID: 2800000, guid: a58ef978d59c69b489d3913d4b53fc2c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -108,7 +108,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _OcclusionStrength: 0
+    - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

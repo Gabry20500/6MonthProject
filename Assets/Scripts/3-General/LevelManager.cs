@@ -6,15 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
+
+    [Header("Stone")] public int randValue;
+    [SerializeField] private List<GameObject> usableStone;
+    [SerializeField] private List<Stone> ownedStone;
+    
+    [Header("Progression")]
+    public int level = -1;
+    public bool isTutorialComplete;
+
+
+    #region Getter
+
+    public List<GameObject> UsableStone
+    {
+        get { return usableStone; }
+    }
+    
+    public List<Stone>OwnedStone
+    {
+        get { return ownedStone; }
+    }
+
+    #endregion
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
+            level = -1;
         }
     }
 
-    public int level = -1;
+    
 
     public void increaseLevel()
     {
@@ -30,5 +54,39 @@ public class LevelManager : Singleton<LevelManager>
         float newValue = value + finalIncrement; // New float value after the increment
 
         return newValue;
+    }
+
+
+    public void AcquireStone(GameObject stone)
+    {
+        Stone stoneObj = stone.GetComponent<Stone_Object>().Stone;
+        
+        if (level > 0 && IsStoneAcquired(stoneObj) == false)
+        {
+            OwnedStone.Add(stoneObj);
+            foreach (GameObject UsableStone in usableStone)
+            {
+                if (stoneObj.Element ==
+                    UsableStone.GetComponent<Stone_Object>().Stone.Element)
+                {
+                    usableStone.Remove(UsableStone);
+                    return;
+                }
+            }
+        }
+
+    }
+
+    private bool IsStoneAcquired(Stone stone)
+    {
+        foreach (Stone _ownedStone in ownedStone)
+        {
+            if (stone.Element == _ownedStone.Element)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

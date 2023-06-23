@@ -112,11 +112,12 @@ public class Player : Entity
     //Mana functions with UI
     public void Use_Mana()
     {
-        foreach(Mana_UI mana in mana_UIs)
+
+        for (int i = (mana_UIs.Count - 1); i >= 0 ; i--)
         {
-            if(mana.IsPossessed == true)
+            if(mana_UIs[i].IsPossessed == true)
             {
-                mana.Disable();
+                mana_UIs[i].Disable();
                 return;
             }
         }
