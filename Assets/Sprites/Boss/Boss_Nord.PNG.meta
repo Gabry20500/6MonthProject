@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30ab2534eea1b6747979b02d22185ce1
+guid: 445fc48170f47de46a3f2eb48018a258
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -153,13 +153,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sud_Est._0
+      name: Boss_Nord_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 21
-        width: 317
-        height: 466
+        x: 2
+        y: 0
+        width: 655
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdc56f389024b754abf821045b80aaff
-      internalID: -210387414
+      spriteID: 354da51264b7ce04fb64d70314c5a075
+      internalID: 1592509787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sud_Est._1
+      name: Boss_Nord_1
       rect:
         serializedVersion: 2
-        x: 358
-        y: 33
-        width: 292
-        height: 457
+        x: 658
+        y: 0
+        width: 706
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b1bcc17aec4208468646d06e7d2d53a
-      internalID: -1460926209
+      spriteID: ab900dc76a89279418e1b698a32019d9
+      internalID: 791088187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sud_Est._2
+      name: Boss_Nord_2
       rect:
         serializedVersion: 2
-        x: 690
-        y: 31
-        width: 309
-        height: 459
+        x: 1364
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 920eacadc703e5248b2a4fa46609ba4b
-      internalID: -1703373329
+      spriteID: 36dba2f5f9803384597b92b2a9b7910d
+      internalID: -1763518509
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4ce101148b4f6fb47893476991a4df20
+    spriteID: fea3ae4fd93e5c34c8b1e79f0a2f3c13
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sud_Est._2: -1703373329
-      Sud_Est._1: -1460926209
-      Sud_Est._0: -210387414
+      Boss_Nord_2: -1763518509
+      Boss_Nord_0: 1592509787
+      Boss_Nord_1: 791088187
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

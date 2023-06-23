@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -156,10 +156,10 @@ TextureImporter:
       name: Nord_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 32
-        width: 326
-        height: 447
+        x: 0
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6445ff91e4be5949a1a91bfa463c1df
-      internalID: -1370253991
+      spriteID: 1a0f192cf36ea1448acf9cd9e43e7d0e
+      internalID: -1576004972
       vertices: []
       indices: 
       edges: []
@@ -177,10 +177,10 @@ TextureImporter:
       name: Nord_1
       rect:
         serializedVersion: 2
-        x: 359
-        y: 35
-        width: 305
-        height: 465
+        x: 682
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12aacf25824ea6240a77b43d34b39fb0
-      internalID: 354276910
+      spriteID: f0cce46931adf0d4dbcd6d6723df7537
+      internalID: -1929738117
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
       name: Nord_2
       rect:
         serializedVersion: 2
-        x: 686
-        y: 18
-        width: 338
-        height: 465
+        x: 1364
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 133e81070bba80c4bb8033611cc6e56d
-      internalID: 1737336171
+      spriteID: ac43fe9b561e3f34e8378f930e10d23e
+      internalID: 187824913
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6cf436729320ba64fa537cc8b4107b72
+    spriteID: aa9cb7fa67c5b08498f8349b333a6148
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nord_1: 354276910
-      Nord_0: -1370253991
-      Nord_2: 1737336171
+      Nord_1: -1929738117
+      Nord_0: -1576004972
+      Nord_2: 187824913
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

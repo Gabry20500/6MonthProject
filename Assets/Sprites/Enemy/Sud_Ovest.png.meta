@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -156,10 +156,10 @@ TextureImporter:
       name: Sud_Ovest_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 31
-        width: 309
-        height: 459
+        x: 0
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97b8e65fb4551c9498b90a130e149b29
-      internalID: 2137802867
+      spriteID: 8f3ff520cf792cc4bb47b57b44c15886
+      internalID: -578621913
       vertices: []
       indices: 
       edges: []
@@ -177,10 +177,10 @@ TextureImporter:
       name: Sud_Ovest_1
       rect:
         serializedVersion: 2
-        x: 370
-        y: 33
-        width: 293
-        height: 457
+        x: 682
+        y: 0
+        width: 702
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca241ca71e810be4ebffc948af89c10d
-      internalID: 375619745
+      spriteID: a5b5c002217ad524c8a4200dadc675e2
+      internalID: -1964597434
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
       name: Sud_Ovest_2
       rect:
         serializedVersion: 2
-        x: 682
-        y: 21
-        width: 317
-        height: 466
+        x: 1384
+        y: 0
+        width: 664
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b8d22ffd299d4e449cae1a9a3418c4b
-      internalID: -1019884301
+      spriteID: 52d4da6b9ac404a4ab188cd78732b549
+      internalID: 1500243986
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 139bed3d5e2a37649bdd7ddccb7d8b8b
+    spriteID: ed613504ba3f4b64abe07b9affd1667c
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sud_Ovest_1: 375619745
-      Sud_Ovest_0: 2137802867
-      Sud_Ovest_2: -1019884301
+      Sud_Ovest_1: -1964597434
+      Sud_Ovest_0: -578621913
+      Sud_Ovest_2: 1500243986
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
