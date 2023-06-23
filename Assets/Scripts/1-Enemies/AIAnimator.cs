@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
-
-
-
 public class AIAnimator : EAnimator
 {    
     protected NavMeshAgent agent;
@@ -22,7 +19,7 @@ public class AIAnimator : EAnimator
     private void FixedUpdate()
     {
         dir = new Vector2(agent.velocity.x, agent.velocity.z);
-        if (dir.magnitude <= 0.1f)
+        if (dir.magnitude < 0.1f)
         {
             SetDirection(last, true);
         }
