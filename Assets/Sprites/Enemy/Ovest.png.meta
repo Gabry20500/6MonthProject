@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -79,14 +79,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -156,10 +156,10 @@ TextureImporter:
       name: Ovest_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 36
-        width: 302
-        height: 442
+        x: 0
+        y: 0
+        width: 652
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c643cb60577a392429735ac51061f6f5
-      internalID: 1271059386
+      spriteID: cfe95b43bb2c84240bbc62b036761fac
+      internalID: 696228636
       vertices: []
       indices: 
       edges: []
@@ -177,10 +177,10 @@ TextureImporter:
       name: Ovest_1
       rect:
         serializedVersion: 2
-        x: 354
-        y: 34
-        width: 290
-        height: 468
+        x: 653
+        y: 0
+        width: 713
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a19e1e819dfe547418b85c99938d2563
-      internalID: 127831951
+      spriteID: 0799c1e991d1d594681d4603b3641571
+      internalID: -1167016500
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
       name: Ovest_2
       rect:
         serializedVersion: 2
-        x: 690
-        y: 32
-        width: 276
-        height: 443
+        x: 1364
+        y: 0
+        width: 682
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9f77556be575d948a49c28269bdf3a6
-      internalID: -1431155124
+      spriteID: 07dcab44e321fc247ab0c02e2c475beb
+      internalID: 1509444383
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 04ef94fc74e591547bcace601f84fc8c
+    spriteID: 99e45c93857c86f40a22064d711ce63a
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ovest_0: 1271059386
-      Ovest_1: 127831951
-      Ovest_2: -1431155124
+      Ovest_0: 696228636
+      Ovest_1: -1167016500
+      Ovest_2: 1509444383
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

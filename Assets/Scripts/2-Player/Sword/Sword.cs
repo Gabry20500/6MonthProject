@@ -43,7 +43,7 @@ public class Sword : MonoBehaviour
     private Quaternion targetRot;
     #endregion
 
-    private TrailRenderer trail;
+    public TrailRenderer trail;
     private AudioSource sword_Audio;
     private Vector3 knockDir;
 

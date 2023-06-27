@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public enum StoneElement
 {
@@ -15,10 +14,11 @@ public class Stone : ScriptableObject
 {
     #region Variables
     [SerializeField] private StoneElement element = StoneElement.NONE;
+    [SerializeField] private GameObject stoneVFX = null;
     [SerializeField] private Sprite uiImage = null;
-    [SerializeField] private Mesh swMesh = null;
-    [SerializeField] private Material swMaterial = null;
-    [SerializeField] private Material trailMaterial = null;
+
+    private GameObject instance = null;
+    private TrailRenderer normalTrail = null;
     #endregion
 
     #region Getter
@@ -29,18 +29,6 @@ public class Stone : ScriptableObject
         public Sprite Image
         {
             get { return uiImage; }
-        }
-        public Mesh Mesh
-        {
-            get { return swMesh; }
-        }
-        public Material SwMaterial
-        {
-            get { return swMaterial; }
-        }
-        public Material TrailMaterial
-        {
-            get { return trailMaterial; }
         }
     #endregion
 
@@ -54,11 +42,17 @@ public class Stone : ScriptableObject
     }
     public virtual void OnSelected(Sword sword) 
     {
-        sword.gameObject.GetComponent<MeshFilter>().mesh = swMesh;
-        sword.gameObject.GetComponent<MeshRenderer>().materials[0] = swMaterial;
-        sword.gameObject.GetComponentInChildren<TrailRenderer>().materials[0] = trailMaterial;
+        instance = Instantiate(stoneVFX, sword.transform.position, Quaternion.identity, sword.transform);
+        normalTrail = sword.gameObject.GetComponentInChildren<TrailRenderer>();
+        normalTrail.enabled = false;
+        sword.trail = instance.GetComponentInChildren<TrailRenderer>();
     }
-    public virtual void OnDeselected(Sword sword) { }
+    public virtual void OnDeselected(Sword sword) 
+    {
+        if (instance != null) DestroyImmediate(instance);
+        sword.trail = normalTrail;
+        sword.trail.enabled = true;
+    }
 
 
     public virtual void OnEnemyHitted(Sword sword, EnemyAI enemy)
