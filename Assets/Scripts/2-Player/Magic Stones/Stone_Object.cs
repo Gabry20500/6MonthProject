@@ -39,7 +39,11 @@ public class Stone_Object : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            if(LevelManager.instance.level >0) LevelManager.instance.AcquireStone(gameObject);
+            if (LevelManager.instance.level > 0)
+            {
+                LevelManager.instance.AcquireStone(gameObject);
+            }
+            
             Sword sw = collision.gameObject.GetComponent<EMovement>().Sword;
             bool flag = sw.PickUp_Stone(stone);
             if(flag) Destroy(gameObject);

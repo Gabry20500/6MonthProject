@@ -9,6 +9,7 @@ public class LevelManager : Singleton<LevelManager>
 
     [Header("Stone")] public int randValue;
     [SerializeField] private List<GameObject> usableStone;
+    private List<GameObject> stoneList;
     [SerializeField] private List<Stone> ownedStone;
     
     [Header("Progression")]
@@ -29,16 +30,28 @@ public class LevelManager : Singleton<LevelManager>
     }
 
     #endregion
+
+    private void Awake()
+    {
+        stoneList = new List<GameObject>(usableStone);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
             level = -1;
+            ResetStone();
         }
     }
 
-    
+    public void ResetStone()
+    {
+        ownedStone = new List<Stone>();
+        usableStone = new List<GameObject>(stoneList);
+    }
+
 
     public void increaseLevel()
     {
