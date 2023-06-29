@@ -16,9 +16,8 @@ public class Stone : ScriptableObject
     [SerializeField] private StoneElement element = StoneElement.NONE;
     [SerializeField] private GameObject stoneVFX = null;
     [SerializeField] private Sprite uiImage = null;
-
-    private GameObject instance = null;
-    private TrailRenderer normalTrail = null;
+    
+    
     #endregion
 
     #region Getter
@@ -42,16 +41,23 @@ public class Stone : ScriptableObject
     }
     public virtual void OnSelected(Sword sword) 
     {
-        instance = Instantiate(stoneVFX, sword.transform.position, Quaternion.identity, sword.transform);
-        normalTrail = sword.gameObject.GetComponentInChildren<TrailRenderer>();
-        normalTrail.enabled = false;
-        sword.trail = instance.GetComponentInChildren<TrailRenderer>();
+        if (stoneVFX != null)
+        {
+            StoneUtils.instance = Instantiate(stoneVFX, sword.transform.position, sword.transform.rotation, sword.transform)as GameObject;
+            StoneUtils.normalTrail = sword.gameObject.GetComponentInChildren<TrailRenderer>();
+            StoneUtils.normalTrail.enabled = false;
+            sword.trail = StoneUtils.instance.GetComponentInChildren<TrailRenderer>();
+        }
+        
     }
     public virtual void OnDeselected(Sword sword) 
     {
-        if (instance != null) DestroyImmediate(instance);
-        sword.trail = normalTrail;
-        sword.trail.enabled = true;
+        if (StoneUtils.instance != null)
+        {
+            Destroy(StoneUtils.instance);
+            sword.trail = StoneUtils.normalTrail;
+            sword.trail.enabled = true;
+        }
     }
 
 
@@ -59,4 +65,10 @@ public class Stone : ScriptableObject
     {
             sword.AddMana();
     }
+}
+
+static class StoneUtils
+{
+    public static GameObject instance = null;
+    public static TrailRenderer normalTrail = null;
 }

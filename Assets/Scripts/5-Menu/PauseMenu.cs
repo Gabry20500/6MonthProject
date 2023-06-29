@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7) && LevelManager.instance.level > -1)
         {
             if (GameIsPaused)
             {
@@ -42,5 +42,7 @@ public class PauseMenu : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene("MainMenu");
+        LevelManager.instance.level = -1;
+        LevelManager.instance.ResetStone();
     }
 }

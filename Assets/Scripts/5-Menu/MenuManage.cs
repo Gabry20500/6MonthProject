@@ -37,6 +37,9 @@ public class MenuManage : MonoBehaviour
             _gameObject.SetActive(false);
             backgroundImage.sprite = backImage[1];
             goBackButton.SetActive(true);
+            goBackButton.GetComponent<Button>().interactable = true;
+            goBackButton.GetComponent<Button>().Select();
+            
         }
     }
 
@@ -53,5 +56,8 @@ public class MenuManage : MonoBehaviour
             backgroundImage.sprite = backImage[0];
             goBackButton.SetActive(false);
         }
+
+        menuGameObject[3].GetComponent<Button>().interactable = true;
+        menuGameObject[3].GetComponent<Button>().Select();
     }
 }

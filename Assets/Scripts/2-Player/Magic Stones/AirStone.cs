@@ -12,8 +12,10 @@ public class AirStone : Stone
         //float maxSpeed = sword.Player_Movement.self.move_Max_Speed;
         //sword.Player_Movement.self.move_Max_Speed += (maxSpeed / 100) * speedBoostPercentage;
     }
-    public override void OnDeselected(Sword sword) 
+
+    public override void OnDeselected(Sword sword)
     {
+        base.OnDeselected(sword);
         //sword.Player_Movement.self.move_Max_Speed = (sword.Player_Movement.self.move_Max_Speed * 100) / (100 + speedBoostPercentage);
     }
 
