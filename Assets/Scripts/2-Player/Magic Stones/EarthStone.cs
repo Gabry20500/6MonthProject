@@ -15,6 +15,7 @@ public class EarthStone : Stone
     }
     public override void OnDeselected(Sword sword) 
     {
+        base.OnDeselected(sword);
         sword.swordData.Damage = 
             (sword.swordData.Damage * 100) / (100 + damageBoostPercentage);
         sword.swordData.swingWidth =
