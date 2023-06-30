@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 27828
+  controlID: 124
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 27829
+  controlID: 125
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -401,7 +401,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -445,14 +445,14 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 0
   m_SceneLighting: 1
-  m_2DMode: 1
+  m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 487.56296, y: 369.9009, z: -1.8713597}
+    m_Target: {x: 18.751139, y: -201.17592, z: 122.15045}
     speed: 2
-    m_Value: {x: 487.56296, y: 369.9009, z: -1.8713597}
+    m_Value: {x: 18.751139, y: -201.17592, z: 122.15045}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -499,17 +499,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.47687945, y: -0.058719628, z: 0.0319574, w: -0.876436}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.47687387, y: -0.058718942, z: 0.031957027, w: -0.87642574}
   m_Size:
-    m_Target: 325.21432
+    m_Target: 172.34407
     speed: 2
-    m_Value: 325.21432
+    m_Value: 172.34407
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 2
     m_SpeedNormalized: 1
@@ -613,9 +613,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ba240000
+      m_SelectedIDs: 34790000
       m_LastClickedID: 0
-      m_ExpandedIDs: e876faff2e7bfaffb881faff4492faffce98faff4e9bfaffd4f5faffe0f5faffcaf6faffd0f6faff1806fbff2406fbffae0cfbffc439fbff3844fbffda4bfbffe64bfbff7052fbff0858fbff4e64fbff2272fbffa877fbffb477fbffde80fbffae81fbffb081fbffc289fbff0299fbff22a0fbff00acfbff06acfbffd6acfbffd8acfbff6626fdff6ce9feffc216ffff22fafffff2fafffff8faffffd2740000fa740000287500003a750000627500007c750000dcb2000086b30000b0370100
+      m_ExpandedIDs: 2471fdff9a7cfdff3c88fdffbe8afdff06a8fdffbea8fdffd8c3fdffd4dffdffe6dffdffeadffdff2ce4fdffc8ebfdff906dfeff6ebffeff74bffefff6c9feff1ef4feff9cfefeff7efffeff523bffff3662ffff7462ffff8c62ffff8e62ffffba6cffff0277ffff4084ffff4a9cffffc49cffff029dffff1a9dffff1c9dffff68abffff5cf5ffff14f8fffff8faffffc0790000e4790000f879000022e20000460301008a0e0100aa0e0100be0e0100c60e0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -631,7 +631,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 6}
+        m_ClientGUIView: {fileID: 7}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/2-Player/Magic Stones
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 12930000
     m_LastClickedID: 37650
-    m_ExpandedIDs: ffffffff000000006e7700009277000064a3000066a30000b8a30000d6a40000d8a40000daa40000dca40000dea40000e0a40000e2a40000e4a40000e6a40000e8a40000eaa40000eca40000eea40000f0a40000f2a40000f4a40000f6a40000f8a40000faa40000fca40000fea4000000a5000002a5000004a5000006a5000008a500000aa500000ca500000ea5000010a5000012a5000014a500001ca500001ea5000022a5000024a5000026a500002ca5000030a5000032a5000034a5000038a500003aa500003ca500003ea50000a2a50000f6a70000f8a70000faa70000fca7000016a8000074da000078da00009cda0000c0da0000
+    m_ExpandedIDs: 00000000be750000c47500008a7600008c7600008e76000090760000927600009476000096760000987600009a7600009c7600009e760000a0760000a2760000a4760000a6760000a8760000aa760000ac760000ae760000b0760000b2760000b4760000b6760000b8760000ba760000bc760000be760000c0760000c2760000c4760000c6760000c8760000ca760000cc760000ce760000d0760000d2760000d4760000d6760000d8760000da760000dc760000de760000e0760000e2760000e4760000e6760000e8760000ea760000ec760000ee760000f0760000f2760000f4760000f6760000f8760000fa760000fc760000fe760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -746,21 +746,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ba240000
-    m_LastClickedID: 9402
-    m_ExpandedIDs: ffffffff000000006e7700009277000064a3000066a30000b8a30000d6a40000d8a40000daa40000dca40000dea40000e0a40000e2a40000e4a40000e6a40000e8a40000eaa40000eca40000eea40000f0a40000f2a40000f4a40000f6a40000f8a40000faa40000fca40000fea4000000a5000002a5000004a5000006a5000008a500000aa500000ca500000ea5000010a5000012a5000014a500001ca500001ea5000022a5000024a5000026a500002ca5000030a5000032a5000034a5000038a500003aa500003ca500003ea50000a2a50000c8a50000f6a70000f8a70000faa70000fca7000016a8000074da000078da00009cda0000c0da0000
+    scrollPos: {x: 0, y: 420}
+    m_SelectedIDs: 34790000
+    m_LastClickedID: 31028
+    m_ExpandedIDs: ffffffff00000000be750000c47500008a7600008c7600008e76000090760000927600009476000096760000987600009a7600009c7600009e760000a0760000a2760000a4760000a6760000a8760000aa760000ac760000b0760000b2760000b4760000b6760000b8760000ba760000be760000c0760000c2760000c4760000c8760000ca760000cc760000ce760000d0760000d2760000d6760000d8760000da760000dc760000de760000e0760000e2760000e4760000e6760000e8760000ea760000ec760000ee760000f0760000f2760000f4760000f6760000f8760000fa760000fc760000fe7600001e7900002a790000a48500000c860000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: EarthStone
-      m_OriginalName: EarthStone
+      m_Name: TutorialLevel
+      m_OriginalName: TutorialLevel
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 9402
+      m_UserData: 31042
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -774,8 +774,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ba240000
-    m_LastClickedInstanceID: 9402
+    m_SelectedInstanceIDs: 34790000
+    m_LastClickedInstanceID: 31028
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
